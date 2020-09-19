@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "场馆列表",
+  "usingComponents": {
+    "loading": "/components/loadding",
+    "pay-ball": "/components/payBall"
+  }
+}

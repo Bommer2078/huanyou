@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "票务管理",
+  "usingComponents": {
+    "business-main-page": "/components/businessMainPage",
+    "statistics-page": "/components/statisticsPage"
+  }
+}

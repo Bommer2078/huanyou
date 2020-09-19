@@ -1,0 +1,90 @@
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+    padding-top: 20rpx;
+    background: #F3F3F3;
+}
+.form-container {
+    margin-bottom: 10px;
+}
+.input-item {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 12px;
+    padding-left: 13rpx;
+    padding-right: 13rpx;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.input-item .lable {
+    width: 160rpx;
+    padding-left: 23rpx;
+    color: #000;
+}
+.sign-up-btn, .go-back-btn {
+    width: 78.4%;
+    height: 74rpx;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 74rpx;
+    text-align: center;
+    color: #fff;
+    border-radius: 6px;
+    background: -webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
+}
+.sign-up-btn {
+    margin-bottom: 30rpx;
+}
+.login-out {
+    margin-top: 130rpx;
+}
+.setting-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    font-size: 12px;
+    padding-left: 36rpx;
+    padding-right: 36rpx;
+    color: #FFCC00;
+    margin-bottom: 108rpx;
+}
+.error-style {
+    border: 1px solid red;
+}
+.eye {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    margin-left: auto;
+}
+.eye ._img{
+    width: 70rpx;
+    height: 35rpx;
+}
+

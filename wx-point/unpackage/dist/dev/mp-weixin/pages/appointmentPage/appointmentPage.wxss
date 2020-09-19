@@ -1,0 +1,188 @@
+
+.appointment-page {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 10px;
+    background: #f3f3f3;
+}
+.venue-tab {    
+    display: -webkit-box;    
+    display: -webkit-flex;    
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;    
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    background: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.chose-item {     
+    display: -webkit-box;     
+    display: -webkit-flex;     
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    width: 100%;
+    height: 120rpx;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.ticket-info {
+    width: 90%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.info-item {
+    font-size: 14px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+            align-items: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+}
+.bind-label {
+    margin-right: 5px;
+    font-weight: 700;
+}
+.bind-name {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 400;
+    font-size: 12px;    
+    color: #888;
+}
+.arrow {        
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    border: 1px solid #38210B;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    border-left: transparent;
+    border-bottom: transparent;
+}
+.no-ticket {
+    height: 70vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.no-ticket text{
+    font-size: 14px;
+    color: #353535;
+    margin-bottom: 20px;
+}
+.appointment-page .btn{
+    width: 78.4%;
+    height: 74rpx;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 74rpx;
+    text-align: center;
+    color: #fff;
+    border-radius: 6px;
+    background: -webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
+}
+.box {
+        position: fixed;
+        top: -50rpx;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        margin: auto;
+        width: 550rpx;
+        max-height: 80vh;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+        overflow: hidden;
+        z-index: 4;
+}
+.box .title {
+        width: 100%;
+        height: 60rpx;
+        text-align: center;
+        margin-bottom: 10rpx;
+        background: #ffcc00;
+}
+.box .box-name {
+        width: 100%;
+        text-align: left;
+        font-size: 13px;
+        padding: 20rpx;
+}
+.confirm-btn {
+        position: absolute;
+        bottom: 20px;
+        width: 78.4%;
+        height: 74rpx;
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 74rpx;
+        text-align: center;
+        color: #fff;
+        border-radius: 6px;
+        background: -webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+        background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
+}
+.mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #888;
+        opacity: .5;
+        z-index: 3;
+}
+

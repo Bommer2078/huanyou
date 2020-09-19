@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "验票",
+  "usingComponents": {
+    "tki-qrcode": "/components/tki-qrcode"
+  }
+}

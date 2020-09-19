@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "联票",
+  "usingComponents": {
+    "loading": "/components/loadding",
+    "pay-ball": "/components/payBall"
+  }
+}

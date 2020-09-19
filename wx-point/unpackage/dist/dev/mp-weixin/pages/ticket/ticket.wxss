@@ -1,0 +1,197 @@
+
+.detail-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #F3F3F3;
+}
+.page-banner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    width: 100%;
+    padding-top: 21rpx;
+    padding-bottom: 21rpx;
+    background: #fff;
+}
+.page-banner ._img{
+    width: 680rpx;
+    height: 330rpx;
+    border-radius: 27rpx;
+    box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
+}
+.detail-title {
+    width: 100%;
+    background: #fff;
+}
+.detail-name {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    padding-left: 15rpx;
+    padding-bottom: 28rpx;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+.detail-name ._img {
+    width: 22rpx;
+    height: 22rpx;
+    margin-right: 10rpx;
+}
+.venue-rules {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    width: 100%;
+    padding-left: 15rpx;
+    padding-right: 15rpx;
+    padding-bottom: 30rpx;
+    background: #fff;
+}
+.venue-rules .rules{
+    margin-left: 8rpx;
+    max-width: 45vw;
+    font-size: 11px;
+    color:#9D9D9D;
+    word-break: break-all;
+}
+.venue-rules .price {        
+    position: relative;
+}
+.venue-rules .price text{
+    font-size: 27px;
+    font-style: italic;
+    font-weight: 700;
+    color: #FFCC00;
+}
+.venue-rules .price .price-tip {
+    color: #888;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+}
+.venue-rules .price .unit {
+    color: #888;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+.detail-location {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    width: 100%;        
+    padding-left: 15rpx;
+    padding-right: 15rpx;
+    margin-bottom: 20rpx;
+    background: #fff;
+}
+.detail-location .location {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    width: 100%;
+    height: 89rpx;
+    border-top: 1px solid #EDEDED;
+}
+.location .location-name {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    font-size: 14px;
+    margin-bottom: 10rpx;
+}
+.location .location-name ._img{
+    width: 32rpx;
+    height: 40rpx;
+    margin-right: 5px;
+}
+.location .location-detail{
+    font-size: 11px;
+    color: #C5C5C5; 
+    margin-left: 16rpx;
+}
+.detail-location .phone{
+    width: 130rpx;
+    height: 130rpx;
+    padding-top: 46rpx;
+    border-top: 1px solid #EDEDED;
+}
+.detail-location .phone ._img{
+    padding-left: 43rpx;
+    width: 35rpx;
+    height: 41rpx;
+    border-left: 1px solid #C5C5C5;
+}
+.info-content {
+    width: 100%;
+    padding: 30rpx 15rpx 0 15rpx;
+    background: #fff;
+    margin-bottom: 40px;
+}
+.content-name {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25rpx;
+}
+.content-name .list-icon {
+    width: 33rpx;
+    height: 36rpx;
+    margin-right: 10rpx;
+}
+.content-name-text {
+    position: relative;
+}
+.content-name-text::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 25px;
+    width: 15px;
+    height: 4px;
+    border-radius: 2px;
+    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
+}
+.pay-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    background: #FFCC00;
+    line-height: 40px;
+}
+

@@ -1,0 +1,94 @@
+
+.blue-theme {
+    color: #fff;
+}
+.blue-theme .share-btn,
+.blue-theme .bind-btn {
+    background: #0B56D3;
+}
+.yellow-theme {
+    color: #38210B;
+}
+.yellow-theme .share-btn,
+.yellow-theme .bind-btn {
+    background: #FFF722;
+}
+.ticket-item {
+    position: relative;
+    width: 586rpx;
+    height: 297rpx;
+    border-radius: 20rpx;
+}
+.bg-img {
+    position: absolute;
+    width: 586rpx;
+    height: 297rpx;
+}
+.container {        
+    position: absolute;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    width: 586rpx;
+    height: 297rpx;
+    padding: 18rpx;
+    padding-bottom: 40rpx;
+}
+.container .title{
+    font-size: 14px;
+}
+.container .name{
+    text-align: center;
+    font-size: 27px;
+    text-shadow:4px 3px 2px rgba(0,0,0,0.21);
+}
+.container .info{
+    font-size: 13px;
+}
+.bind-btn, .share-btn {        
+    position: absolute;
+    height: 36rpx;
+    line-height: 36rpx;
+    text-align: center;
+    font-size: 12px;
+}
+.share-btn {
+    display: inline-block;
+    padding: 0;
+    bottom: 41rpx;
+    right: 145rpx;
+    width: 110rpx;
+    border-radius: 18rpx;
+}
+.bind-btn {
+    bottom: 41rpx;
+    right: 35rpx;
+    width: 120rpx;
+    border-radius: 18rpx;
+}
+.bind-icon {
+    position: absolute;
+    width: 145rpx;
+    height: 153rpx;
+    top: -25rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+}
+.bind-icon ._img{
+    width: 145rpx;
+    height: 153rpx;
+}
+.bind-bg {
+    opacity: .5;
+}
+
