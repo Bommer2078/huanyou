@@ -7,12 +7,18 @@
             <view class="th">场馆名称</view>
         </view>
         <template v-if="appointmentList.length > 0">            
-            <view v-for="(item,index) in appointmentList" :key="index" class="appointment-item" :class="{'bad-appointment' : item.status === 2}">
-                <view class="td">{{item.booker}}</view>
-                <view class="td">{{item.itemName}}</view>
-                <view class="td" v-if="item.status === 1">{{item.createTime | dateText}}</view>
-                <view class="td" v-else>已撤销</view>
-                <view class="td">{{item.venueName}}</view>
+            <view v-for="(item,index) in appointmentList" :key="index"  class="appointment-item-cover">
+                <view class="appointment-item" :class="{'bad-appointment' : item.status === 2}">                    
+                    <view class="td">{{item.booker}}</view>
+                    <view class="td">{{item.itemName}}</view>
+                    <view class="td" v-if="item.status === 1">{{item.createTime | dateText}}</view>
+                    <view class="td" v-else>已撤销</view>
+                    <view class="td">{{item.venueName}}</view>
+                </view>
+                <view class="appointment-btn-group" v-show="true">
+                    <view class="show-qr-btn">出 示</view>
+                    <view class="cancel-btn">取 消</view>
+                </view>
             </view>    
         </template>    
         <template v-else>
@@ -154,6 +160,11 @@ export default {
     .bad-appointment {
         opacity: .5;
         background: #eee;
+    }    
+    .appointment-item-cover {
+        background: #fff;
+        border-radius: 8px;
+        margin-bottom: 14upx;
     }
     .appointment-item {
         display: flex;
@@ -161,12 +172,33 @@ export default {
         align-items: center; 
         justify-content: space-between;
         width: 100%;
-        height: 150upx;
+        background: #fff;
+        min-height: 150upx;
         padding-left: 20upx;
         padding-right: 20upx;
-        background: #fff;
-        border-radius: 8px;
-        margin-bottom: 14upx;
+    }
+    .appointment-btn-group {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        height: 70upx;
+    }
+    .appointment-btn-group .show-qr-btn,
+    .appointment-btn-group .cancel-btn {
+        width: 142upx;
+        height: 47upx;
+        font-size: 30upx;
+        line-height: 47upx;
+        border-radius: 10upx;
+        text-align: center;
+    }
+    .appointment-btn-group .show-qr-btn {
+        color: #fff;
+        background: linear-gradient(-53deg, #FF900E, #FFCC00);
+    }
+    .appointment-btn-group .cancel-btn {
+        color:#FFCC00;        
+        border: 1px solid#FFCC00;
     }
     .td {
         display: flex;

@@ -58,6 +58,11 @@
     opacity: .5;
     background: #eee;
 }
+.appointment-item-cover {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 14rpx;
+}
 .appointment-item {
     display: -webkit-box;
     display: -webkit-flex;
@@ -73,12 +78,39 @@
     -webkit-justify-content: space-between; 
             justify-content: space-between;
     width: 100%;
-    height: 150rpx;
+    background: #fff;
+    min-height: 150rpx;
     padding-left: 20rpx;
     padding-right: 20rpx;
-    background: #fff;
-    border-radius: 8px;
-    margin-bottom: 14rpx;
+}
+.appointment-btn-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+            align-items: flex-start;
+    height: 70rpx;
+}
+.appointment-btn-group .show-qr-btn,
+.appointment-btn-group .cancel-btn {
+    width: 142rpx;
+    height: 47rpx;
+    font-size: 30rpx;
+    line-height: 47rpx;
+    border-radius: 10rpx;
+    text-align: center;
+}
+.appointment-btn-group .show-qr-btn {
+    color: #fff;
+    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
+    background: linear-gradient(-53deg, #FF900E, #FFCC00);
+}
+.appointment-btn-group .cancel-btn {
+    color:#FFCC00;        
+    border: 1px solid#FFCC00;
 }
 .td {
     display: -webkit-box;

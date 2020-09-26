@@ -14,12 +14,19 @@
                     </view>
                 </view>
                 <view class="search-container" @click="gotoSearchPage">
-                    <view class="search-input">快来输入点什么～</view>
+                    <view class="search-input">
+                        <image src="../../static/img/search-black.svg" />
+                        <text>快来输入点什么～</text>
+                    </view>
                 </view>
                 <view class="banner" @click="intoTicket">
                     <img :src="ticketBaseInfo.photo">
                 </view>
-            </view>            
+            </view>  
+            <view class="option-btn">
+                <image src="../../static/img/switch.svg"  class="switch-btn"/>
+                <image src="../../static/img/switch.svg"  class="into-detail-btn"/>
+            </view>          
         </view>
         <view class="mian-container">
             <view class="item-container" v-if="goodsArr.length > 0">
@@ -306,11 +313,11 @@ import choseTicketList from '../../components/choseTicketList'
     position: relative;
     width: 100%;
     height: 454upx;
-    margin-bottom: 5px;
+    margin-bottom: 50upx;
 }
 .ticket-banner .bg{
     position: absolute;
-    bottom: -80upx;
+    bottom: -135upx;
     width: 100%;
 }
 .ticket-container {
@@ -361,17 +368,26 @@ import choseTicketList from '../../components/choseTicketList'
     padding-right: 14upx;
     padding-top: 10upx; 
     height: 60upx;
-    margin-bottom: 29upx;    
+    padding-bottom: 82upx;    
     background: #FFCC00;
+}
+.ticket-container .search-container image{
+    width: 30upx;
+    height: 30upx;
+    margin-right: 20upx;
 }
 .search-input {
     width: 100%;
-    height: 60upx;
-    background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 54upx;
+    background: #FFE785;
     border-radius: 4px;
-    color:#B0B0B0;
+    color:#38210B;
     font-size: 12px;
-    line-height: 60upx;
+    line-height: 54upx;
     padding-left: 10px;
 }
 .mian-container {    

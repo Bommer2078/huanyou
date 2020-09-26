@@ -49,12 +49,25 @@
             <view class="info-content">            
                 <view class="content-name">
                     <img src="/static/img/iconGroup/rules.svg" class="list-icon">
-                    <view class="content-name-text">
+                    <view :class="currentTab === 1 ? 'content-name-text' : 'tab-name-text'" class="tab-item" @click="changeCurrentTab(1)">
                         场馆介绍
                     </view>
+                    <view :class="currentTab === 2 ? 'content-name-text' : 'tab-name-text'" class="tab-item" @click="changeCurrentTab(2)">
+                        评论
+                    </view>
                 </view>
-                <view class="content-body" >                
+                <view class="content-body" v-show="currentTab === 1">                
                     <rich-text :nodes="processImg(venueData)"></rich-text>
+                </view>
+                <view class="comment-body" v-show="currentTab === 2"> 
+                    <template v-if="!commentData || commentData.length === 0">
+                        <view class="no-comment">暂无评论</view>
+                    </template>  
+                    <template v-else>
+                        <template v-for="item in commentData">                        
+                            <comment-item :comment-data="item" :key="item.id"></comment-item>   
+                        </template>
+                    </template>
                 </view>
             </view>
         </template>
@@ -66,7 +79,8 @@
                 <view class="pay-btn">立即购买</view>
             </view>
         </view> -->
-        <pay-ball></pay-ball>
+        <pay-ball v-if="currentTab === 1"></pay-ball>
+        <image src="../../static/img/commentBtn.png" class="comment-btn" v-else/>
         <loading :show-loading="!venueData"></loading>     
     </view>
 </template>
@@ -74,10 +88,12 @@
 <script>
 import loading from '../../components/loadding'
 import payBall from '../../components/payBall'
+import commentItem from '../../components/commentItem'
 export default {
     components: {
         loading,
-        payBall
+        payBall,
+        commentItem
     },
     created() {
         this.$nextTick(() => {            
@@ -98,7 +114,14 @@ export default {
             rulesStr: '',
             venueId: '',
             phoneCall: '',
-            timer: null
+            timer: null,
+            currentTab: 1, // 1详情,2评论
+            commentData: [{
+                id:1,
+                name:'189****1235',
+                content: '超级好玩得地方',
+                creatTime: '08-21 19:12'
+            }]
         }
     },
     computed: {
@@ -156,6 +179,9 @@ export default {
             uni.navigateTo({
                 url: `../map/map?lng=${lng}&lat=${lat}&name=${name}`
             })
+        },
+        changeCurrentTab (type) {
+            this.currentTab = type
         }
     },
 }
@@ -221,6 +247,25 @@ export default {
     .content-body {
         padding-left: 15upx;
         padding-right: 15upx;
+    }
+    .comment-body {
+        min-height: 400upx;
+    }
+    .no-comment {
+        width: 100%;
+        padding-top: 120upx;
+        height: 300upx;
+        text-align: center;
+        color: #ACACAC;
+        font-size: 28upx;
+        background: #fff;
+    }
+    .comment-btn {
+        position: fixed;
+        width: 130upx;
+        height: 130upx;
+        bottom: 104upx;
+        right: 0;
     }
     .venue-rules .price::after{
         content: "";
@@ -326,8 +371,17 @@ export default {
         height: 36upx;
         margin-right: 10upx;
     }
+    .content-name .tab-item {
+        width: 130upx;
+        text-align: center;
+    }
     .content-name-text {
         position: relative;
+    }
+    .tab-name-text {
+        font-size: 24upx;
+        font-weight: 400;
+        color: #9E9E9E;
     }
     .route-detail {        
         padding-bottom: 15upx;

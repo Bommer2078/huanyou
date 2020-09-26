@@ -68,7 +68,7 @@ export default {
         creatQrcode() {
             this.changeQR()
             this.$nextTick(() => {                    
-                this.$refs.orderQrcode._makeCode()
+                this.$refs.orderQrcode && this.$refs.orderQrcode._makeCode()
             })
         },
         intoVenueDetail () {

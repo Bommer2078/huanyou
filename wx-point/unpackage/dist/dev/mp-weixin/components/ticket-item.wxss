@@ -33,9 +33,9 @@
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
             flex-direction: column;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
     width: 586rpx;
     height: 297rpx;
     padding: 18rpx;
@@ -46,30 +46,41 @@
 }
 .container .name{
     text-align: center;
-    font-size: 27px;
+    font-size: 54rpx;
+    font-weight: 700;
+    margin-bottom: 30rpx;
     text-shadow:4px 3px 2px rgba(0,0,0,0.21);
 }
 .container .info{
-    font-size: 13px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+    font-size: 26rpx;
 }
 .bind-btn, .share-btn {        
     position: absolute;
     height: 36rpx;
     line-height: 36rpx;
     text-align: center;
-    font-size: 12px;
+    font-size: 24rpx;
 }
 .share-btn {
     display: inline-block;
     padding: 0;
-    bottom: 41rpx;
-    right: 145rpx;
-    width: 110rpx;
+    bottom: 44rpx;
+    left: 80rpx;
+    width: 120rpx;
     border-radius: 18rpx;
 }
 .bind-btn {
-    bottom: 41rpx;
-    right: 35rpx;
+    bottom: 44rpx;
+    right: 80rpx;
     width: 120rpx;
     border-radius: 18rpx;
 }

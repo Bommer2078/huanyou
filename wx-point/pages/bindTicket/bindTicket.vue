@@ -29,8 +29,13 @@
                 <input type="text" placeholder="请输入联票密码" v-model.trim="ticketPassword" @blur="handlerPassword($event)">
             </view>
         </view>
-        <view class="confirm-btn" @click="bindTicket">
-            确认绑定            
+        <view class="confirm-btn-group">
+            <view class="confirm-btn"  @click="bindTicket">
+                确认绑定            
+            </view>
+            <view class="scan-btn">
+                扫码绑定
+            </view>
             <view class="tip">
                 * 联票一经绑定，绑定信息将不能被更改
             </view>
@@ -215,11 +220,15 @@ export default {
 .item .icon-arrow {
     margin-left: auto;
 }
-.confirm-btn {
+.confirm-btn-group {
     position: relative;
-    width: 78.4%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     height: 74upx;
-    margin: 0 auto;
+}
+.confirm-btn,.scan-btn {    
+    width: 305upx;
     font-size: 16px;
     line-height: 74upx;
     text-align: center;
@@ -241,7 +250,7 @@ export default {
     border-left: transparent;
     border-bottom: transparent;
 }
-.confirm-btn .tip {
+.confirm-btn-group .tip {
     position: absolute;
     bottom: -35px;
     font-size: 12px;

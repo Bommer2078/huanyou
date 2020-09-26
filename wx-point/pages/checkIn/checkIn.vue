@@ -6,15 +6,17 @@
             <view class="check-in-container">
                 <view class="check-in-header">
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
+                    <text class="right">{{currentTicketObj.bindingName}}</text>
+                    <view class="cancel-btn">取消绑定</view>
                 </view>
                 <view class="check-in-body">
                     <view class="item">
-                        <text class="left">姓名</text>
-                        <text class="right">{{currentTicketObj.bindingName}}</text>
-                    </view>
-                    <view class="item">
                         <text class="left">手机号码</text>
                         <text class="right">{{currentTicketObj.username}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="left">有效时间</text>
+                        <text class="right">2019.01.01-2020.01.01</text>
                     </view>
                     <view class="item">
                         <text class="left">联票编码</text>
@@ -27,7 +29,14 @@
              <img class="ticket-bg" src="/static/img/checkTicket.png">
              <view class="QRcode-container">
                  <view class="QRcode-header">
-                     <view class="title">{{currentTicketObj.itemName}}</view>
+                     <view class="title has-icon" @click="switchCurrentTicketType">
+                        <text>
+                             {{currentTicketObj.itemName}}
+                        </text>
+                        <view class="switch-icon">
+                            <image src="../../static/img/switch.svg"></image>
+                        </view>
+                    </view>
                      <view class="code">
                          <text>密码</text>
                          <text class="code-num" hover-class="password-open">{{currentTicketObj.password}}</text>
@@ -157,6 +166,9 @@
                     this.currentTicket--
                 }
             },
+            switchCurrentTicketType () {
+
+            },
             async getTicketList () {
                 let params = {
                     pageNum: 1,
@@ -194,7 +206,7 @@
     position: relative;
     width: 100%;
     height: 500upx;
-    margin-bottom: 40upx;
+    margin-bottom: 60rpx;
 }
 .check-in-banner .bg{
     position: absolute;
@@ -214,7 +226,7 @@
 }
 .check-in-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: absolute;
@@ -225,32 +237,40 @@
     z-index: 2;
 }
 .check-in-container .check-in-header {
-    width: 330upx;
-    max-height: 480upx;
-    position: relative;
-    border-radius: 16px;
+    width: 100%;
+    position: absolute;
     top: -33upx;
-    left: 20upx;
     overflow: hidden;
-    flex-shrink: 0;
+    flex-shrink: 0;    
+    padding-left: 67upx;
+    overflow: hidden;
 }
 .check-in-container .check-in-header image{
-    width: 100%;
+    width: 192upx;
+    height: 192upx;
     opacity: 1;
     vertical-align: middle;
+    border-radius: 16px;
     margin-right: 19upx;
 }
 .check-in-container .check-in-header text {
     font-weight: 700;
+    font-size: 36upx;
 }
 .check-in-body {
+    position: absolute;
+    bottom: 20upx;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20upx;
+    width: 100%;
+    padding-left: 90upx;
+    padding-right: 100upx;
 }
 .check-in-body .item {
-    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: 30upx;
     font-size: 14px;
 }
@@ -260,12 +280,25 @@
 }
 .check-in-body .item .right {
     display: inline-block;
-    width: 120px;
+    width: 320upx;
     height: 22px;
     line-height: 22px;
     background: #FFF4CA;
     text-align: center;
     border-radius: 4px;
+}
+.cancel-btn {
+    position: absolute;
+    top: 50upx;
+    right: -20upx;
+    width: 160upx;
+    height: 50upx;
+    background: linear-gradient(-53deg, #FF900E, #FFCC00);
+    border-radius: 25upx;
+    font-size: 26upx;
+    text-align: center;
+    color: #fff;
+    line-height: 50upx;
 }
 .QRcode {
     position: relative;
@@ -295,10 +328,26 @@
     align-items: center;
     margin-bottom: 22upx;
 }
-.QRcode-header .title {
+.QRcode-header .title text{
     color:#5A4705;
-    margin-bottom: 23upx;
-    font-size: 16px;
+    font-size: 36upx;
+    color: #fff;
+    font-weight: 700;
+}
+.QRcode-header .title{
+    height: 75upx;
+    background: linear-gradient(360deg, #FF900E, #FFCC00);
+    border-radius: 4px;
+    text-align: center;
+    line-height: 75upx;
+    /* margin-top: -51upx; */
+    position: relative;
+    padding-left: 30upx;
+    padding-right: 30upx;
+    top: -50upx;
+}
+.QRcode-header .has-icon {
+    padding-right: 50upx;
 }
 .QRcode-header .code {
     display: flex;
@@ -306,6 +355,8 @@
     font-size: 14px;
     color: #000;
     margin-bottom: 20upx;
+    position: relative;
+    bottom: 30upx;
 }
 .code .code-num {
     display: inline-block;
@@ -354,5 +405,21 @@
     border-top: 14px solid transparent;
     border-left: 14px solid #FFCB00;
     border-bottom: 14px solid transparent;
+}
+.switch-icon {
+    position: absolute;
+    right: 20upx;
+    bottom: 20upx;
+    width: 20upx;
+    height: 20upx;
+    border-radius: 50%;
+    background: #fff;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.switch-icon image {
+    width: 80%;
+    height: 80%;
 }
 </style>

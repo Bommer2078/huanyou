@@ -24,23 +24,30 @@
                     </view>
                 </view>
                 <view class="user-body">
+                    <view class="item" @click="intoChangePassword">
+                        <img src="/static/img/iconGroup/foot.svg">
+                        <text class="lable">我的足迹</text>
+                        <view class="icon-arrow"></view>
+                    </view>
                     <view class="item" @click="intoOrder">
                         <img src="/static/img/iconGroup/rules.svg">
                         <text class="lable">我的订单</text>
                         <view class="icon-arrow"></view>
                     </view>
+                </view>
+                <view class="user-body user-body-end">
                     <view class="item" @click="intoChangePassword">
                         <img src="/static/img/iconGroup/set.svg">
                         <text class="lable">修改密码</text>
                         <view class="icon-arrow"></view>
                     </view>
-                </view>
-                <view class="user-body user-body-end">
                     <view class="item" @tap="gotoLoginOut">
                         <img src="/static/img/iconGroup/login.svg">
                         <text class="lable">登录设置</text>
                         <view class="icon-arrow"></view>
                     </view>
+                </view>
+                <view class="user-body user-body-end">                    
                     <view class="item" @click="tapAbout">
                         <img src="/static/img/iconGroup/about.svg">
                         <text class="lable">关于</text>
