@@ -19,7 +19,9 @@ export default {
 	},
 	created () {
 		this.getLocationArr()
-		this.$EventBus.$on('reflash', this.getLocationArr)
+		this.$nextTick(() => {
+			this.$EventBus.$on('reflash', this.getLocationArr)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('reflash')

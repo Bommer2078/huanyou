@@ -76,7 +76,9 @@ export default {
 		}
 	},
 	created () {
-		this.$EventBus.$on('editBusiness', this.createdBusiness)
+		this.$nextTick(() => {
+			this.$EventBus.$on('editBusiness', this.createdBusiness)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('editBusiness')

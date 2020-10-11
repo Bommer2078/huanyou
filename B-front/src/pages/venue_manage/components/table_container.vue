@@ -86,8 +86,10 @@ export default {
 	},
 	created () {
 		this.getVenueList()
-		this.$EventBus.$on('changeLocation', this.handleLocationChange)
-		this.$EventBus.$on('search', this.handleSearch)
+		this.$nextTick(() => {
+			this.$EventBus.$on('changeLocation', this.handleLocationChange)
+			this.$EventBus.$on('search', this.handleSearch)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('changeLocation')

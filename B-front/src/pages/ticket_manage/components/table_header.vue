@@ -32,7 +32,9 @@ export default {
 	},
 	created () {
 		this.getSelectArr()
-		this.$EventBus.$on('editTicket', this.createTicket)
+		this.$nextTick(() => {
+			this.$EventBus.$on('editTicket', this.createTicket)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('editTicket')

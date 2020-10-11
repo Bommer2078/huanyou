@@ -36,7 +36,9 @@ export default {
 		}
 	},
 	created () {
-		this.$EventBus.$on('reflashDictionaryItem', this.getDictionaryItemArr)
+		this.$nextTick(() => {
+			this.$EventBus.$on('reflashDictionaryItem', this.getDictionaryItemArr)
+		})
 	},
 	mounted () {
 		this.getDictionaryItemArr()

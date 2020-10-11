@@ -63,7 +63,9 @@ export default {
 		}
 	},
 	created () {
-		this.$EventBus.$on('editGoods', this.createGoods)
+		this.$nextTick(() => {
+			this.$EventBus.$on('editGoods', this.createGoods)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('editGoods')

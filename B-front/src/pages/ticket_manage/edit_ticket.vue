@@ -40,7 +40,10 @@ export default {
 			path : this.$route.path,
 			query: {page: 1, editId: this.editId}
 		})
-		this.$EventBus.$on('saveAllVenueBack', this.processVenueData)
+
+		this.$nextTick(() => {
+			this.$EventBus.$on('saveAllVenueBack', this.processVenueData)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('saveAllVenueBack')

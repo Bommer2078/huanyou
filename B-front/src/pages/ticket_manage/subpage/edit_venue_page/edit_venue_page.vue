@@ -15,7 +15,9 @@ export default {
 		}
 	},
 	created () {
-		this.$EventBus.$on('getVenueArr', this.getVenueArr)
+		this.$nextTick(() => {
+			this.$EventBus.$on('getVenueArr', this.getVenueArr)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('getVenueArr')

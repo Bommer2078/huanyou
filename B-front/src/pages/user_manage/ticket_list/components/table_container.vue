@@ -83,7 +83,9 @@ export default {
 	},
 	created () {
 		this.getTicketList()
-		this.$EventBus.$on('search', this.handleSearch)
+		this.$nextTick(() => {
+			this.$EventBus.$on('search', this.handleSearch)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('search')

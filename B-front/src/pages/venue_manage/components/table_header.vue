@@ -32,7 +32,9 @@ export default {
 	},
 	created () {
 		this.getLocationArr()
-		this.$EventBus.$on('editVenue', this.createdVenue)
+		this.$nextTick(() => {
+			this.$EventBus.$on('editVenue', this.createdVenue)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('editVenue')

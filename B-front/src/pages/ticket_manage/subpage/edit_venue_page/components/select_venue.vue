@@ -42,7 +42,9 @@ export default {
 	},
 	created () {
 		this.getVenueArr()
-		this.$EventBus.$on('cancelVenue', this.cancelVenue)
+		this.$nextTick(() => {
+			this.$EventBus.$on('cancelVenue', this.cancelVenue)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('cancelVenue')

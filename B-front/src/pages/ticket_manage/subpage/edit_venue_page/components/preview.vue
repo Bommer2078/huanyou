@@ -45,11 +45,13 @@ export default {
 		}
 	},
 	created () {
-		this.$EventBus.$on('addVenue', this.addVenue)
-		this.$EventBus.$on('editFinished', this.editFinished)
-		this.$EventBus.$on('deletRaletedVenue', this.deletRaletedVenue)
-		this.$EventBus.$on('changeRules', this.changeRules)
-		this.$EventBus.$on('saveAllVenue', this.saveAllVenue)
+		this.$nextTick(() => {
+			this.$EventBus.$on('addVenue', this.addVenue)
+			this.$EventBus.$on('editFinished', this.editFinished)
+			this.$EventBus.$on('deletRaletedVenue', this.deletRaletedVenue)
+			this.$EventBus.$on('changeRules', this.changeRules)
+			this.$EventBus.$on('saveAllVenue', this.saveAllVenue)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('addVenue')

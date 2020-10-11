@@ -96,12 +96,13 @@ export default {
 	},
 	created () {
 		this.getYearTickeList()
-		this.$EventBus.$on('changeProductType', this.handleTypeChange)
-		this.$EventBus.$on('search', this.handleSearch)
+		this.$nextTick(() => {
+			this.$EventBus.$on('changeProductType', this.handleTypeChange)
+			this.$EventBus.$on('search', this.handleSearch)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('changeProductType')
-		this.$EventBus.$off('changeStatus')
 		this.$EventBus.$off('search')
 	},
 	computed: {

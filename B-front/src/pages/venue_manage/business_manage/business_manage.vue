@@ -36,7 +36,9 @@ export default {
 	},
 	created () {
 		this.getBusinessList()
-		this.$EventBus.$on('reflash', this.getBusinessList)
+		this.$nextTick(() => {
+			this.$EventBus.$on('reflash', this.getBusinessList)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('reflash')

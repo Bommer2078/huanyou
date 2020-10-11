@@ -84,8 +84,10 @@ export default {
 	},
 	created () {
 		this.getBookList()
-		this.$EventBus.$on('changeTime', this.handleChangeTime)
-		this.$EventBus.$on('search', this.handleSearch)
+		this.$nextTick(() => {
+			this.$EventBus.$on('changeTime', this.handleChangeTime)
+			this.$EventBus.$on('search', this.handleSearch)
+		})
 	},
 	computed: {
 		venueId () {

@@ -97,9 +97,11 @@ export default {
 	},
 	created () {
 		this.getGoodsList()
-		this.$EventBus.$on('changeGoodsType', this.handleTypeChange)
-		this.$EventBus.$on('changeStatus', this.handleStatusChange)
-		this.$EventBus.$on('search', this.handleSearch)
+		this.$nextTick(() => {
+			this.$EventBus.$on('changeGoodsType', this.handleTypeChange)
+			this.$EventBus.$on('changeStatus', this.handleStatusChange)
+			this.$EventBus.$on('search', this.handleSearch)
+		})
 	},
 	destroyed () {
 		this.$EventBus.$off('changeGoodsType')
