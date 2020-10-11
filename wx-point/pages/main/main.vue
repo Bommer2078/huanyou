@@ -1,7 +1,8 @@
 <template>
     <view class="content">
-        <view class="ticket-banner">
+        <view class="ticket-banner" :class="{'header-layout-style' : userList.length > 0}">
             <img class="bg" src="/static/img/bannerBg.png">
+            <view class="bg-color"></view>
             <view class="ticket-container">
                 <view class="header">
                     <view @click="choseLocation">                        
@@ -19,13 +20,23 @@
                         <text>快来输入点什么～</text>
                     </view>
                 </view>
+                <view class="user-select-group">
+                    <template v-if="userList.length > 0">
+                        <view class="user-select-tip">·点击用户头像可进行核销</view>
+                        <view class="header-list-cover">                            
+                            <view v-for="item in userList" :key="item.id" class="header-cover" @click="handleClickHead(item)">
+                                <image src="../../static/img/userHead.svg"/>
+                            </view>
+                        </view>
+                    </template>
+                </view>
                 <view class="banner" @click="intoTicket">
                     <img :src="ticketBaseInfo.photo">
                 </view>
             </view>  
             <view class="option-btn">
-                <image src="../../static/img/switch.svg"  class="switch-btn"/>
-                <image src="../../static/img/switch.svg"  class="into-detail-btn"/>
+                <image src="../../static/img/into.svg"  class="switch-btn" v-if="true"/>
+                <image src="../../static/img/switch.svg"  class="into-detail-btn" v-else/>
             </view>          
         </view>
         <view class="mian-container">
@@ -43,14 +54,16 @@
             <view class="item-container" v-if="venueArr.length > 0">
                 <view class="tip"  @click="gotoMoreVenue">
                     <view class="title">
+                        <image src="../../static/img/titleIcon.svg" />
                         <text>本期精选场馆</text>
                     </view>
                     <view class="more">
                         更多 >
                     </view>
                 </view>
-                <view class="card" v-for="item in venueArr" :key='item' @click="intoVenueDetail(item)">
+                <view class="card footer-style" v-for="item in venueArr" :key='item' @click="intoVenueDetail(item)">
                     <img :src="item.photo" >
+                    <image src="../../static/img/foots.svg" class="footer-icon" />
                     <view class="book-tip" v-if="item.booking">本场馆需要提前预约</view>
                     <view class="tip">
                         <view class="mask">                          
@@ -62,12 +75,16 @@
             </view>
         </view>     
         <chose-ticket-list :ticket-list="ticketList" :showTicketList="showTicketList" @choseTicket="choseTicket"></chose-ticket-list>   
+        <template v-if="showCheckinBox">
+            <checkin-box @closeBox="closeBox"></checkin-box>   
+        </template>
     </view>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import choseTicketList from '../../components/choseTicketList'
+import checkinBox from '../../components/checkinBox'
     export default {
         data() {
             return {
@@ -75,12 +92,15 @@ import choseTicketList from '../../components/choseTicketList'
                 goodsArr: [],
                 phoneCall :'4006099109',
                 showTicketList: false,
+                showCheckinBox: false,
                 ticketList: [],
-                versionToLow: true
+                versionToLow: true,
+                userList: [{id:1}]
             }
         },
         components: {
-            choseTicketList
+            choseTicketList,
+            checkinBox
         },
         computed: {
             ...mapState(['locationObj','ticketBaseInfo','venueTypeArr','roleType'])
@@ -299,6 +319,12 @@ import choseTicketList from '../../components/choseTicketList'
                         console.log(res.errMsg)
                     }
                 })
+            },
+            handleClickHead (obj) {
+                this.showCheckinBox = true
+            },
+            closeBox (obj) {
+                this.showCheckinBox = false
             }
         },
     }
@@ -313,12 +339,21 @@ import choseTicketList from '../../components/choseTicketList'
     position: relative;
     width: 100%;
     height: 454upx;
-    margin-bottom: 50upx;
+    margin-bottom: 80upx;
 }
 .ticket-banner .bg{
     position: absolute;
-    bottom: -135upx;
+    bottom: -155upx;
     width: 100%;
+    z-index: 2;
+}
+.ticket-banner .bg-color{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 300upx;
+    background: #FFCC00;
+    z-index: 1;
 }
 .ticket-container {
     position: absolute;
@@ -326,7 +361,7 @@ import choseTicketList from '../../components/choseTicketList'
     align-items: center;
     flex-direction: column;
     width: 100%;
-    z-index: 1;
+    z-index: 3;
 }
 .ticket-container .banner {
     width: 93%;
@@ -334,6 +369,24 @@ import choseTicketList from '../../components/choseTicketList'
     background: #F6F6F6;
     border-radius: 6px;
     overflow: hidden;
+    box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+}
+.option-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 70upx;
+    height: 70upx;    
+    background: linear-gradient(-53deg, #FFA80F, #FFCC00);
+    border-radius: 50%;
+    bottom: -70upx;
+    right: 120upx;
+    z-index: 3;
+}
+.option-btn image{
+    width: 50upx;
+    height: 50upx;
 }
 .banner img{
     width: 100%;
@@ -367,14 +420,53 @@ import choseTicketList from '../../components/choseTicketList'
     padding-left: 14upx;
     padding-right: 14upx;
     padding-top: 10upx; 
-    height: 60upx;
-    padding-bottom: 82upx;    
+    height: 65upx;
+    margin-bottom: 27upx;    
     background: #FFCC00;
 }
 .ticket-container .search-container image{
     width: 30upx;
     height: 30upx;
     margin-right: 20upx;
+}
+.ticket-container .user-select-group {
+    width: 100%;
+    background: #FFCC00;
+    min-height: 24upx;
+    padding-left: 18upx;
+    padding-right: 18upx;
+}
+.user-select-tip {
+    font-size: 26upx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #38220C;
+}
+.ticket-container .header-list-cover{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 128upx;
+}
+.ticket-container .user-select-group .header-cover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90upx;
+    height: 90upx;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.ticket-container .user-select-group .header-cover image{
+    width: 90upx;
+    height: 90upx;
+}
+.header-cover + .header-cover {
+    margin-left: 70upx;
+}
+.header-layout-style {
+    height: 590upx;
 }
 .search-input {
     width: 100%;
@@ -422,50 +514,43 @@ import choseTicketList from '../../components/choseTicketList'
     height: 116upx !important;
     z-index: 1;
 }
+.footer-style .book-tip{    
+    text-align: left;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 0px;
+    background: linear-gradient(90deg,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
+}
 .book-tip {
-    height: 80upx;
-    line-height: 80upx;
-    width: 100%;
+    height: 86upx;
+    line-height: 86upx;
+    width: 66vw;
     position: absolute;
     top: 40%;
+    right: 0;
     color: #fff;
+    font-size: 34upx;
+    font-weight: 500;
     padding-right: 15px;
     text-align: right;
-    background: linear-gradient(-53deg,rgba(255,144,14,.9),rgba(255,204,0,.2));
+    background: linear-gradient(-90deg, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
 }
 .tip .title {
-    width: 100px;
+    width: 120px;
     height: 16px;
     position: relative;
     font-size: 16px;
     font-weight: 700;
     flex-shrink: 0;
 }
+.tip .title image {
+    width: 26upx;
+    height: 26upx;
+    margin-right: 10upx;
+}
 .tip .title text {
     position: absolute;
     z-index: 3;
-}
-.tip .title::before {
-    position: absolute;
-    top: 16px;
-    left: 12px;
-    content: '';
-    width: 40px;
-    height: 6px;
-    background: #FFCC00;
-    border-radius: 3px;
-    z-index: 2;
-}
-.tip .title::after {
-    position: absolute;    
-    top: 20px;
-    left: 16px;
-    content: '';
-    width: 30px;
-    height: 6px;
-    background: #FFEA98;
-    border-radius: 3px;
-    z-index: 1;
 }
 .tip .more {
     font-size: 12px;
@@ -479,6 +564,17 @@ import choseTicketList from '../../components/choseTicketList'
     border-radius: 12px;
     margin-bottom: 10px;
     overflow: hidden;
+}
+.item-container .footer-style {
+    background: rgba(0, 0, 0, 0.66);
+}
+.item-container .footer-style .footer-icon{
+    position: absolute;
+    width: 100upx;
+    height: 100upx;
+    right: 0;
+    top: 10upx;
+    z-index: 5;
 }
 .item-container .goods-tip {
     color: #ffcc00;

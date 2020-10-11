@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="59px" height="64px" viewBox="0 0 59 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>右转</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-15.7%" y="-14.3%" width="131.4%" height="128.6%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.760784314   0 0 0 0 0.28627451   0 0 0 0 0  0 0 0 0.301518794 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-77.000000, -239.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="右转" filter="url(#filter-1)" transform="translate(81.000000, 243.000000)">
+                <path d="M31,20.8495801 L31,13 L11.625,13 C5.20468979,13 0,18.2715651 0,24.7743702 L0,56 L7.75000002,56 L7.75000002,24.7743702 C7.75000002,22.6067685 9.48489662,20.8495801 11.625,20.8495801 L31,20.8495801 Z" id="路径"></path>
+                <polygon id="路径" points="51 16.9990237 29 0 29 34"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

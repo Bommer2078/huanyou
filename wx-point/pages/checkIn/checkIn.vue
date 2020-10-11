@@ -34,7 +34,7 @@
                              {{currentTicketObj.itemName}}
                         </text>
                         <view class="switch-icon">
-                            <image src="../../static/img/switch.svg"></image>
+                            <image src="../../static/img/switch1.svg"></image>
                         </view>
                     </view>
                      <view class="code">

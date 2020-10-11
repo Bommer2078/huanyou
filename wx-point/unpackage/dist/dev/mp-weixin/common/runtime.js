@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/choseTicketList":1,"components/payBall":1,"components/loadding":1,"components/tki-qrcode":1,"components/goods-order":1,"components/ticket-order":1,"components/ticket-item":1,"components/businessMainPage":1,"components/statisticsPage":1,"components/commentItem":1};
+/******/ 		var cssChunks = {"components/checkinBox":1,"components/choseTicketList":1,"components/payBall":1,"components/loadding":1,"components/tki-qrcode":1,"components/goods-order":1,"components/ticket-order":1,"components/ticket-item":1,"components/businessMainPage":1,"components/statisticsPage":1,"components/commentItem":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/choseTicketList":"components/choseTicketList","components/payBall":"components/payBall","components/loadding":"components/loadding","components/tki-qrcode":"components/tki-qrcode","components/goods-order":"components/goods-order","components/ticket-order":"components/ticket-order","components/ticket-item":"components/ticket-item","components/businessMainPage":"components/businessMainPage","components/statisticsPage":"components/statisticsPage","components/commentItem":"components/commentItem"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/checkinBox":"components/checkinBox","components/choseTicketList":"components/choseTicketList","components/payBall":"components/payBall","components/loadding":"components/loadding","components/tki-qrcode":"components/tki-qrcode","components/goods-order":"components/goods-order","components/ticket-order":"components/ticket-order","components/ticket-item":"components/ticket-item","components/businessMainPage":"components/businessMainPage","components/statisticsPage":"components/statisticsPage","components/commentItem":"components/commentItem"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

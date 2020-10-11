@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
-    "chose-ticket-list": "/components/choseTicketList"
+    "chose-ticket-list": "/components/choseTicketList",
+    "checkin-box": "/components/checkinBox"
   }
 }

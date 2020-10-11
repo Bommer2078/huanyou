@@ -7,12 +7,21 @@
     position: relative;
     width: 100%;
     height: 454rpx;
-    margin-bottom: 50rpx;
+    margin-bottom: 80rpx;
 }
 .ticket-banner .bg{
     position: absolute;
-    bottom: -135rpx;
+    bottom: -155rpx;
     width: 100%;
+    z-index: 2;
+}
+.ticket-banner .bg-color{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 300rpx;
+    background: #FFCC00;
+    z-index: 1;
 }
 .ticket-container {
     position: absolute;
@@ -27,7 +36,7 @@
     -webkit-flex-direction: column;
             flex-direction: column;
     width: 100%;
-    z-index: 1;
+    z-index: 3;
 }
 .ticket-container .banner {
     width: 93%;
@@ -35,6 +44,31 @@
     background: #F6F6F6;
     border-radius: 6px;
     overflow: hidden;
+    box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+}
+.option-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    position: absolute;
+    width: 70rpx;
+    height: 70rpx;    
+    background: -webkit-linear-gradient(143deg, #FFA80F, #FFCC00);    
+    background: linear-gradient(-53deg, #FFA80F, #FFCC00);
+    border-radius: 50%;
+    bottom: -70rpx;
+    right: 120rpx;
+    z-index: 3;
+}
+.option-btn image{
+    width: 50rpx;
+    height: 50rpx;
 }
 .banner ._img{
     width: 100%;
@@ -81,14 +115,65 @@
     padding-left: 14rpx;
     padding-right: 14rpx;
     padding-top: 10rpx; 
-    height: 60rpx;
-    padding-bottom: 82rpx;    
+    height: 65rpx;
+    margin-bottom: 27rpx;    
     background: #FFCC00;
 }
 .ticket-container .search-container image{
     width: 30rpx;
     height: 30rpx;
     margin-right: 20rpx;
+}
+.ticket-container .user-select-group {
+    width: 100%;
+    background: #FFCC00;
+    min-height: 24rpx;
+    padding-left: 18rpx;
+    padding-right: 18rpx;
+}
+.user-select-tip {
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #38220C;
+}
+.ticket-container .header-list-cover{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+    height: 128rpx;
+}
+.ticket-container .user-select-group .header-cover{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    width: 90rpx;
+    height: 90rpx;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.ticket-container .user-select-group .header-cover image{
+    width: 90rpx;
+    height: 90rpx;
+}
+.header-cover + .header-cover {
+    margin-left: 70rpx;
+}
+.header-layout-style {
+    height: 590rpx;
 }
 .search-input {
     width: 100%;
@@ -161,20 +246,31 @@
     height: 116rpx !important;
     z-index: 1;
 }
+.footer-style .book-tip{    
+    text-align: left;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 0px;
+    background: -webkit-linear-gradient(left,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
+    background: linear-gradient(90deg,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
+}
 .book-tip {
-    height: 80rpx;
-    line-height: 80rpx;
-    width: 100%;
+    height: 86rpx;
+    line-height: 86rpx;
+    width: 66vw;
     position: absolute;
     top: 40%;
+    right: 0;
     color: #fff;
+    font-size: 34rpx;
+    font-weight: 500;
     padding-right: 15px;
     text-align: right;
-    background: -webkit-linear-gradient(143deg,rgba(255,144,14,.9),rgba(255,204,0,.2));
-    background: linear-gradient(-53deg,rgba(255,144,14,.9),rgba(255,204,0,.2));
+    background: -webkit-linear-gradient(right, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
+    background: linear-gradient(-90deg, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
 }
 .tip .title {
-    width: 100px;
+    width: 120px;
     height: 16px;
     position: relative;
     font-size: 16px;
@@ -182,31 +278,14 @@
     -webkit-flex-shrink: 0;
             flex-shrink: 0;
 }
+.tip .title image {
+    width: 26rpx;
+    height: 26rpx;
+    margin-right: 10rpx;
+}
 .tip .title text {
     position: absolute;
     z-index: 3;
-}
-.tip .title::before {
-    position: absolute;
-    top: 16px;
-    left: 12px;
-    content: '';
-    width: 40px;
-    height: 6px;
-    background: #FFCC00;
-    border-radius: 3px;
-    z-index: 2;
-}
-.tip .title::after {
-    position: absolute;    
-    top: 20px;
-    left: 16px;
-    content: '';
-    width: 30px;
-    height: 6px;
-    background: #FFEA98;
-    border-radius: 3px;
-    z-index: 1;
 }
 .tip .more {
     font-size: 12px;
@@ -220,6 +299,17 @@
     border-radius: 12px;
     margin-bottom: 10px;
     overflow: hidden;
+}
+.item-container .footer-style {
+    background: rgba(0, 0, 0, 0.66);
+}
+.item-container .footer-style .footer-icon{
+    position: absolute;
+    width: 100rpx;
+    height: 100rpx;
+    right: 0;
+    top: 10rpx;
+    z-index: 5;
 }
 .item-container .goods-tip {
     color: #ffcc00;

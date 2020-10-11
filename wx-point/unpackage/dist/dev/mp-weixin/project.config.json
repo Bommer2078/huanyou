@@ -22,7 +22,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -36,7 +36,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.9.2",
-  "appid": "wxd56c7ad09b4f58c7",
+  "appid": "wx0d1bb307c1a5cbe4",
   "projectname": "欢游小程序",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -49,15 +49,7 @@
       "current": -1,
       "list": []
     },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
     "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
       "current": -1,
       "list": []
     },
@@ -65,38 +57,10 @@
       "current": 0,
       "list": [
         {
-          "id": -1,
-          "name": "pages/checkIn/checkIn",
-          "pathName": "pages/checkIn/checkIn",
+          "name": "",
+          "path": "",
           "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/bindTicket/bindTicket",
-          "pathName": "pages/bindTicket/bindTicket",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/order/order",
-          "pathName": "pages/order/order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/appointmentList/appointmentList",
-          "pathName": "pages/appointmentList/appointmentList",
-          "scene": null
+          "id": 0
         }
       ]
     }

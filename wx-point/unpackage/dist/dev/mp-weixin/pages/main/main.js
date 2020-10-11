@@ -97,7 +97,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.venueArr, function(item, __i1__) {
+  var l0 = _vm.__map(_vm.venueArr, function(item, __i2__) {
     var f0 = _vm._f("rulesText")(item)
 
     return {
@@ -215,7 +215,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkinBox = function checkinBox() {__webpack_require__.e(/*! require.ensure | components/checkinBox */ "components/checkinBox").then((function () {return resolve(__webpack_require__(/*! ../../components/checkinBox */ 288));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 {
   data: function data() {
@@ -224,12 +241,15 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       goodsArr: [],
       phoneCall: '4006099109',
       showTicketList: false,
+      showCheckinBox: false,
       ticketList: [],
-      versionToLow: true };
+      versionToLow: true,
+      userList: [{ id: 1 }] };
 
   },
   components: {
-    choseTicketList: choseTicketList },
+    choseTicketList: choseTicketList,
+    checkinBox: checkinBox },
 
   computed: _objectSpread({},
   (0, _vuex.mapState)(['locationObj', 'ticketBaseInfo', 'venueTypeArr', 'roleType'])),
@@ -448,6 +468,12 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
           console.log(res.errMsg);
         } });
 
+    },
+    handleClickHead: function handleClickHead(obj) {
+      this.showCheckinBox = true;
+    },
+    closeBox: function closeBox(obj) {
+      this.showCheckinBox = false;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
