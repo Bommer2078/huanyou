@@ -54,11 +54,16 @@ export default {
             }               
             const res2 = await this.$api.getTickeList(params)
             if (res2.code === '0') {
-                this.ticketList = res2.data.list
-                if (res2.data.list && res2.data.list.length === 1) {   
-                    this.choseTicket(res2.data.list[0])
-                } else if (res2.data.list && res2.data.list.length > 1) {
+                let tempArr = res2.data.list.filter((item) => {
+                    return item.status === 1
+                })
+                this.ticketList = tempArr
+                if (tempArr && tempArr.length === 1) {   
+                    this.choseTicket(tempArr[0])
+                } else if (tempArr && tempArr.length > 1) {
                     this.showTicketList = true
+                } else {
+                    this.$tip.toast('敬请期待','none')
                 }
             }  
         },

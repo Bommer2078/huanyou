@@ -95,7 +95,7 @@ import checkinBox from '../../components/checkinBox'
                 showCheckinBox: false,
                 ticketList: [],
                 versionToLow: true,
-                userList: [{id:1}]
+                userList: [{id:1}]           
             }
         },
         components: {
@@ -153,7 +153,7 @@ import checkinBox from '../../components/checkinBox'
             },
             async initGlobalData () {
                 // 判断本地是否有地址信息
-                 if (!this.locationObj || !this.locationObj.id) {
+                if (!this.locationObj || !this.locationObj.id) {
                      const res1 = await this.$api.getPlaceList()
                     if (res1.code === '0') {
                         this.locationArr = res1.data
@@ -187,11 +187,8 @@ import checkinBox from '../../components/checkinBox'
                             }
                         })
                     }                 
-                } else if (!this.ticketBaseInfo || !this.ticketBaseInfo.id) {
+                } else {
                     this.getTicketList()
-                } else {                     
-                    this.getGoodsData()
-                    this.getVenueData()
                 }
             },
             getLocal (lat,lon) {                
@@ -230,7 +227,10 @@ import checkinBox from '../../components/checkinBox'
                 }               
                 const res2 = await this.$api.getTickeList(params)
                 if (res2.code === '0') {
-                    this.ticketList = res2.data.list
+                    let tempArr = res2.data.list.filter((item) => {
+                        return item.status === 1
+                    })
+                    this.ticketList = tempArr
                     if (this.ticketList.length === 1) {                        
                         this.$store.commit('SET_TICKET_OBJ',this.ticketList[0])          
                         this.getGoodsData()
