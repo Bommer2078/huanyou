@@ -28,13 +28,16 @@
     position: absolute;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
             justify-content: flex-start;
     width: 586rpx;
     height: 297rpx;
@@ -54,12 +57,15 @@
 .container .info{
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
             justify-content: space-around;
     font-size: 26rpx;
 }

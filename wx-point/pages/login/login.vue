@@ -107,7 +107,7 @@ export default {
             });
         }, 
         checkPhone () {
-            if(!(/^1[123456789]\d{9}$/.test(this.phone))){ 
+            if(!(/^[123456789][123456789]\d{9}$/.test(this.phone))){ 
                 this.phoneErr = '手机号格式错误'    
             }else{
                 this.phoneErr = ''
