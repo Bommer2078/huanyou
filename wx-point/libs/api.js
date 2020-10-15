@@ -27,6 +27,9 @@ const getAboutList = (params) => http.get(`/notice/list`,params);
 const getAbout = (id) => http.get(`/notice/${id}`); 
 const appointmentVenue = (params) => http.post(`/booking/bookingVenue`,params); 
 const getBookingList = (params) => http.get(`/booking/listBookingByUsername`,params); 
+const getFootprint = (params) => http.get(`/verify/listMyFootprint`,params); 
+const cancelBind = (params) => http.put(`/ticket/cancelBanding`,params); 
+const updateBindingPhoto = (params) => http.put(`/ticket/updateBindingPhoto`,params); 
 let api = {
     getSms: getSms,
     registerUser: registerUser,
@@ -57,5 +60,8 @@ let api = {
     getAbout: getAbout,
     appointmentVenue: appointmentVenue,
     getBookingList: getBookingList,
+    getFootprint: getFootprint,
+    cancelBind: cancelBind,
+    updateBindingPhoto: updateBindingPhoto
 };
 export default api;

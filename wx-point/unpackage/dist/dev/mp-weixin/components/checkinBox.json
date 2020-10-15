@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "tki-qrcode": "/components/tki-qrcode"
+  }
 }

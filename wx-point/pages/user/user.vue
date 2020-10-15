@@ -24,7 +24,7 @@
                     </view>
                 </view>
                 <view class="user-body">
-                    <view class="item" @click="intoChangePassword">
+                    <view class="item" @click="intoRecord">
                         <img src="/static/img/iconGroup/foot.svg">
                         <text class="lable">我的足迹</text>
                         <view class="icon-arrow"></view>
@@ -106,6 +106,11 @@
                 uni.navigateTo({
                     url: '../order/order',
                 });
+            },
+            intoRecord () {                
+                uni.navigateTo({                
+                    url: '../recordPage/recordPage'
+                })
             },
             intoChangePassword () {
                 uni.navigateTo({                

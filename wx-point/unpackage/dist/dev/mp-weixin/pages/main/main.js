@@ -231,7 +231,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkinBox = function checkinBox() {__webpack_require__.e(/*! require.ensure | components/checkinBox */ "components/checkinBox").then((function () {return resolve(__webpack_require__(/*! ../../components/checkinBox */ 288));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 194));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var checkinBox = function checkinBox() {__webpack_require__.e(/*! require.ensure | components/checkinBox */ "components/checkinBox").then((function () {return resolve(__webpack_require__(/*! ../../components/checkinBox */ 201));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
@@ -244,7 +269,15 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       showCheckinBox: false,
       ticketList: [],
       versionToLow: true,
-      userList: [{ id: 1 }] };
+      userTicketList: [],
+      userFootprint: [],
+      tempUserObj: null,
+      boxInfo: null,
+      forbidChangeUser: false,
+      currentUserTicket: null,
+      getUserRecordDone: false,
+      getVenueDataDone: false,
+      currentTicketIndex: 0 };
 
   },
   components: {
@@ -252,7 +285,25 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     checkinBox: checkinBox },
 
   computed: _objectSpread({},
-  (0, _vuex.mapState)(['locationObj', 'ticketBaseInfo', 'venueTypeArr', 'roleType'])),
+  (0, _vuex.mapState)(['locationObj', 'ticketBaseInfo', 'venueTypeArr', 'roleType', 'userInfo']), {
+    showHeaderLayOut: function showHeaderLayOut() {
+      return this.userTicketList.length > 0;
+    },
+    showSwitchBtn: function showSwitchBtn() {
+      return this.ticketList && this.ticketList[this.currentTicketIndex] && this.ticketList[this.currentTicketIndex].id !== this.ticketBaseInfo.id;
+    } }),
+
+  watch: {
+    getUserRecordDone: function getUserRecordDone(newVal) {
+      if (this.getVenueDataDone && newVal) {
+        this.calcVenueRecord();
+      }
+    },
+    getVenueDataDone: function getVenueDataDone(newVal) {
+      if (this.getUserRecordDone && newVal) {
+        this.calcVenueRecord();
+      }
+    } },
 
   created: function created() {
     // uni.setEnableDebug({            
@@ -274,6 +325,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     return this.$commenShare();
   },
   methods: {
+    handleBannerChange: function handleBannerChange(obj) {
+      this.currentTicketIndex = obj.detail.current;
+    },
     getWxvison: function getWxvison() {var _this = this;
       wx.getSystemInfo({
         success: function success(res) {
@@ -296,8 +350,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     },
     choseTicket: function choseTicket(obj) {
       this.$store.commit('SET_TICKET_OBJ', obj);
-      this.getGoodsData();
-      this.getVenueData();
+      this.getRestData();
       this.showTicketList = false;
     },
     initGlobalData: function initGlobalData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res1;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
@@ -336,12 +389,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   } });case 12:_context.next = 15;break;case 14:
 
 
-                if (!_this2.ticketBaseInfo || !_this2.ticketBaseInfo.id) {
-                  _this2.getTicketList();
-                } else {
-                  _this2.getGoodsData();
-                  _this2.getVenueData();
-                }case 15:case "end":return _context.stop();}}}, _callee);}))();
+
+                _this2.getTicketList();case 15:case "end":return _context.stop();}}}, _callee);}))();
+
     },
     getLocal: function getLocal(lat, lon) {var _this3 = this;
       if (this.$qqmapsdk) {
@@ -371,7 +421,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         return val;
       }
     },
-    getTicketList: function getTicketList() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res2;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getTicketList: function getTicketList() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res2, tempArr, temp;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 params = {
                   pageNum: 1,
                   pageSize: 10,
@@ -379,43 +429,81 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
                   _this4.$api.getTickeList(params));case 3:res2 = _context2.sent;
                 if (res2.code === '0') {
-                  _this4.ticketList = res2.data.list;
+                  tempArr = res2.data.list.filter(function (item) {
+                    return item.status === 1;
+                  });
+                  _this4.ticketList = tempArr;
                   if (_this4.ticketList.length === 1) {
                     _this4.$store.commit('SET_TICKET_OBJ', _this4.ticketList[0]);
-                    _this4.getGoodsData();
-                    _this4.getVenueData();
+                    _this4.getRestData();
+                  } else if (_this4.ticketBaseInfo && _this4.ticketBaseInfo.id) {
+                    temp = _this4.ticketList.find(function (item) {
+                      return item.id === _this4.ticketBaseInfo.id;
+                    });
+                    if (temp) {
+                      _this4.getRestData();
+                    } else {
+                      _this4.showTicketList = true;
+                    }
                   } else if (_this4.ticketList.length > 1) {
                     _this4.showTicketList = true;
                   }
                 }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },
-    getVenueData: function getVenueData() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
-                params = {
-                  yearTicketId: _this5.ticketBaseInfo.id,
-                  pageNum: 1,
-                  pageSize: 10 };_context3.next = 3;return (
-
-                  _this5.$api.getVenueList(params));case 3:res = _context3.sent;
-                if (res.code === '0') {
-                  _this5.venueArr = res.data.list;
-                }case 5:case "end":return _context3.stop();}}}, _callee3);}))();
+    getRestData: function getRestData() {
+      this.getUserTicketList();
+      this.getGoodsData();
+      this.getVenueData();
     },
-    getGoodsData: function getGoodsData() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+    getUserTicketList: function getUserTicketList() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!(
+                !_this5.userInfo || !String(_this5.userInfo.username))) {_context3.next = 2;break;}return _context3.abrupt("return");case 2:
+                params = {
+                  pageNum: 1,
+                  pageSize: 100,
+                  username: _this5.userInfo.username };_context3.next = 5;return (
+
+                  _this5.$api.bindTicketList(params));case 5:res = _context3.sent;
+                if (res.code === '0') {
+                  if (res.data.list.length > 0) {
+                    _this5.userTicketList = res.data.list.filter(function (item) {
+                      return item.itemId === _this5.ticketBaseInfo.id;
+                    });
+                    if (_this5.userTicketList.length > 0) {
+                      _this5.changeCurrentUserTicket(_this5.userTicketList[0]);
+                    }
+                  } else {
+                    _this5.userTicketList = [];
+                  }
+                }case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    getVenueData: function getVenueData() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+                params = {
+                  yearTicketId: _this6.ticketBaseInfo.id,
+                  pageNum: 1,
+                  pageSize: 10 };_context4.next = 3;return (
+
+                  _this6.$api.getVenueList(params));case 3:res = _context4.sent;
+                if (res.code === '0') {
+                  _this6.venueArr = res.data.list;
+                  _this6.getVenueDataDone = true;
+                }case 5:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
+    getGoodsData: function getGoodsData() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var params, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
                 params = {
                   pageNum: 1,
                   pageSize: 10,
-                  status: 1 };_context4.next = 3;return (
+                  status: 1 };_context5.next = 3;return (
 
-                  _this6.$api.getGoodsList(params));case 3:res = _context4.sent;
+                  _this7.$api.getGoodsList(params));case 3:res = _context5.sent;
                 if (res.code === '0') {
-                  _this6.goodsArr = res.data.list;
-                }case 5:case "end":return _context4.stop();}}}, _callee4);}))();
+                  _this7.goodsArr = res.data.list;
+                }case 5:case "end":return _context5.stop();}}}, _callee5);}))();
     },
-    getVenueTypeList: function getVenueTypeList() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
-                  _this7.$api.getVenueTypeList());case 2:res = _context5.sent;
+    getVenueTypeList: function getVenueTypeList() {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                  _this8.$api.getVenueTypeList());case 2:res = _context6.sent;
                 if (res.code === '0') {
-                  _this7.$store.commit('SET_VENUE_TYPE_ARR', res.data);
-                }case 4:case "end":return _context5.stop();}}}, _callee5);}))();
+                  _this8.$store.commit('SET_VENUE_TYPE_ARR', res.data);
+                }case 4:case "end":return _context6.stop();}}}, _callee6);}))();
     },
     gotoSearchPage: function gotoSearchPage() {
       uni.navigateTo({
@@ -437,6 +525,10 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       uni.switchTab({
         url: "/pages/ticket/ticket" });
 
+    },
+    switchTicket: function switchTicket() {
+      this.$store.commit('SET_TICKET_OBJ', this.ticketList[this.currentTicketIndex]);
+      this.getRestData();
     },
     gotoGoods: function gotoGoods(item) {
       uni.navigateTo({
@@ -469,8 +561,79 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         } });
 
     },
-    handleClickHead: function handleClickHead(obj) {
-      this.showCheckinBox = true;
+    handleClickHead: function handleClickHead(obj) {var _this9 = this;
+      var nowTime = new Date().getTime();
+      var temp = {
+        id: obj.id,
+        time: nowTime };
+
+      var flag = this.tempUserObj && this.tempUserObj.id === temp.id && temp.time - this.tempUserObj.time < 500;
+      if (flag) {
+        // 双击
+        console.log('双击');
+        this.tempUserObj = null;
+        if (this.forbidChangeUser) {
+          this.$tip.toast('请求加载中，请稍后重试', 'none');
+        } else {
+          this.boxInfo = obj;
+          this.showCheckinBox = true;
+        }
+      } else {
+        this.tempUserObj = temp;
+      }
+      setTimeout(function () {
+        if (_this9.tempUserObj) {
+          _this9.tempUserObj = null;
+          console.log('单击');
+          _this9.changeCurrentUserTicket(obj);
+        }
+      }, 500);
+    },
+    changeCurrentUserTicket: function changeCurrentUserTicket(obj) {
+      if (this.currentUserTicket && this.currentUserTicket.id === obj.id) return;
+      if (this.showCheckinBox || this.forbidChangeUser) {
+        this.$tip.toast('请求加载中，请稍后重试', 'none');
+        return;
+      }
+      this.forbidChangeUser = true;
+      this.currentUserTicket = obj;
+      this.getUserRecord();
+    },
+    getUserRecord: function getUserRecord() {var _this10 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var params, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
+                params = {
+                  pageNo: 1,
+                  pageSize: 100,
+                  verifyUsername: _this10.userInfo.username };_context7.next = 3;return (
+
+                  _this10.$api.getFootprint(params));case 3:res = _context7.sent;
+                if (res.code === '0') {
+                  if (_this10.getUserRecordDone) {
+                    _this10.calcVenueRecord();
+                  } else {
+                    _this10.getUserRecordDone = true;
+                  }
+                  _this10.forbidChangeUser = false;
+                  _this10.userFootprint = res.data.list;
+                }case 5:case "end":return _context7.stop();}}}, _callee7);}))();
+    },
+    calcVenueRecord: function calcVenueRecord() {var _this11 = this;
+      var ticketId = this.ticketBaseInfo.id;
+      var ticketRecordArr = this.userFootprint.filter(function (item) {
+        return item.itemId === ticketId;
+      });
+      var userRecordArr = ticketRecordArr.filter(function (item) {
+        return _this11.currentUserTicket.id === item.ticketId;
+      });var _loop = function _loop(
+      i) {
+        var temp = userRecordArr.find(function (item) {
+          return item.venueId === _this11.venueArr[i].id;
+        });
+        if (temp) {
+          _this11.venueArr[i].showFoot = true;
+        } else {
+          _this11.venueArr[i].showFoot = false;
+        }};for (var i = 1; i < this.venueArr.length; i++) {_loop(i);
+      }
     },
     closeBox: function closeBox(obj) {
       this.showCheckinBox = false;

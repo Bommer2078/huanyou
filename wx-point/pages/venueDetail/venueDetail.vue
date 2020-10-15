@@ -372,7 +372,7 @@ export default {
         margin-right: 10upx;
     }
     .content-name .tab-item {
-        width: 130upx;
+        width: 140upx;
         text-align: center;
     }
     .content-name-text {

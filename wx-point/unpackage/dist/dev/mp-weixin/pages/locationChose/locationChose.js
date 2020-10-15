@@ -145,7 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loadding */ "components/loadding").then((function () {return resolve(__webpack_require__(/*! ../../components/loadding */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 186));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loadding */ "components/loadding").then((function () {return resolve(__webpack_require__(/*! ../../components/loadding */ 208));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var choseTicketList = function choseTicketList() {__webpack_require__.e(/*! require.ensure | components/choseTicketList */ "components/choseTicketList").then((function () {return resolve(__webpack_require__(/*! ../../components/choseTicketList */ 194));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
@@ -178,7 +178,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                 }
                 _this.showLoading = false;case 6:case "end":return _context.stop();}}}, _callee);}))();
     },
-    getTicketList: function getTicketList() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res2;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getTicketList: function getTicketList() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res2, tempArr;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 params = {
                   pageNum: 1,
                   pageSize: 10,
@@ -186,11 +186,16 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
                   _this2.$api.getTickeList(params));case 3:res2 = _context2.sent;
                 if (res2.code === '0') {
-                  _this2.ticketList = res2.data.list;
-                  if (res2.data.list && res2.data.list.length === 1) {
-                    _this2.choseTicket(res2.data.list[0]);
-                  } else if (res2.data.list && res2.data.list.length > 1) {
+                  tempArr = res2.data.list.filter(function (item) {
+                    return item.status === 1;
+                  });
+                  _this2.ticketList = tempArr;
+                  if (tempArr && tempArr.length === 1) {
+                    _this2.choseTicket(tempArr[0]);
+                  } else if (tempArr && tempArr.length > 1) {
                     _this2.showTicketList = true;
+                  } else {
+                    _this2.$tip.toast('敬请期待', 'none');
                   }
                 }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },

@@ -217,7 +217,7 @@
     margin-right: 10rpx;
 }
 .content-name .tab-item {
-    width: 130rpx;
+    width: 140rpx;
     text-align: center;
 }
 .content-name-text {

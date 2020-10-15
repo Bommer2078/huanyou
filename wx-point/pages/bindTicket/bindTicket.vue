@@ -147,6 +147,7 @@ export default {
                 success (res) {
                     const tempFilePaths = res.tempFilePaths
                     that.imgUploading = true
+                    console.log(res)
                     wx.uploadFile({
                         // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //测试环境上传图片地址
                         url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //正式环境上传图片地址

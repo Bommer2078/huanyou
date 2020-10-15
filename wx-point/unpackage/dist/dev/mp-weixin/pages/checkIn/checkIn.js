@@ -186,7 +186,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tkiQrcode = function tkiQrcode() {Promise.all(/*! require.ensure | components/tki-qrcode */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/tki-qrcode")]).then((function () {return resolve(__webpack_require__(/*! ../../components/tki-qrcode */ 207));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tkiQrcode = function tkiQrcode() {Promise.all(/*! require.ensure | components/tki-qrcode */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/tki-qrcode")]).then((function () {return resolve(__webpack_require__(/*! ../../components/tki-qrcode */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   computed: _objectSpread({},
   (0, _vuex.mapState)(['userInfo']), {
@@ -235,6 +237,46 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         complete: function complete(res) {} });
 
     },
+    cancelBind: function cancelBind() {var _this = this;
+      this.$tip.confirm('取消绑定后不可撤销，确认解绑么', '确认').
+      then(function (res) {
+        _this.confimCancelBind();
+      }).
+      catch(function () {
+        return;
+      });
+    },
+    changeBindPhoto: function changeBindPhoto(url) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                params = {
+                  ticketId: _this2.currentTicketObj.childCode,
+                  file: url };_context.next = 3;return (
+
+                  _this2.$api.updateBindingPhoto(params));case 3:res = _context.sent;case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    confimCancelBind: function confimCancelBind() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                params = {
+                  bindingName: _this3.currentTicketObj.bindingName,
+                  bingingPhoto: _this3.currentTicketObj.bindingPhoto,
+                  childCode: _this3.currentTicketObj.childCode,
+                  password: _this3.currentTicketObj.password };_context2.next = 3;return (
+
+                  _this3.$api.cancelBind(params));case 3:res = _context2.sent;
+                if (res.code === '0') {
+                  _this3.$tip.toast('解绑成功', 'none');
+                  _this3.currentTicket = 0;
+                  _this3.$nextTick(function () {
+                    _this3.getTicketList();
+                  });
+                } else {
+                  _this3.$tip.confirm("\u89E3\u7ED1\u5931\u8D25".concat(res.code, "\uFF0C\u6B64\u7968\u5DF2\u88AB\u6838\u9500"), '知道了').
+                  then(function () {
+                    return;
+                  }).
+                  catch(function () {
+                    return;
+                  });
+                }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
     hasLogin: function hasLogin() {
       var hasLogin = !!this.userInfo;
       if (!hasLogin) {
@@ -248,26 +290,26 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         url: '../login/login' });
 
     },
-    creatQrcode: function creatQrcode() {var _this = this;
+    creatQrcode: function creatQrcode() {var _this4 = this;
       var temp = new Date();
       this.currentTime = new Date().getTime();
       this.$nextTick(function () {
-        _this.$refs.qrcode._makeCode();
+        _this4.$refs.qrcode._makeCode();
       });
     },
-    openTimer: function openTimer() {var _this2 = this;
+    openTimer: function openTimer() {var _this5 = this;
       //定时刷新
       this.timer = setInterval(function () {
-        _this2.currentTime = new Date().getTime();
+        _this5.currentTime = new Date().getTime();
       }, 120000);
     },
-    handleChangeQR: function handleChangeQR() {var _this3 = this;
+    handleChangeQR: function handleChangeQR() {var _this6 = this;
       if (this.isChange) {
         return;
       }
       this.isChange = true;
       setTimeout(function () {
-        _this3.isChange = false;
+        _this6.isChange = false;
       }, 2000);
       this.currentTime = new Date().getTime();
     },
@@ -301,26 +343,57 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     switchCurrentTicketType: function switchCurrentTicketType() {
 
     },
-    getTicketList: function getTicketList() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    uploadImg: function uploadImg() {
+      var that = this;
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        sourceType: ['album', 'camera'],
+        success: function success(res) {
+          var tempFilePaths = res.tempFilePaths;
+          that.imgUploading = true;
+          wx.uploadFile({
+            // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //测试环境上传图片地址
+            url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //正式环境上传图片地址
+            filePath: tempFilePaths[0],
+            name: 'file',
+            success: function success(res1) {
+              var temp = JSON.parse(res1.data);
+              if (temp.code === '0') {
+                that.changeBindPhoto(temp.data);
+              } else {
+                that.$tip.toast(temp.message, 'none');
+              }
+            },
+            complete: function complete() {
+              setTimeout(function () {
+                that.imgUploading = false;
+              }, 1000);
+            } });
+
+        } });
+
+    },
+    getTicketList: function getTicketList() {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 params = {
                   pageNum: 1,
                   pageSize: 100,
-                  username: _this4.userInfo.username };_context.next = 3;return (
+                  username: _this7.userInfo.username };_context3.next = 3;return (
 
-                  _this4.$api.bindTicketList(params));case 3:res = _context.sent;
+                  _this7.$api.bindTicketList(params));case 3:res = _context3.sent;
                 if (res.code === '0') {
                   if (res.data.list.length > 0) {
-                    _this4.ticketList = res.data.list;
+                    _this7.ticketList = res.data.list;
                     setTimeout(function () {
-                      _this4.creatQrcode();
+                      _this7.creatQrcode();
                     }, 500);
                   } else {
-                    _this4.$tip.toast('还未绑定联票,请先去绑定', 'none');
+                    _this7.$tip.toast('还未绑定联票,请先去绑定', 'none');
                     uni.redirectTo({
                       url: '/pages/bindTicket/bindTicket' });
 
                   }
-                }case 5:case "end":return _context.stop();}}}, _callee);}))();
+                }case 5:case "end":return _context3.stop();}}}, _callee3);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -42,9 +42,17 @@
     width: 93%;
     height: 310rpx;
     background: #F6F6F6;
-    border-radius: 6px;
     overflow: hidden;
+    border-radius: 6px;
     box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+}
+.swiper-cover {    
+    height: 310rpx; 
+    width: 100%;
+}
+.swiper-item image {    
+    width: 100%;
+    height: 310rpx;
 }
 .option-btn {
     display: -webkit-box;
@@ -148,8 +156,16 @@
     -webkit-justify-content: flex-start;
             justify-content: flex-start;
     height: 128rpx;
+    overflow-x: auto;
 }
 .ticket-container .user-select-group .header-cover{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+}
+.header-img-cover {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -159,15 +175,34 @@
     -webkit-box-pack: center;
     -webkit-justify-content: center;
             justify-content: center;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
     width: 90rpx;
     height: 90rpx;
-    border: 2px solid #fff;
     border-radius: 50%;
+    border: 2px solid #fff;
     overflow: hidden;
 }
-.ticket-container .user-select-group .header-cover image{
+.ticket-container .user-select-group .header-cover .header-icon{
     width: 90rpx;
     height: 90rpx;
+    border-radius: 50%;
+}
+.current-header {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    margin-left: 20rpx;
+}
+.current-header .check-in-icon {
+    display: block;
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    right: 0;
+    top: -5rpx;
+}
+.check-in-icon {
+    display: none;
 }
 .header-cover + .header-cover {
     margin-left: 70rpx;
@@ -200,7 +235,7 @@
 }
 .mian-container {    
     width: 100%;
-    z-index: 1;
+    z-index: 6;
     position: absolute;
 }
 .item-container {

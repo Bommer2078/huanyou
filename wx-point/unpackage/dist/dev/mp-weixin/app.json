@@ -12,6 +12,7 @@
     "pages/searchPage/searchPage",
     "pages/locationChose/locationChose",
     "pages/payPage/payPage",
+    "pages/recordPage/recordPage",
     "pages/payGoodsPage/payGoodsPage",
     "pages/map/map",
     "pages/order/order",
@@ -64,5 +65,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap44.json"
+  "sitemapLocation": "sitemap90.json"
 }

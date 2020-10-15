@@ -1,6 +1,6 @@
 <template>
     <view class="content">
-        <view class="ticket-banner" :class="{'header-layout-style' : userList.length > 0}">
+        <view :class="showHeaderLayOut ? 'header-layout-style ticket-banner' : 'ticket-banner'">
             <img class="bg" src="/static/img/bannerBg.png">
             <view class="bg-color"></view>
             <view class="ticket-container">
@@ -21,22 +21,47 @@
                     </view>
                 </view>
                 <view class="user-select-group">
-                    <template v-if="userList.length > 0">
-                        <view class="user-select-tip">·点击用户头像可进行核销</view>
+                    <template v-if="showHeaderLayOut">
+                        <view class="user-select-tip">·双击头像可进行核销，单击头像可查看足迹</view>
                         <view class="header-list-cover">                            
-                            <view v-for="item in userList" :key="item.id" class="header-cover" @click="handleClickHead(item)">
-                                <image src="../../static/img/userHead.svg"/>
+                            <view 
+                                v-for="item in userTicketList" 
+                                class="header-cover" 
+                                :key="item.id" 
+                                :class="{'current-header' : item.id === currentUserTicket.id}"
+                                @click="handleClickHead(item)">
+                                <view class="header-img-cover" >                                    
+                                    <image class="header-icon" :src="item.bindingPhoto" v-if="item.bindingPhoto" />
+                                    <image class="header-icon" src="../../static/img/userHead.svg" v-else/>
+                                </view>
+                                <image src="../../static/img/checkin.svg" class="check-in-icon"/>
                             </view>
                         </view>
                     </template>
                 </view>
-                <view class="banner" @click="intoTicket">
-                    <img :src="ticketBaseInfo.photo">
+                <view class="banner">
+                    <swiper 
+                        class="swiper-cover" 
+                        :indicator-dots="false" 
+                        :autoplay="true" 
+                        :interval="5000" 
+                        :duration="500"
+                        :circular="true"           
+                        @change="handleBannerChange">
+                        <swiper-item v-for="(item,index) in ticketList" :key="item.id">
+                            <view class="swiper-item">
+                                <image 
+                                    class="swiper-imgs"
+                                    :src="item.photo"
+                                    :class="{'scale-img': index !== currentBannerIndex}"/>
+                            </view>
+                        </swiper-item>
+                    </swiper>
                 </view>
             </view>  
             <view class="option-btn">
-                <image src="../../static/img/into.svg"  class="switch-btn" v-if="true"/>
-                <image src="../../static/img/switch.svg"  class="into-detail-btn" v-else/>
+                <image src="../../static/img/switch.svg"  class="switch-btn" v-if="showSwitchBtn" @click="switchTicket"/>
+                <image src="../../static/img/into.svg"  class="into-detail-btn" v-else @click="intoTicket"/>
             </view>          
         </view>
         <view class="mian-container">
@@ -46,7 +71,7 @@
                         <text>特惠产品</text>
                     </view>
                 </view>
-                <view class="card" v-for="item in goodsArr" :key='item' @click="gotoGoods(item)">
+                <view class="card" v-for="item in goodsArr" :key='item.id' @click="gotoGoods(item)">
                     <img :src="item.photo" >
                     <view class="tip goods-tip">{{item.name}}</view>
                 </view>
@@ -61,9 +86,9 @@
                         更多 >
                     </view>
                 </view>
-                <view class="card footer-style" v-for="item in venueArr" :key='item' @click="intoVenueDetail(item)">
+                <view class="card" :class="{'footer-style' : item.showFoot}" v-for="item in venueArr" :key='item.id' @click="intoVenueDetail(item)">
                     <img :src="item.photo" >
-                    <image src="../../static/img/foots.svg" class="footer-icon" />
+                    <image src="../../static/img/foots.svg" :class="{'footer-icon' : item.showFoot}" />
                     <view class="book-tip" v-if="item.booking">本场馆需要提前预约</view>
                     <view class="tip">
                         <view class="mask">                          
@@ -76,7 +101,7 @@
         </view>     
         <chose-ticket-list :ticket-list="ticketList" :showTicketList="showTicketList" @choseTicket="choseTicket"></chose-ticket-list>   
         <template v-if="showCheckinBox">
-            <checkin-box @closeBox="closeBox"></checkin-box>   
+            <checkin-box @closeBox="closeBox" :box-info="boxInfo" :show-checkin-box="showCheckinBox"></checkin-box>   
         </template>
     </view>
 </template>
@@ -95,7 +120,15 @@ import checkinBox from '../../components/checkinBox'
                 showCheckinBox: false,
                 ticketList: [],
                 versionToLow: true,
-                userList: [{id:1}]           
+                userTicketList: [],
+                userFootprint: [],
+                tempUserObj: null,        
+                boxInfo: null,        
+                forbidChangeUser: false,
+                currentUserTicket: null,
+                getUserRecordDone: false,     
+                getVenueDataDone: false,     
+                currentTicketIndex: 0      
             }
         },
         components: {
@@ -103,7 +136,25 @@ import checkinBox from '../../components/checkinBox'
             checkinBox
         },
         computed: {
-            ...mapState(['locationObj','ticketBaseInfo','venueTypeArr','roleType'])
+            ...mapState(['locationObj','ticketBaseInfo','venueTypeArr','roleType','userInfo']),
+            showHeaderLayOut () {
+                return this.userTicketList.length > 0
+            },
+            showSwitchBtn () {
+                return this.ticketList && this.ticketList[this.currentTicketIndex] && this.ticketList[this.currentTicketIndex].id !== this.ticketBaseInfo.id
+            }
+        },
+        watch: {
+            getUserRecordDone (newVal) {
+                if (this.getVenueDataDone && newVal) {
+                    this.calcVenueRecord()
+                }
+            },
+            getVenueDataDone (newVal) {
+                if (this.getUserRecordDone && newVal) {
+                    this.calcVenueRecord()
+                }
+            }
         },
         created() {            
             // uni.setEnableDebug({            
@@ -125,6 +176,9 @@ import checkinBox from '../../components/checkinBox'
             return this.$commenShare()
         },
         methods: {
+            handleBannerChange (obj) {
+                this.currentTicketIndex = obj.detail.current                
+            },
             getWxvison () {
                 wx.getSystemInfo({
                     success: (res) => {
@@ -147,8 +201,7 @@ import checkinBox from '../../components/checkinBox'
             },
             choseTicket (obj) {               
                 this.$store.commit('SET_TICKET_OBJ',obj)    
-                this.getGoodsData()
-                this.getVenueData()
+                this.getRestData()
                 this.showTicketList = false 
             },
             async initGlobalData () {
@@ -232,14 +285,48 @@ import checkinBox from '../../components/checkinBox'
                     })
                     this.ticketList = tempArr
                     if (this.ticketList.length === 1) {                        
-                        this.$store.commit('SET_TICKET_OBJ',this.ticketList[0])          
-                        this.getGoodsData()
-                        this.getVenueData()
+                        this.$store.commit('SET_TICKET_OBJ',this.ticketList[0])  
+                        this.getRestData()  
+                    } else if (this.ticketBaseInfo && this.ticketBaseInfo.id) {
+                        let temp = this.ticketList.find((item) => {
+                            return item.id === this.ticketBaseInfo.id
+                        })
+                        if (temp) {
+                            this.getRestData()
+                        } else {
+                            this.showTicketList = true
+                        }
                     } else if (this.ticketList.length > 1) {
                         this.showTicketList = true
-                    }                  
+                    }         
                 }  
-            },                
+            }, 
+            getRestData () {     
+                this.getUserTicketList()                 
+                this.getGoodsData()
+                this.getVenueData()
+            },    
+            async getUserTicketList () {
+                if (!this.userInfo || !String(this.userInfo.username)) return
+                let params = {
+                    pageNum: 1,
+                    pageSize: 100,
+                    username: this.userInfo.username
+                }
+                const res = await this.$api.bindTicketList(params)
+                if (res.code === '0') {
+                    if (res.data.list.length > 0) {
+                        this.userTicketList = res.data.list.filter((item) => {
+                            return item.itemId === this.ticketBaseInfo.id
+                        })  
+                        if (this.userTicketList.length > 0) {                            
+                            this.changeCurrentUserTicket(this.userTicketList[0])
+                        }                      
+                    } else {
+                        this.userTicketList = []
+                    }
+                }
+            },        
             async getVenueData () {                       
                 let params = {
                     yearTicketId: this.ticketBaseInfo.id,
@@ -249,6 +336,7 @@ import checkinBox from '../../components/checkinBox'
                 const res = await this.$api.getVenueList(params)
                 if (res.code === '0') {
                     this.venueArr = res.data.list
+                    this.getVenueDataDone = true
                 }
             },
             async getGoodsData () {                       
@@ -289,6 +377,10 @@ import checkinBox from '../../components/checkinBox'
                     url: `/pages/ticket/ticket`
                 })
             },
+            switchTicket () {                                        
+                this.$store.commit('SET_TICKET_OBJ',this.ticketList[this.currentTicketIndex])  
+                this.getRestData()  
+            },
             gotoGoods(item) {
                 uni.navigateTo({
                     url: `/pages/goodsDetail/goodsDetail?id=${item.id}`
@@ -321,7 +413,78 @@ import checkinBox from '../../components/checkinBox'
                 })
             },
             handleClickHead (obj) {
-                this.showCheckinBox = true
+                let nowTime = new Date().getTime()
+                let temp = {
+                    id: obj.id,
+                    time: nowTime
+                }
+                let flag = this.tempUserObj && this.tempUserObj.id === temp.id && (temp.time - this.tempUserObj.time < 500)
+                if (flag) {
+                    // 双击
+                    console.log('双击')
+                    this.tempUserObj = null
+                    if (this.forbidChangeUser) {                        
+                        this.$tip.toast('请求加载中，请稍后重试','none')
+                    } else {
+                        this.boxInfo = obj
+                        this.showCheckinBox = true
+                    }
+                } else {                    
+                    this.tempUserObj = temp
+                }          
+                setTimeout(() => {
+                    if (this.tempUserObj) {
+                        this.tempUserObj = null                        
+                        console.log('单击')
+                        this.changeCurrentUserTicket(obj)
+                    }
+                },500)
+            },
+            changeCurrentUserTicket (obj) {             
+                if (this.currentUserTicket && this.currentUserTicket.id === obj.id) return
+                if (this.showCheckinBox || this.forbidChangeUser) {                      
+                    this.$tip.toast('请求加载中，请稍后重试','none')
+                    return
+                } 
+                this.forbidChangeUser = true
+                this.currentUserTicket = obj
+                this.getUserRecord()
+            },
+            async getUserRecord () {  
+                let params = {
+                    pageNo: 1,
+                    pageSize: 100,
+                    verifyUsername: this.userInfo.username
+                }
+                const res = await this.$api.getFootprint(params)
+                if (res.code === '0') {
+                    if (this.getUserRecordDone) {                        
+                        this.calcVenueRecord()
+                    } else {
+                        this.getUserRecordDone = true
+                    }
+                    this.forbidChangeUser = false
+                    this.userFootprint = res.data.list
+                }
+            },
+            calcVenueRecord () {
+                let ticketId = this.ticketBaseInfo.id 
+                let ticketRecordArr = this.userFootprint.filter((item) => {
+                    return item.itemId === ticketId
+                })
+                let userRecordArr = ticketRecordArr.filter((item) => {
+                    return this.currentUserTicket.id === item.ticketId
+                })
+                for (let i = 1; i < this.venueArr.length; i++) {
+                    let temp = userRecordArr.find((item) => {
+                        return item.venueId === this.venueArr[i].id
+                    })
+                    if (temp) {                        
+                        this.venueArr[i].showFoot = true
+                    } else {
+                        this.venueArr[i].showFoot = false
+                    }
+                }
             },
             closeBox (obj) {
                 this.showCheckinBox = false
@@ -367,9 +530,17 @@ import checkinBox from '../../components/checkinBox'
     width: 93%;
     height: 310upx;
     background: #F6F6F6;
-    border-radius: 6px;
     overflow: hidden;
+    border-radius: 6px;
     box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+}
+.swiper-cover {    
+    height: 310upx; 
+    width: 100%;
+}
+.swiper-item image {    
+    width: 100%;
+    height: 310upx;
 }
 .option-btn {
     display: flex;
@@ -447,20 +618,44 @@ import checkinBox from '../../components/checkinBox'
     align-items: center;
     justify-content: flex-start;
     height: 128upx;
+    overflow-x: auto;
 }
 .ticket-container .user-select-group .header-cover{
+    width: 90upx;
+    height: 90upx;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.header-img-cover {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 90upx;
     height: 90upx;
-    border: 2px solid #fff;
     border-radius: 50%;
+    border: 2px solid #fff;
     overflow: hidden;
 }
-.ticket-container .user-select-group .header-cover image{
+.ticket-container .user-select-group .header-cover .header-icon{
     width: 90upx;
     height: 90upx;
+    border-radius: 50%;
+}
+.current-header {
+    transform: scale(1.2);
+    margin-left: 20upx;
+}
+.current-header .check-in-icon {
+    display: block;
+    position: absolute;
+    width: 30upx;
+    height: 30upx;
+    right: 0;
+    top: -5upx;
+}
+.check-in-icon {
+    display: none;
 }
 .header-cover + .header-cover {
     margin-left: 70upx;
@@ -484,7 +679,7 @@ import checkinBox from '../../components/checkinBox'
 }
 .mian-container {    
     width: 100%;
-    z-index: 1;
+    z-index: 6;
     position: absolute;
 }
 .item-container {

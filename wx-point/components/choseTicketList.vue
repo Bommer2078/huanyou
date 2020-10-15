@@ -1,13 +1,15 @@
 <template>
     <view class="ticket-select-cover" v-show="showTicketList">
         <view class="mask" @click.stop></view>
-        <view class="ticket-select">
-            <view class="title">
-                选择联票
+        <view class="ticket-select">            
+            <view class="title">                
+                <image src="../static/img/titleIcon.svg" class="title-icon" />
+                <text>选择联票</text> 
             </view>
             <view  v-for="(item,index) in ticketList" :key="index" @click.stop="choseTicket(item)" class="ticket-item">                
-                <view class="ticket-name">{{item.name}}</view>
                 <img :src="item.photo" class="banner-cover">
+                <view class="ticket-name">
+                    <image src="../static/img/NEW.svg" class="new-icon"/>{{item.name}}</view>
             </view>
         </view>
     </view>
@@ -46,10 +48,11 @@ export default {
         flex-direction: column;
         align-items: center;
         margin: auto;
-        width: 550upx;
+        width: 664upx;
         max-height: 80vh;
         background: #fff;
         border-radius: 8px;
+        padding-top: 20upx;
         box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
         overflow: scroll;
         z-index: 101;
@@ -65,24 +68,39 @@ export default {
         z-index: 100;
     }
     .ticket-select .title {
-        width: 100%;
-        height: 60upx;
-        text-align: center;
-        margin-bottom: 10upx;
-        background: #6F9CFF;
+        font-size: 38upx;
+        font-weight: 400;
+        color: #000000;
+        margin-bottom: 40upx;
+    }    
+    .title-icon {   
+        width: 30upx;
+        height: 30upx;
+        margin-right: 10upx;
     }
     .ticket-item {
-        width: 90%;    
+        width: 90%; 
+        margin-bottom: 30upx;  
     }
     .ticket-select .ticket-name {
+        display: flex;
+        align-items: center;
         width: 100%;
+        height: 100upx;
         text-align: left;
-        font-size: 13px;
-        margin-bottom: 10upx;
+        font-size: 38upx;
+        font-weight: 700;
+        border-bottom: 6upx solid #eee;
     }
-    .ticket-select img {
-        width: 100%;
-        height: 365upx;
+    .ticket-select .ticket-name .new-icon{
+        width: 76upx;
+        height: 42upx;
+        margin-right: 20upx;
+    }
+    .ticket-select .banner-cover {
+        width: 602upx;
+        height: 324upx;
+        border-radius: 14px;
     }
 </style>
         

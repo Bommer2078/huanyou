@@ -73,7 +73,7 @@ export default {
                 this.getTicketList()
             }
         },
-        choseTicket (tiketObj) {            
+        choseTicket (tiketObj) {        
             this.$store.commit('SET_LOCATION_OBJ', this.nowLocation)
             this.$store.commit('SET_TICKET_OBJ', tiketObj)
             uni.navigateBack()

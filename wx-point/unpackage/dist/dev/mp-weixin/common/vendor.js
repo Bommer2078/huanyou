@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2759,6 +2759,9 @@ var getAboutList = function getAboutList(params) {return _serve.default.get("/no
 var getAbout = function getAbout(id) {return _serve.default.get("/notice/".concat(id));};
 var appointmentVenue = function appointmentVenue(params) {return _serve.default.post("/booking/bookingVenue", params);};
 var getBookingList = function getBookingList(params) {return _serve.default.get("/booking/listBookingByUsername", params);};
+var getFootprint = function getFootprint(params) {return _serve.default.get("/verify/listMyFootprint", params);};
+var cancelBind = function cancelBind(params) {return _serve.default.put("/ticket/cancelBanding", params);};
+var updateBindingPhoto = function updateBindingPhoto(params) {return _serve.default.put("/ticket/updateBindingPhoto", params);};
 var api = (_api = {
   getSms: getSms,
   registerUser: registerUser,
@@ -2788,7 +2791,10 @@ resetPassword), _defineProperty(_api, "getAboutList",
 getAboutList), _defineProperty(_api, "getAbout",
 getAbout), _defineProperty(_api, "appointmentVenue",
 appointmentVenue), _defineProperty(_api, "getBookingList",
-getBookingList), _api);var _default =
+getBookingList), _defineProperty(_api, "getFootprint",
+getFootprint), _defineProperty(_api, "cancelBind",
+cancelBind), _defineProperty(_api, "updateBindingPhoto",
+updateBindingPhoto), _api);var _default =
 
 api;exports.default = _default;
 
@@ -2999,11 +3005,11 @@ Tips = /*#__PURE__*/function () {
     /**
        * 弹出确认窗口
        */ }, { key: "confirm", value: function confirm(
-    text) {var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "提示";var payload = arguments.length > 2 ? arguments[2] : undefined;
+    text, title, payload) {
       return new Promise(function (resolve, reject) {
         wx.showModal({
           content: text,
-          confirmText: '知道了',
+          confirmText: title || '知道了',
           cancelText: '取消',
           showCancel: true,
           success: function success(res) {
@@ -8751,7 +8757,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8772,14 +8778,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8855,7 +8861,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9249,7 +9255,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 212:
+/***/ 227:
 /*!***************************************************!*\
   !*** K:/project/huanyou/wx-point/utils/qrcode.js ***!
   \***************************************************/

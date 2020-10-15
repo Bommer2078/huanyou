@@ -7,7 +7,8 @@
                 <view class="check-in-header">
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
                     <text class="right">{{currentTicketObj.bindingName}}</text>
-                    <view class="cancel-btn">取消绑定</view>
+                    <view class="cancel-btn" @click="cancelBind">取消绑定</view>
+                    <view class="change-photo-btn" @click="uploadImg">修改照片</view>
                 </view>
                 <view class="check-in-body">
                     <view class="item">
@@ -29,11 +30,12 @@
              <img class="ticket-bg" src="/static/img/checkTicket.png">
              <view class="QRcode-container">
                  <view class="QRcode-header">
-                     <view class="title has-icon" @click="switchCurrentTicketType">
+                     <!-- <view class="title has-icon" @click="switchCurrentTicketType"> -->
+                     <view class="title" @click="switchCurrentTicketType">
                         <text>
                              {{currentTicketObj.itemName}}
                         </text>
-                        <view class="switch-icon">
+                        <view class="switch-icon" v-show="false">
                             <image src="../../static/img/switch1.svg"></image>
                         </view>
                     </view>
@@ -43,7 +45,7 @@
                      </view>
                  </view>
                  <view class="QRcode-body" @click="handleChangeQR">
-                     <tki-qrcode size="400" unit="upx" background="transparent" :onval="true" @result="qrR" :val="QRStr"  ref="qrcode"></tki-qrcode>
+                    <tki-qrcode size="400" unit="upx" background="transparent" :onval="true" @result="qrR" :val="QRStr"  ref="qrcode"></tki-qrcode>
                  </view>
              </view>
             <view class="left-btn" @tap="goLeft"></view>
@@ -103,6 +105,46 @@
                     complete: function (res) { },
                 })
             }, 
+            cancelBind () {
+                this.$tip.confirm('取消绑定后不可撤销，确认解绑么','确认')
+                .then((res) => {
+                    this.confimCancelBind()
+                })
+                .catch(() => {
+                    return
+                })
+            },
+            async changeBindPhoto (url) {
+                let params = {
+                    ticketId: this.currentTicketObj.childCode,
+                    file: url
+                }
+                const res = await this.$api.updateBindingPhoto(params)
+            },
+            async confimCancelBind () {                
+                let params = {
+                    bindingName: this.currentTicketObj.bindingName,
+                    bingingPhoto: this.currentTicketObj.bindingPhoto,
+                    childCode:this.currentTicketObj.childCode,
+                    password: this.currentTicketObj.password
+                }
+                const res = await this.$api.cancelBind(params)
+                if (res.code === '0') {
+                    this.$tip.toast('解绑成功','none') 
+                    this.currentTicket = 0
+                    this.$nextTick(() => {
+                        this.getTicketList()
+                    })                      
+                } else {                    
+                    this.$tip.confirm(`解绑失败${res.code}，此票已被核销`,'知道了')
+                    .then(() => {
+                        return
+                    })
+                    .catch(() => {
+                        return
+                    })
+                }
+            },
             hasLogin () {
                 let hasLogin = !!this.userInfo
                 if (!hasLogin) {
@@ -168,6 +210,37 @@
             },
             switchCurrentTicketType () {
 
+            },            
+            uploadImg () {
+                let that = this
+                wx.chooseImage({
+                    count: 1,
+                    sizeType: ['compressed'],
+                    sourceType: ['album','camera'],
+                    success (res) {
+                        const tempFilePaths = res.tempFilePaths
+                        that.imgUploading = true
+                        wx.uploadFile({
+                            // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //测试环境上传图片地址
+                            url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //正式环境上传图片地址
+                            filePath: tempFilePaths[0],
+                            name: 'file',
+                            success (res1) {
+                                let temp = JSON.parse(res1.data)
+                                if (temp.code === '0') {  
+                                    that.changeBindPhoto(temp.data)
+                                } else {
+                                    that.$tip.toast(temp.message,'none')
+                                }
+                            },
+                            complete () {
+                                setTimeout(() => {                                        
+                                    that.imgUploading = false
+                                }, 1000);                    
+                            }
+                        })
+                    }
+                })
             },
             async getTicketList () {
                 let params = {
@@ -300,6 +373,19 @@
     color: #fff;
     line-height: 50upx;
 }
+.change-photo-btn {
+    position: absolute;
+    top: 120upx;
+    right: -20upx;
+    width: 160upx;
+    height: 50upx;
+    background: linear-gradient(-53deg, #FF900E, #FFCC00);
+    border-radius: 25upx;
+    font-size: 26upx;
+    text-align: center;
+    color: #fff;
+    line-height: 50upx;
+}
 .QRcode {
     position: relative;
     width: 576upx;
@@ -382,7 +468,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 50upx;
+    margin-top: 10upx;
 }
 .left-btn {
     position: absolute;

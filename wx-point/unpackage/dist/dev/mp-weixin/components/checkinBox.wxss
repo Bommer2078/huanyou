@@ -58,15 +58,20 @@
   border-radius: 27rpx;
   background: #ccc;
   margin-bottom: 30rpx;
+  overflow: hidden;
+}
+.checkin-box .checkin-box-cover .header image.data-v-b75f7e0c {
+  width: 192rpx;
+  height: 192rpx;
 }
 .checkin-box .checkin-box-cover .name.data-v-b75f7e0c {
   font-size: 36rpx;
   font-weight: 500;
   color: #000000;
+  margin-bottom: 40rpx;
 }
 .checkin-box .checkin-box-cover .QR-code.data-v-b75f7e0c {
   width: 420rpx;
   height: 420rpx;
-  background: #000;
 }
 

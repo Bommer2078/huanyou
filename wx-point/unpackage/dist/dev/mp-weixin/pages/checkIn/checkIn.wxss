@@ -130,6 +130,20 @@
     color: #fff;
     line-height: 50rpx;
 }
+.change-photo-btn {
+    position: absolute;
+    top: 120rpx;
+    right: -20rpx;
+    width: 160rpx;
+    height: 50rpx;
+    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
+    background: linear-gradient(-53deg, #FF900E, #FFCC00);
+    border-radius: 25rpx;
+    font-size: 26rpx;
+    text-align: center;
+    color: #fff;
+    line-height: 50rpx;
+}
 .QRcode {
     position: relative;
     width: 576rpx;
@@ -233,7 +247,7 @@
     -webkit-box-pack: center;
     -webkit-justify-content: center;
             justify-content: center;
-    margin-top: 50rpx;
+    margin-top: 10rpx;
 }
 .left-btn {
     position: absolute;
