@@ -162,7 +162,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       orderId: '',
-      detailArr: [],
+      detailArr1: [],
+      detailArr2: [],
       detailObj: null,
       orderType: '0',
       QRStr: '',
@@ -176,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     leftNum: function leftNum() {
       var temp = 0;
-      this.detailArr.forEach(function (ele) {
+      this.detailArr2.forEach(function (ele) {
         if (!ele.binding) {
           temp++;
         }
@@ -192,6 +193,16 @@ __webpack_require__.r(__webpack_exports__);
     this.$nextTick(function () {
       _this.getOrderDetail();
     });
+  },
+  onShareAppMessage: function onShareAppMessage(options) {
+    console.log('options', options);
+    var btnId = options && options.target && options.target.id;
+    this.putShareInfo(btnId);
+    var shareObj = {
+      title: "转赠联票",
+      path: '/pages/main/main' };
+
+    return shareObj;
   },
   methods: {
     qrR: function qrR(res) {
@@ -215,9 +226,25 @@ __webpack_require__.r(__webpack_exports__);
                   _this3.$api.getOrderDetail(params));case 3:res = _context.sent;
                 if (res.code === '0') {
                   _this3.detailObj = JSON.parse(JSON.stringify(res.data));
-                  _this3.detailArr = JSON.parse(JSON.stringify(res.data.ticketDOList));
+                  if (_this3.orderType == 1) {
+                    _this3.detailArr1 = JSON.parse(JSON.stringify(res.data.ticketDOList));
+                  } else if (_this3.orderType == 2) {
+                    _this3.detailArr2 = JSON.parse(JSON.stringify(res.data.ticketDOList));
+                  }
                   _this3.creatQrcode();
                 }case 5:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    putShareInfo: function putShareInfo(id) {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var tempId, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
+                id) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:
+                tempId = id.split('-')[1];
+                params = {
+                  forwardedInfo: '',
+                  ticketId: tempId };_context2.next = 6;return (
+
+                  _this4.$api.shareClicked(params));case 6:res = _context2.sent;
+                if (res.code === '0') {
+                  console.log('转发接口调用');
+                }case 8:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     changeQR: function changeQR() {
       if (this.QRStr) {

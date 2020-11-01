@@ -20,6 +20,7 @@
     "pages/orderDetail/orderDetail",
     "pages/business/business",
     "pages/venueDetail/venueDetail",
+    "pages/inputCommentPage/inputCommentPage",
     "pages/user/user"
   ],
   "subPackages": [],
@@ -64,6 +65,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap90.json"
+  "usingComponents": {}
 }

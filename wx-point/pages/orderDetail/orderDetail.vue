@@ -2,7 +2,7 @@
 <template>
     <view class="order-detail">
         <template v-if="orderType == 1">
-            <ticket-item :ticket-item="item" :index="index" :key="index" v-for="(item,index) in detailArr"></ticket-item>
+            <ticket-item :ticket-item="item" :index="index" :key="index" v-for="(item,index) in detailArr1"></ticket-item>
         </template>
         <template v-if="orderType == 2 && detailObj">
            <view class="goods-order-detail">
@@ -11,8 +11,8 @@
                    <text class="arrow"></text>
                </view>
                <view class="order-info">
-                   <text class="order-name">{{detailObj.itemName}}</text>
-                   <text class="order">共包含 {{detailArr.length}} 张，剩余 {{leftNum}} 张可以使用</text>
+                   <text class="order-name">{{detailArr2.itemName}}</text>
+                   <text class="order">共包含 {{detailArr2.length}} 张，剩余 {{leftNum}} 张可以使用</text>
                </view>
                <view class="QR-container">
                    <view class="finish" v-if="leftNum === 0">已使用</view>
@@ -30,7 +30,8 @@ export default {
     data() {
         return {
             orderId: '',
-            detailArr: [],
+            detailArr1: [],
+            detailArr2: [],
             detailObj: null,
             orderType: '0',
             QRStr: '',
@@ -44,7 +45,7 @@ export default {
     computed: {
         leftNum() {
             let temp = 0
-            this.detailArr.forEach(ele => {
+            this.detailArr2.forEach(ele => {
                 if (!ele.binding) {
                     temp ++
                 }
@@ -60,6 +61,16 @@ export default {
         this.$nextTick(() => {            
             this.getOrderDetail()
         })
+    },    
+    onShareAppMessage: function( options ){
+        console.log('options',options)
+        let btnId = options && options.target && options.target.id
+        this.putShareInfo(btnId)
+        let shareObj = {   
+            title: "转赠联票",    
+    　　　　 path: '/pages/main/main'
+        }
+        return shareObj
     },
     methods: {
         qrR(res) {
@@ -83,8 +94,24 @@ export default {
             let res = await this.$api.getOrderDetail(params)
             if (res.code === '0') {
                 this.detailObj = JSON.parse(JSON.stringify(res.data))
-                this.detailArr = JSON.parse(JSON.stringify(res.data.ticketDOList))
+                if (this.orderType == 1) {                    
+                    this.detailArr1 = JSON.parse(JSON.stringify(res.data.ticketDOList))
+                } else if (this.orderType == 2) {
+                    this.detailArr2 = JSON.parse(JSON.stringify(res.data.ticketDOList))
+                }
                 this.creatQrcode()
+            }
+        },
+        async putShareInfo (id) {
+            if (!id) return
+            let tempId = id.split('-')[1]
+            let params = {
+                forwardedInfo : '',
+                ticketId  : tempId
+            }
+            let res = await this.$api.shareClicked(params)
+            if (res.code === '0') {
+                console.log('转发接口调用')
             }
         },
         changeQR () {   

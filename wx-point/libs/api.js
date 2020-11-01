@@ -30,6 +30,8 @@ const getBookingList = (params) => http.get(`/booking/listBookingByUsername`,par
 const getFootprint = (params) => http.get(`/verify/listMyFootprint`,params); 
 const cancelBind = (params) => http.put(`/ticket/cancelBanding`,params); 
 const updateBindingPhoto = (params) => http.put(`/ticket/updateBindingPhoto`,params); 
+const shareClicked = (params) => http.put(`/ticket/forwarded`,params); 
+const submitComment = (params) => http.post(`/comment/insert`,params); 
 let api = {
     getSms: getSms,
     registerUser: registerUser,
@@ -62,6 +64,8 @@ let api = {
     getBookingList: getBookingList,
     getFootprint: getFootprint,
     cancelBind: cancelBind,
-    updateBindingPhoto: updateBindingPhoto
+    updateBindingPhoto: updateBindingPhoto,
+    shareClicked: shareClicked,
+    submitComment: submitComment
 };
 export default api;

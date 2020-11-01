@@ -5,7 +5,7 @@
             <view class="record-item">
                 <view class="record-time">{{timeText(item.createTime)}}</view>
                 <view class="record-info-cover">
-                    <image src="" />
+                    <image :src="item.venuePhoto" />
                     <view class="record-info">
                         <view class="venue-name">
                             <text>{{item.venueName}}</text>

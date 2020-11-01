@@ -80,7 +80,7 @@
             </view>
         </view> -->
         <pay-ball v-if="currentTab === 1"></pay-ball>
-        <image src="../../static/img/commentBtn.png" class="comment-btn" v-else/>
+        <image src="../../static/img/commentBtn.png" class="comment-btn" v-else @click="inputComment"/>
         <loading :show-loading="!venueData"></loading>     
     </view>
 </template>
@@ -182,6 +182,11 @@ export default {
         },
         changeCurrentTab (type) {
             this.currentTab = type
+        },
+        inputComment () {
+            uni.navigateTo({
+                url: `../inputCommentPage/inputCommentPage?venueId=${this.venueId}`
+            })
         }
     },
 }

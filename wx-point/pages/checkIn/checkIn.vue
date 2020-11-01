@@ -30,14 +30,14 @@
              <img class="ticket-bg" src="/static/img/checkTicket.png">
              <view class="QRcode-container">
                  <view class="QRcode-header">
-                     <!-- <view class="title has-icon" @click="switchCurrentTicketType"> -->
+                     <!-- <view class="title" :class="{'has-icon' : showSwitchIcon}" @click="switchCurrentTicketType"> -->
                      <view class="title" @click="switchCurrentTicketType">
                         <text>
                              {{currentTicketObj.itemName}}
                         </text>
-                        <view class="switch-icon" v-show="false">
+                        <!-- <view class="switch-icon" v-show="showSwitchIcon">
                             <image src="../../static/img/switch1.svg"></image>
-                        </view>
+                        </view> -->
                     </view>
                      <view class="code">
                          <text>密码</text>
@@ -59,10 +59,13 @@
     import { mapState } from 'vuex'
     export default {
         computed: {
-            ...mapState(['userInfo']),            
+            ...mapState(['userInfo','ticketBaseInfo']),            
             currentTicketObj() {
                 return this.ticketList[this.currentTicket]
             },
+            showSwitchIcon () {
+                return this.ticketBaseInfo.id !== this.currentTicket.itemId
+            }
         },
         components: {tkiQrcode},
         data() {
@@ -116,10 +119,23 @@
             },
             async changeBindPhoto (url) {
                 let params = {
-                    ticketId: this.currentTicketObj.childCode,
-                    file: url
+                    ticketId: this.currentTicketObj.id,
+                    photoUrl: url
                 }
                 const res = await this.$api.updateBindingPhoto(params)
+                if (res.code === '0') {
+                    this.getTicketList()
+                } else if (res.code === '60006') {                                       
+                    this.$tip.confirm(`此票已被使用,不能修改头像`,'知道了')
+                    .then(() => {
+                        return
+                    })
+                    .catch(() => {
+                        return
+                    })
+                } else {                    
+                    this.$tip.toast(`${res.message}`,'none')
+                }
             },
             async confimCancelBind () {                
                 let params = {
@@ -149,8 +165,8 @@
                 let hasLogin = !!this.userInfo
                 if (!hasLogin) {
                     this.bindLogin()
-                } else {                    
-                    this.getTicketList()
+                } else {                          
+                    this.getTicketList()              
                 }
             },   
             bindLogin() {
@@ -209,7 +225,9 @@
                 }
             },
             switchCurrentTicketType () {
-
+                // if (this.showSwitchIcon) {                    
+                //     this.$store.commit('SET_TICKET_OBJ',this.currentTicketObj)
+                // }
             },            
             uploadImg () {
                 let that = this

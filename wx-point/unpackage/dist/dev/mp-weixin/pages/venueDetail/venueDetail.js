@@ -323,6 +323,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeCurrentTab: function changeCurrentTab(type) {
       this.currentTab = type;
+    },
+    inputComment: function inputComment() {
+      uni.navigateTo({
+        url: "../inputCommentPage/inputCommentPage?venueId=".concat(this.venueId) });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

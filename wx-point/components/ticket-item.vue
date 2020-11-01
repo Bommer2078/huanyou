@@ -11,7 +11,7 @@
             </view>
         </view>
         <template v-if="!ticketItem.binding">            
-            <button open-type="share" class="share-btn">送给朋友</button>
+            <button open-type="share" class="share-btn" :id="`shareBtn-${ticketItem.id}`">送给朋友</button>
             <view class="bind-btn" @click="bindTicket">一键绑定</view>
         </template>
         <template v-else>            
@@ -34,9 +34,6 @@ export default {
             type: Number,
             requeriy: true
         }
-    },    
-    onShareAppMessage: function( options ){
-        return this.$commenShare()
     },
     // onShareAppMessage ( options ) {
     //     let shareObj = {

@@ -151,9 +151,6 @@ var _default =
       requeriy: true } },
 
 
-  onShareAppMessage: function onShareAppMessage(options) {
-    return this.$commenShare();
-  },
   // onShareAppMessage ( options ) {
   //     let shareObj = {
   // 　　　　title: "转发的标题",        // 默认是小程序的名称(可以写slogan等)
