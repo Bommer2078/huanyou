@@ -27,13 +27,16 @@
     position: absolute;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     width: 100%;
     z-index: 3;
@@ -44,7 +47,8 @@
     background: #F6F6F6;
     overflow: hidden;
     border-radius: 6px;
-    box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+    -webkit-box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
+            box-shadow: 1px 5px 18px 0px rgba(0, 0, 0, 0.31);
 }
 .swiper-cover {    
     height: 310rpx; 
@@ -57,17 +61,20 @@
 .option-btn {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
+        -ms-flex-pack: center;
             justify-content: center;
     position: absolute;
     width: 70rpx;
     height: 70rpx;    
-    background: -webkit-linear-gradient(143deg, #FFA80F, #FFCC00);    
+    background: -o-linear-gradient(143deg, #FFA80F, #FFCC00);    
     background: linear-gradient(-53deg, #FFA80F, #FFCC00);
     border-radius: 50%;
     bottom: -70rpx;
@@ -85,16 +92,20 @@
 .ticket-container .header {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     width: 100%;
     padding-left: 14rpx;
@@ -113,9 +124,11 @@
 .header view {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
 }
 .ticket-container .search-container {
@@ -148,12 +161,15 @@
 .ticket-container .header-list-cover{
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
             justify-content: flex-start;
     height: 128rpx;
     overflow-x: auto;
@@ -163,19 +179,24 @@
     height: 90rpx;
     border-radius: 50%;
     -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
             flex-shrink: 0;
 }
 .header-img-cover {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
+        -ms-flex-pack: center;
             justify-content: center;
     -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
             flex-shrink: 0;
     width: 90rpx;
     height: 90rpx;
@@ -190,6 +211,7 @@
 }
 .current-header {
     -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
             transform: scale(1.2);
     margin-left: 20rpx;
 }
@@ -214,16 +236,20 @@
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
+        -ms-flex-pack: center;
             justify-content: center;
     height: 54rpx;
     background: #FFE785;
@@ -242,13 +268,16 @@
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     padding-left: 14rpx;
     padding-right: 14rpx;
@@ -258,18 +287,22 @@
     width: 100%; 
     display: -webkit-box; 
     display: -webkit-flex; 
+    display: -ms-flexbox; 
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;
     padding-top: 30rpx;
     padding-bottom: 30rpx;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     margin-bottom: 10rpx;
 }
@@ -286,7 +319,8 @@
     left: 0;
     padding-left: 15px;
     padding-right: 0px;
-    background: -webkit-linear-gradient(left,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
+    background: -webkit-gradient(linear,  left top, right top,  from(rgba(219, 179, 16, 1)),to(rgba(255, 145, 15, 0)));
+    background: -o-linear-gradient(left,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
     background: linear-gradient(90deg,  rgba(219, 179, 16, 1),rgba(255, 145, 15, 0));
 }
 .book-tip {
@@ -301,7 +335,8 @@
     font-weight: 500;
     padding-right: 15px;
     text-align: right;
-    background: -webkit-linear-gradient(right, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
+    background: -webkit-gradient(linear, right top, left top, from(rgba(255, 145, 15, 1)), to(rgba(255, 204, 0, 0)));
+    background: -o-linear-gradient(right, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
     background: linear-gradient(-90deg, rgba(255, 145, 15, 1), rgba(255, 204, 0, 0));
 }
 .tip .title {
@@ -311,6 +346,7 @@
     font-size: 16px;
     font-weight: 700;
     -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
             flex-shrink: 0;
 }
 .tip .title image {
@@ -361,20 +397,24 @@
     right: 1px;
     background: #000;
     opacity: .5;
-    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+    background: -o-linear-gradient(left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     z-index: 1;
 }
 .item-container .card .tip{
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
+        -ms-flex-align: start;
             align-items: flex-start;
     position: absolute;
     bottom: 0;
@@ -384,7 +424,8 @@
     margin: 0;
     width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 13px;
     color: #fff;
