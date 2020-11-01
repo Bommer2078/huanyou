@@ -24,6 +24,7 @@
 				min-width="20%">
 				<template slot-scope="scope">
 					<span v-if="scope.row.binding">{{`已被${scope.row.bindingName}用户绑定`}}</span>
+					<span v-else-if="scope.row.forwarded">用户转发过</span>
 					<span v-else>未绑定</span>
 				</template>
 			</el-table-column>
