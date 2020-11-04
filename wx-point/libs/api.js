@@ -32,6 +32,8 @@ const cancelBind = (params) => http.put(`/ticket/cancelBanding`,params);
 const updateBindingPhoto = (params) => http.put(`/ticket/updateBindingPhoto`,params); 
 const shareClicked = (params) => http.put(`/ticket/forwarded`,params); 
 const submitComment = (params) => http.post(`/comment/insert`,params); 
+const getCommentList = (params) => http.get(`/comment/listByVenueIdAndStatus`,params); 
+const deletComment = (params) => http.delete(`/comment/delete`,params); 
 let api = {
     getSms: getSms,
     registerUser: registerUser,
@@ -66,6 +68,8 @@ let api = {
     cancelBind: cancelBind,
     updateBindingPhoto: updateBindingPhoto,
     shareClicked: shareClicked,
-    submitComment: submitComment
+    submitComment: submitComment,
+    getCommentList: getCommentList,
+    deletComment: deletComment
 };
 export default api;

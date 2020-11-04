@@ -49,18 +49,21 @@
             </view>
         </template>
         <loading :show-loading="!ticketData"></loading> 
-        <view class="pay-btn" @click="gotoPay">购买联票</view>  
+        <view class="pay-btn" @click="gotoPay">购买联票</view> 
+        <chose-ticket-list :show-price="true" :ticket-list="ticketList" :showTicketList="showTicketList" @choseTicket="choseTicket"></chose-ticket-list> 
     </view>
 </template>
 
 <script>
 import loading from '../../components/loadding'
 import payBall from '../../components/payBall'
+import choseTicketList from '../../components/choseTicketList'
 import { mapState } from 'vuex' 
 export default {
     components: {
         loading,
-        payBall
+        payBall,
+        choseTicketList
     },
     onShareAppMessage: function( options ){
         return this.$commenShare()
@@ -71,34 +74,70 @@ export default {
             venueIntro: '暂无场馆',
             venueNum: '0',
             strings: '', // 富文本内容
-            sellType: null
+            sellType: null,
+            nowTicketInfo: null,
+            showTicketList: false,
+            ticketList: []
         }
     },
     computed: {
         ...mapState(['locationObj','ticketBaseInfo','userInfo'])
     },
-    onShow() {
-        this.initTicketData()
+    onShow () {
+        this.initPage()
+        // this.initTicketData()
+    },
+    onHide () {
+        this.showTicketList = false
     },
     methods: {
-        async initTicketData() {
-            if (!this.ticketBaseInfo || !this.ticketBaseInfo.id) {
-                this.$tip.alertDialog(
-                '请返回首页选择相关联票').then(() => {
-                    uni.switchTab({
-                        url: '/pages/main/main'
-                    })
-                })
-                return
+        initPage () {
+            let temp = uni.getStorageSync('fromMainPageBanner')
+            if (temp) {
+                this.initTicketData()
+                uni.removeStorageSync('fromMainPageBanner')
+            } else {
+                this.getTicketList()
             }
-            const res = await this.$api.getTicketDetail(this.ticketBaseInfo.id)
+        },
+        showChoseBox () {
+            this.showTicketList = true
+        },
+        choseTicket (obj) {            
+            this.$store.commit('SET_TICKET_OBJ',obj) 
+            this.initTicketData(obj.id)
+            this.showTicketList = false 
+        },
+        async initTicketData(id) {
+            let tempId = id || this.ticketBaseInfo.id
+            const res = await this.$api.getTicketDetail(tempId)
             if (res.code === '0') {
                 this.ticketData = res.data
                 this.sellType = JSON.parse(res.data.sellType)
                 this.strings = res.data.description
-                this.$store.commit('SET_TICKET_OBJ',this.ticketData)
                 this.processVenueIntro()
             }
+        },
+        async getTicketList () {
+            let params = {
+                pageNum: 1,
+                pageSize: 10,
+                placeId: this.locationObj.id
+            }               
+            const res2 = await this.$api.getTickeList(params)
+            if (res2.code === '0') {
+                let tempArr = res2.data.list.filter((item) => {
+                    return item.status === 1
+                })
+                this.ticketList = tempArr
+                if (tempArr && tempArr.length === 1) {   
+                    this.choseTicket(tempArr[0])
+                } else if (tempArr && tempArr.length > 1) {
+                    this.showTicketList = true
+                } else {
+                    this.$tip.toast('敬请期待','none')
+                }
+            }  
         },
         gotoPay () {
             let hasLogin = !!this.userInfo

@@ -105,6 +105,50 @@ http.get = (api, data) => {
     });
 }
 
+http.delete = (api, data) => {
+    if (httpNum <= 0) {
+        tip.loading()
+    }
+    httpNum++;
+    return new Promise((resolve, reject) => {
+        uni.request({
+            data:data,
+            method:'delete',
+            url: baseUrl + api,
+            header: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'token': uni.getStorageSync('token'),
+                'isApplet': 'true'
+            },
+            success: function (res) {
+                httpNum--;
+                if (httpNum <= 0) {
+                    tip.loaded();
+                }
+                if(res.statusCode == 200) {
+                    if(res.data.code == '401') {
+                        tip.alertDialog('请重新登录').then((val) => {
+                            store.commit('SET_USER_INFO', null)
+                            store.commit('SET_ROLE_TYPE', null)
+                            uni.navigateTo({
+                                url: '/pages/login/login'
+                            })
+                        })
+                    } else {                            
+                        resolve(res.data)
+                    }
+                } else {
+                    tip.alertDialog(res.statusCode + '错误，请稍后再试')
+                }
+            },
+            fail:function (err) {
+                httpNum--;
+                tip.loaded();
+                reject(err)
+            }
+        })
+    });
+}
 http.put = (api, data) => {
     if (httpNum <= 0) {
         tip.loading()

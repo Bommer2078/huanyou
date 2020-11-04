@@ -2,26 +2,26 @@
     <view class="comment-item">
         <view class="comment-head">
             <view class="comment-info">
-                <text class="comment-name">{{commentData.name}}:</text>
+                <text class="comment-name">{{commentData.username | userText}}:</text>
                 <text class="comment-time">{{commentData.creatTime}}</text>
             </view>
-            <view class="comment-menu" @click="changeShowMenu">
+            <view class="comment-menu" @click="changeShowMenu" v-show="isSelf">
                 <view class="comment-menu-dot"></view>
                 <view class="comment-menu-dot"></view>
                 <view class="comment-menu-dot"></view>
                 <view class="comment-menu-select" v-show="showMenu">
-                    <view class="menu-item">编辑</view>
-                    <view class="menu-item">删除</view>
+                    <view class="menu-item" @click="deletComment">删除</view>
                 </view>
             </view>
         </view>
         <view class="comment-content">
-            {{commentData.content}}
+            {{commentData.commentText}}
         </view>
     </view>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: 'commentItem',
     props: {
@@ -32,17 +32,40 @@ export default {
             }
         }
     },
+    filters: {
+        userText (val) {
+            let temp1 = val.split('')
+            let temp2 = val.split('')
+            let val1 = temp1.splice(0, 3)
+            let val2 = temp2.splice(7, 11)
+            return `${val1.join('')}****${val2.join('')}`
+        }
+    },
     data () {
         return {
             showMenu: false
         }
     },
     computed: {
+        ...mapState(['userInfo']),
+        isSelf() {
+            if (!this.userInfo) return false
+            this.commentData.username === this.userInfo && this.userInfo.username
+        }
     },
     methods: {
         changeShowMenu () {
             this.showMenu = !this.showMenu
-        }
+        },        
+        async deletComment () {
+            let params = {
+                id: this.commentData.id
+            }
+            const res = await this.$api.deletComment(params)
+            if (res.code === '0') {                
+                this.$tip.toast('删除成功','none')
+            }
+        },
     },
 }
 </script>
@@ -88,7 +111,7 @@ export default {
                 position: absolute;
                 top: 32rpx;
                 right: 0rpx;
-                height: 120upx;
+                height: 60upx;
                 background: #fff;
                 border-radius: 7upx;
                 border: 1px solid #E1E1E1;

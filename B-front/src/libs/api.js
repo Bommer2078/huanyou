@@ -11,8 +11,10 @@ const api = {
 	getLocationList: `${val}/place/list`,
 
 	// 场馆
-	getVenueList: `${val}/venue/list`,
-	saveVenue   : `${val}/venue`,
+	getVenueList  : `${val}/venue/list`,
+	saveVenue     : `${val}/venue`,
+	getCommentList: `${val}/comment/listByVenueIdAndStatus`,
+	showComment   : `${val}/comment/show`,
 
 	// 商品
 	saveGoods   : `${val}/specialItem`,

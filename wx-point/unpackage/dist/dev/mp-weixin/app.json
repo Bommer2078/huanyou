@@ -42,7 +42,7 @@
       },
       {
         "pagePath": "pages/ticket/ticket",
-        "text": "联票",
+        "text": "商城",
         "iconPath": "static/img/ticket.png",
         "selectedIconPath": "static/img/ticketAc.png"
       },
@@ -66,5 +66,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap63.json"
+  "sitemapLocation": "sitemap95.json"
 }

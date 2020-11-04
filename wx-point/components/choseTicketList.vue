@@ -9,7 +9,10 @@
             <view  v-for="(item,index) in ticketList" :key="index" @click.stop="choseTicket(item)" class="ticket-item">                
                 <img :src="item.photo" class="banner-cover">
                 <view class="ticket-name">
-                    <image src="../static/img/NEW.svg" class="new-icon"/>{{item.name}}</view>
+                    <image src="../static/img/NEW.svg" class="new-icon"/>
+                    <text>{{item.name}}</text>
+                    <text class="price-tag" v-show="showPrice">{{priceText(item)}}</text>
+                </view>
             </view>
         </view>
     </view>
@@ -27,11 +30,22 @@ export default {
         showTicketList: {
             type: Boolean,
             default: false
+        },
+        showPrice: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
         choseTicket (tiketObj) {
             this.$emit('choseTicket', tiketObj)
+        },
+        priceText (tiketObj) {
+            let temp = JSON.parse(tiketObj.sellType)
+            if (temp.oldPriceRule) {
+                return `价格：${tiketObj.price/100}元`
+            } 
+            return `套票价格：${tiketObj.discountPrice/100}元`
         }
     },
 }
@@ -83,6 +97,7 @@ export default {
         margin-bottom: 30upx;  
     }
     .ticket-select .ticket-name {
+        position: relative;
         display: flex;
         align-items: center;
         width: 100%;
@@ -91,6 +106,14 @@ export default {
         font-size: 38upx;
         font-weight: 700;
         border-bottom: 6upx solid #eee;
+    }
+    .ticket-select .price-tag {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 400;
+        right: 0;
+        bottom: 25upx;
+        color: #ffcc00;
     }
     .ticket-select .ticket-name .new-icon{
         width: 76upx;

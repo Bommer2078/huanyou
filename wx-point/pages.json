@@ -13,7 +13,7 @@
         }, {
             "path": "pages/ticket/ticket",
             "style": {
-                "navigationBarTitleText": "联票"
+                "navigationBarTitleText": "联票详情"
             }
         }, {
             "path": "pages/checkIn/checkIn",

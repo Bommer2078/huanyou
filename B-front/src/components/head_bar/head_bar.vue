@@ -84,6 +84,14 @@ export default {
 					tip: '预约列表'
 				} ]
 			}, {
+				path     : '/venueManage/commentList',
+				crumbName: [ {
+					tip  : '场馆列表',
+					route: '/venueManage/venueList'
+				}, {
+					tip: '评论列表'
+				} ]
+			}, {
 				path     : '/venueManage/venueList',
 				crumbName: [ { tip: '场馆列表' } ]
 			}, {

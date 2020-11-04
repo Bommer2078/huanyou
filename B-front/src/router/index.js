@@ -17,6 +17,7 @@ import dictionary from '@/pages/dictionary/dictionary.vue'
 import aboutManage from '@/pages/aboutManage/aboutManage.vue'
 import businessManage from '@/pages/venue_manage/business_manage/business_manage.vue'
 import appointmentManage from '@/pages/venue_manage/appointment_manage/appointment_manage.vue'
+import commentList from '@/pages/venue_manage/comment_list/comment_list.vue'
 Vue.use(Router)
 export default new Router({
 	routes: [
@@ -72,6 +73,10 @@ export default new Router({
 				path     : '/venueManage/appointmentManage',
 				name     : 'appointmentManage',
 				component: appointmentManage
+			}, {
+				path     : '/venueManage/commentList',
+				name     : 'commentList',
+				component: commentList
 			}, {
 				path     : '/dictionary',
 				name     : 'dictionary',

@@ -7,7 +7,7 @@
                 <view class="check-in-header">
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
                     <text class="right">{{currentTicketObj.bindingName}}</text>
-                    <view class="cancel-btn" @click="cancelBind">取消绑定</view>
+                    <!-- <view class="cancel-btn" @click="cancelBind">取消绑定</view> -->
                     <view class="change-photo-btn" @click="uploadImg">修改照片</view>
                 </view>
                 <view class="check-in-body">
@@ -15,10 +15,10 @@
                         <text class="left">手机号码</text>
                         <text class="right">{{currentTicketObj.username}}</text>
                     </view>
-                    <view class="item">
+                    <!-- <view class="item">
                         <text class="left">有效时间</text>
                         <text class="right">2019.01.01-2020.01.01</text>
-                    </view>
+                    </view> -->
                     <view class="item">
                         <text class="left">联票编码</text>
                         <text class="right">{{currentTicketObj.childCode}}</text>
@@ -45,11 +45,16 @@
                      </view>
                  </view>
                  <view class="QRcode-body" @click="handleChangeQR">
-                    <tki-qrcode size="400" unit="upx" background="transparent" :onval="true" @result="qrR" :val="QRStr"  ref="qrcode"></tki-qrcode>
+                    <tki-qrcode size="360" unit="upx" background="transparent" :onval="true" @result="qrR" :val="QRStr"  ref="qrcode"></tki-qrcode>
                  </view>
+                 <view style="text-align: center">{{currentTicket + 1}}/{{ticketList && ticketList.length}}</view>
              </view>
-            <view class="left-btn" @tap="goLeft"></view>
-            <view class="right-btn" @tap="goRight"></view>
+            <view class="left-btn" @tap="goLeft">
+                <text>上一张</text>
+            </view>
+            <view class="right-btn" @tap="goRight">                
+                <text>下一张</text>
+            </view>
         </view>
     </view>
 </template>
@@ -297,7 +302,6 @@
     position: relative;
     width: 100%;
     height: 500upx;
-    margin-bottom: 60rpx;
 }
 .check-in-banner .bg{
     position: absolute;
@@ -308,7 +312,7 @@
     position: absolute;
     top: 50upx;
     width: 86%;
-    height: 450upx;
+    height: 400upx;
     border-radius: 8px;
     background: #fff;
     opacity: .9;
@@ -323,7 +327,7 @@
     position: absolute;
     top: 50upx;
     width: 86%;
-    height: 450upx;
+    height: 400upx;
     border-radius: 8px;
     z-index: 2;
 }
@@ -509,6 +513,17 @@
     border-top: 14px solid transparent;
     border-left: 14px solid #FFCB00;
     border-bottom: 14px solid transparent;
+}
+.left-btn text,
+.right-btn text{
+    font-size: 12px;
+    word-break: keep-all;
+    position: absolute;
+    right: -8px;
+    bottom: -35px;
+}
+.left-btn text{
+    left: -8px;
 }
 .switch-icon {
     position: absolute;

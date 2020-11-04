@@ -1,4 +1,4 @@
-.ticket-select.data-v-5f9e2d1e {
+.ticket-select.data-v-0f86367a {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -6,16 +6,13 @@
   right: 0;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   margin: auto;
   width: 664rpx;
@@ -23,12 +20,11 @@
   background: #fff;
   border-radius: 8px;
   padding-top: 20rpx;
-  -webkit-box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
-          box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
+  box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
   overflow: scroll;
   z-index: 101;
 }
-.mask.data-v-5f9e2d1e {
+.mask.data-v-0f86367a {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -38,29 +34,28 @@
   opacity: .5;
   z-index: 100;
 }
-.ticket-select .title.data-v-5f9e2d1e {
+.ticket-select .title.data-v-0f86367a {
   font-size: 38rpx;
   font-weight: 400;
   color: #000000;
   margin-bottom: 40rpx;
 }
-.title-icon.data-v-5f9e2d1e {
+.title-icon.data-v-0f86367a {
   width: 30rpx;
   height: 30rpx;
   margin-right: 10rpx;
 }
-.ticket-item.data-v-5f9e2d1e {
+.ticket-item.data-v-0f86367a {
   width: 90%;
   margin-bottom: 30rpx;
 }
-.ticket-select .ticket-name.data-v-5f9e2d1e {
+.ticket-select .ticket-name.data-v-0f86367a {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   width: 100%;
   height: 100rpx;
@@ -69,12 +64,20 @@
   font-weight: 700;
   border-bottom: 6rpx solid #eee;
 }
-.ticket-select .ticket-name .new-icon.data-v-5f9e2d1e {
+.ticket-select .price-tag.data-v-0f86367a {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 400;
+  right: 0;
+  bottom: 25rpx;
+  color: #ffcc00;
+}
+.ticket-select .ticket-name .new-icon.data-v-0f86367a {
   width: 76rpx;
   height: 42rpx;
   margin-right: 20rpx;
 }
-.ticket-select .banner-cover.data-v-5f9e2d1e {
+.ticket-select .banner-cover.data-v-0f86367a {
   width: 602rpx;
   height: 324rpx;
   border-radius: 14px;

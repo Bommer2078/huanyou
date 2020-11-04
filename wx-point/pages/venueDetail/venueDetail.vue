@@ -116,12 +116,7 @@ export default {
             phoneCall: '',
             timer: null,
             currentTab: 1, // 1详情,2评论
-            commentData: [{
-                id:1,
-                name:'189****1235',
-                content: '超级好玩得地方',
-                creatTime: '08-21 19:12'
-            }]
+            commentData: []
         }
     },
     computed: {
@@ -182,12 +177,27 @@ export default {
         },
         changeCurrentTab (type) {
             this.currentTab = type
+            if (type === 2) {
+                this.getCommentList()
+            }
         },
         inputComment () {
             uni.navigateTo({
                 url: `../inputCommentPage/inputCommentPage?venueId=${this.venueId}`
             })
-        }
+        },
+        async getCommentList () {
+            let params = {
+                venueId: this.venueId,
+                status: 1,
+                pageSize: 100,
+                pageNo: 1
+            }
+            const res = await this.$api.getCommentList(params)
+            if (res.code === '0') {
+                this.commentData = res.data.list
+            }
+        },
     },
 }
 </script>

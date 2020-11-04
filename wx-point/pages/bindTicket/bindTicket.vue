@@ -130,7 +130,7 @@ export default {
             return true
         },
         showWarning () {
-            this.$tip.confirm('请使用真实头像，核验联票时会根据您绑定的头像与使用人进行对照')
+            this.$tip.confirm('上传单人大头照，仅限照片本人使用，合照不可使用')
             .then((res) => {
                 this.uploadImg()
             })

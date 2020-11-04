@@ -5,9 +5,10 @@
             <view class="bg-color"></view>
             <view class="ticket-container">
                 <view class="header">
-                    <view @click="choseLocation">                        
-                        <img src="/static/img/address.svg">
-                        <text>{{locationObj.name}}</text>
+                    <view @click="choseLocation">           
+                        <img src="../../static/img/switch2.svg"/>
+                        <text>{{locationObj.name}}</text>             
+                        <!-- <img src="/static/img/address.svg"> -->
                     </view>
                     <view @tap="callPhone">                        
                         <text>客服</text> 
@@ -39,7 +40,15 @@
                         </view>
                     </template>
                 </view>
-                <view class="banner">
+                <view class="banner" @click="intoTicket">
+                    <img :src="ticketBaseInfo.photo">
+                    <view class="tip">
+                        <view class="mask">                          
+                        </view>
+                        <view style="z-index: 5;">联票名称：{{ticketBaseInfo.name}}</view>
+                    </view>
+                </view>
+                <!-- <view class="banner">
                     <swiper 
                         class="swiper-cover" 
                         :indicator-dots="false" 
@@ -48,7 +57,7 @@
                         :duration="500"
                         :circular="true"           
                         @change="handleBannerChange">
-                        <swiper-item v-for="(item,index) in ticketList" :key="item.id">
+                        <swiper-item v-for="(item,index) in ticketList" :key="item.id" @click="intoTicket">
                             <view class="swiper-item">
                                 <image 
                                     class="swiper-imgs"
@@ -57,11 +66,11 @@
                             </view>
                         </swiper-item>
                     </swiper>
-                </view>
+                </view> -->
             </view>  
             <view class="option-btn">
-                <image src="../../static/img/switch.svg"  class="switch-btn" v-if="showSwitchBtn" @click="switchTicket"/>
-                <image src="../../static/img/into.svg"  class="into-detail-btn" v-else @click="intoTicket"/>
+                <image src="../../static/img/switch.svg"  class="switch-btn" @click="switchTicket"/>
+                <!-- <image src="../../static/img/into.svg"  class="into-detail-btn" v-else @click="intoTicket"/> -->
             </view>          
         </view>
         <view class="mian-container">
@@ -80,7 +89,7 @@
                 <view class="tip"  @click="gotoMoreVenue">
                     <view class="title">
                         <image src="../../static/img/titleIcon.svg" />
-                        <text>本期精选场馆</text>
+                        <text>联票包含场馆</text>
                     </view>
                     <view class="more">
                         更多 >
@@ -116,6 +125,7 @@ import checkinBox from '../../components/checkinBox'
                 venueArr: [],
                 goodsArr: [],
                 phoneCall :'4006099109',
+                QQCall :'QQ：8264070',
                 showTicketList: false,
                 showCheckinBox: false,
                 ticketList: [],
@@ -139,9 +149,6 @@ import checkinBox from '../../components/checkinBox'
             ...mapState(['locationObj','ticketBaseInfo','venueTypeArr','roleType','userInfo']),
             showHeaderLayOut () {
                 return this.userTicketList.length > 0
-            },
-            showSwitchBtn () {
-                return this.ticketList && this.ticketList[this.currentTicketIndex] && this.ticketList[this.currentTicketIndex].id !== this.ticketBaseInfo.id
             }
         },
         watch: {
@@ -373,13 +380,15 @@ import checkinBox from '../../components/checkinBox'
                 })
             },
             intoTicket () {
+                uni.setStorageSync('fromMainPageBanner',true)
                 uni.switchTab({
                     url: `/pages/ticket/ticket`
                 })
             },
             switchTicket () {                                        
-                this.$store.commit('SET_TICKET_OBJ',this.ticketList[this.currentTicketIndex])  
-                this.getRestData()  
+                // this.$store.commit('SET_TICKET_OBJ',this.ticketList[this.currentTicketIndex])  
+                // this.getRestData()  
+                this.showTicketList = true
             },
             gotoGoods(item) {
                 uni.navigateTo({
@@ -392,9 +401,9 @@ import checkinBox from '../../components/checkinBox'
                 })
             },
             callPhone () {
-                let phoneCall = [this.phoneCall]
+                let phoneCall = [this.phoneCall,this.QQCall]
                 uni.showActionSheet({
-                    itemList: [phoneCall[0]],
+                    itemList: [phoneCall[0],phoneCall[1]],
                     success: function (res) {
                         console.log(res)
                         wx.makePhoneCall({
@@ -527,6 +536,7 @@ import checkinBox from '../../components/checkinBox'
     z-index: 3;
 }
 .ticket-container .banner {
+    position: relative;
     width: 93%;
     height: 310upx;
     background: #F6F6F6;
@@ -789,6 +799,17 @@ import checkinBox from '../../components/checkinBox'
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     z-index: 1;
 }
+.banner .tip {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 1px;
+    background: #000;
+    opacity: .5;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+.banner .tip,
 .item-container .card .tip{
     display: flex;
     flex-direction: column;

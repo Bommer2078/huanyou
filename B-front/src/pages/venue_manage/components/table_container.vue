@@ -53,6 +53,8 @@
 					<span class="split">|</span>
 					<span type="text" class="setting-btn" @click="handleEdit(scope)">编辑</span>
 					<span class="split">|</span>
+					<span type="text" class="setting-btn" @click="intoCommentList(scope)">评论列表</span>
+					<span class="split">|</span>
 					<span type="text" class="setting-btn" @click="checkDel(scope)">删除</span>
 				</template>
 			</el-table-column>
@@ -135,6 +137,11 @@ export default {
 		},
 		handleEdit (obj) {
 			this.$EventBus.$emit('editVenue', obj)
+		},
+		intoCommentList (val) {
+			let url = `/venueManage/commentList?id=${val.row.id}&name=${val.row.name}`
+
+			this.$router.push(url)
 		},
 		checkDel (obj) {
 			this.$alert('删除后无法恢复，确认删除该场馆？', '删除场馆', {

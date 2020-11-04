@@ -7,16 +7,13 @@
 .check-in-banner {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     position: relative;
     width: 100%;
     height: 500rpx;
-    margin-bottom: 60rpx;
 }
 .check-in-banner .bg{
     position: absolute;
@@ -27,36 +24,31 @@
     position: absolute;
     top: 50rpx;
     width: 86%;
-    height: 450rpx;
+    height: 400rpx;
     border-radius: 8px;
     background: #fff;
     opacity: .9;
     z-index: 1;
-    -webkit-box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
-            box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+    box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
 }
 .check-in-container {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     position: absolute;
     top: 50rpx;
     width: 86%;
-    height: 450rpx;
+    height: 400rpx;
     border-radius: 8px;
     z-index: 2;
 }
@@ -66,7 +58,6 @@
     top: -33rpx;
     overflow: hidden;
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
             flex-shrink: 0;    
     padding-left: 67rpx;
     overflow: hidden;
@@ -88,16 +79,13 @@
     bottom: 20rpx;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     width: 100%;
     padding-left: 90rpx;
@@ -106,11 +94,9 @@
 .check-in-body .item {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
     margin-bottom: 30rpx;
@@ -135,7 +121,7 @@
     right: -20rpx;
     width: 160rpx;
     height: 50rpx;
-    background: -o-linear-gradient(143deg, #FF900E, #FFCC00);
+    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
     background: linear-gradient(-53deg, #FF900E, #FFCC00);
     border-radius: 25rpx;
     font-size: 26rpx;
@@ -149,7 +135,7 @@
     right: -20rpx;
     width: 160rpx;
     height: 50rpx;
-    background: -o-linear-gradient(143deg, #FF900E, #FFCC00);
+    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
     background: linear-gradient(-53deg, #FF900E, #FFCC00);
     border-radius: 25rpx;
     font-size: 26rpx;
@@ -182,16 +168,13 @@
 .QRcode-container .QRcode-header {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     margin-bottom: 22rpx;
 }
@@ -203,8 +186,7 @@
 }
 .QRcode-header .title{
     height: 75rpx;
-    background: -webkit-gradient(linear, left bottom, left top, from(#FF900E), to(#FFCC00));
-    background: -o-linear-gradient(bottom, #FF900E, #FFCC00);
+    background: -webkit-linear-gradient(bottom, #FF900E, #FFCC00);
     background: linear-gradient(360deg, #FF900E, #FFCC00);
     border-radius: 4px;
     text-align: center;
@@ -221,11 +203,9 @@
 .QRcode-header .code {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     font-size: 14px;
     color: #000;
@@ -255,20 +235,16 @@
 .QRcode-container .QRcode-body {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     margin-top: 10rpx;
 }
@@ -294,6 +270,17 @@
     border-left: 14px solid #FFCB00;
     border-bottom: 14px solid transparent;
 }
+.left-btn text,
+.right-btn text{
+    font-size: 12px;
+    word-break: keep-all;
+    position: absolute;
+    right: -8px;
+    bottom: -35px;
+}
+.left-btn text{
+    left: -8px;
+}
 .switch-icon {
     position: absolute;
     right: 20rpx;
@@ -304,15 +291,12 @@
     background: #fff;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
 }
 .switch-icon image {

@@ -7,11 +7,9 @@
 .user-banner {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     position: relative;
     width: 100%;
@@ -31,22 +29,18 @@
     border-radius: 8px;
     background: #F3F3F3;
     z-index: 1;
-    -webkit-box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
-            box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+    box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
 }
 .user-container {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     position: absolute;
     top: 50rpx;
@@ -69,16 +63,13 @@
     left: 310rpx;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
-        -ms-flex-align: start;
             align-items: flex-start;
 }
 .user-container .user-header ._img {
@@ -110,11 +101,9 @@
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     height: 90rpx;
 }
@@ -140,7 +129,6 @@
     margin-right: 6px;
     border: 1px solid #38210B;
     -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
             transform: rotate(45deg);
     border-left: transparent;
     border-bottom: transparent;
@@ -153,24 +141,20 @@
         right: 0;
         display: -webkit-box;
         display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -webkit-flex-direction: column;
-            -ms-flex-direction: column;
                 flex-direction: column;
         -webkit-box-align: center;
         -webkit-align-items: center;
-            -ms-flex-align: center;
                 align-items: center;
         margin: auto;
         width: 550rpx;
         max-height: 80vh;
         background: #fff;
         border-radius: 8px;
-        -webkit-box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
-                box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+        box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
         overflow: hidden;
         z-index: 4;
 }

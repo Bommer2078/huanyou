@@ -44,6 +44,7 @@ export default {
             const res = await this.$api.submitComment(params)
             if (res.code === '0') {                     
                 this.$tip.toast('评论成功，审核通过后可被展示','none')
+                uni.navigateBack()
             } else {                 
                 this.$tip.alertDialog(`${res.message}`)
             }

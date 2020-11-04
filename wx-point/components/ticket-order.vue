@@ -27,7 +27,7 @@
         </view>
         <view class="order-bottom">                  
             <text class="item-left" v-if="item.status === 3">
-                查看详情
+                绑定使用
             </text>
             <text class="item-left" v-if="item.status === 1">
                 去付款
