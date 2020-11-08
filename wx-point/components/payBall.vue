@@ -1,6 +1,6 @@
 <template>
     <view class="pay-ball" @click="gotoPay">
-        <img src="/static/img/iconGroup/payBall.svg" >
+        <img src="/static/img/iconGroup/payBall.png" >
     </view>
 </template>
 

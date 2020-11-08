@@ -33,7 +33,7 @@
             <view class="confirm-btn"  @click="bindTicket">
                 确认绑定            
             </view>
-            <view class="scan-btn">
+            <view class="scan-btn" @click="scanBind">
                 扫码绑定
             </view>
             <view class="tip">
@@ -86,6 +86,21 @@ export default {
             setTimeout(() => {
                 this.sendData()
             },200)            
+        },
+        scanBind () {            
+            uni.scanCode({
+                onlyFromCamera: true,
+                scanType: 'QR_CODE',
+                success (res) {
+                    that.postScanData(res.result)
+                },
+                fail () {
+                    that.$tip.toast('扫描失败,请重试','none')
+                }
+            })
+        },
+        postScanData () {
+
         },
         async sendData () {
             let params = {

@@ -206,7 +206,7 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 16px;
     padding-left: 36upx;
     padding-right: 36upx;
     color: #FFCC00;

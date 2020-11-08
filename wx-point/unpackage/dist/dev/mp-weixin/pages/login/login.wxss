@@ -62,7 +62,7 @@
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
             justify-content: space-between;
-    font-size: 12px;
+    font-size: 16px;
     padding-left: 36rpx;
     padding-right: 36rpx;
     color: #FFCC00;

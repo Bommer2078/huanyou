@@ -23,7 +23,7 @@
                 </view>
                 <view class="user-select-group">
                     <template v-if="showHeaderLayOut">
-                        <view class="user-select-tip">·双击头像可进行核销，单击头像可查看足迹</view>
+                        <view class="user-select-tip">·双击头像可进行核销</view>
                         <view class="header-list-cover">                            
                             <view 
                                 v-for="item in userTicketList" 
@@ -515,7 +515,7 @@ import checkinBox from '../../components/checkinBox'
 }
 .ticket-banner .bg{
     position: absolute;
-    bottom: -155upx;
+    bottom: -162upx;
     width: 100%;
     z-index: 2;
 }
@@ -681,7 +681,7 @@ import checkinBox from '../../components/checkinBox'
     justify-content: center;
     height: 54upx;
     background: #FFE785;
-    border-radius: 4px;
+    border-radius: 27upx;
     color:#38210B;
     font-size: 12px;
     line-height: 54upx;
@@ -801,6 +801,14 @@ import checkinBox from '../../components/checkinBox'
 }
 .banner .tip {
     position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 1px;
+    z-index: 1;
+}
+.banner .tip .mask{
+    position: absolute;
+    height: 90upx;
     left: 0;
     bottom: 0;
     right: 1px;

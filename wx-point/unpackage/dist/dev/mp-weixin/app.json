@@ -4,6 +4,7 @@
     "pages/login/login",
     "pages/ticket/ticket",
     "pages/checkIn/checkIn",
+    "pages/publishInfo/publishInfo",
     "pages/bindTicket/bindTicket",
     "pages/appointmentPage/appointmentPage",
     "pages/appointmentList/appointmentList",
@@ -53,6 +54,12 @@
         "selectedIconPath": "static/img/checkInAc.png"
       },
       {
+        "pagePath": "pages/publishInfo/publishInfo",
+        "text": "公告",
+        "iconPath": "static/img/checkIn.png",
+        "selectedIconPath": "static/img/checkInAc.png"
+      },
+      {
         "pagePath": "pages/user/user",
         "text": "我的",
         "iconPath": "static/img/user.png",
@@ -65,6 +72,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap95.json"
+  "usingComponents": {}
 }

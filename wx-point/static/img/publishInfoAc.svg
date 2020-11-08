@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>矩形 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="21.2229772%" y1="0%" x2="80.3128418%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFCC00" offset="0%"></stop>
+            <stop stop-color="#FF900E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-450.000000, -397.000000)">
+            <g id="矩形-3" transform="translate(450.000000, 397.000000)">
+                <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="20" height="22" rx="3"></rect>
+                <g id="编组-6" transform="translate(4.000000, 8.000000)" fill="#FFFFFF">
+                    <rect id="矩形" x="0" y="0" width="8" height="2" rx="1"></rect>
+                    <rect id="矩形" x="0" y="5" width="12" height="2" rx="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

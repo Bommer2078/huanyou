@@ -47,26 +47,8 @@
                         <view class="icon-arrow"></view>
                     </view>
                 </view>
-                <view class="user-body user-body-end">                    
-                    <view class="item" @click="tapAbout">
-                        <img src="/static/img/iconGroup/about.svg">
-                        <text class="lable">关于</text>
-                        <view class="icon-arrow"></view>
-                    </view>
-                </view>
             </view>            
-        </view>
-        <template v-if="showBox">            
-            <view class="mask" @click="closeBox"></view>
-            <view class="box" @click="closeBox">
-                <view class="title">
-                    关于
-                </view>
-                <view class="box-name">
-                    <rich-text :nodes="aboutInfo"></rich-text>
-                </view>
-            </view>  
-        </template>  
+        </view> 
     </view>
 </template>
 
@@ -75,8 +57,7 @@
     export default {
         data() {
             return {
-                showBox:false,
-                aboutInfo: ''
+                showBox:false
             }
         },
         created() {
@@ -126,30 +107,6 @@
                 uni.navigateTo({                
                     url: '../appointmentList/appointmentList'
                 })
-            },
-            async getAbout () {
-                if (!this.userInfo) return
-                let res = await this.$api.getAboutList({type:'about'})
-                if (res.code === '0') {
-                    let ele = await this.$api.getAbout(res.data[0].id)
-                    if (ele.code === '0') {
-                        this.aboutInfo = ele.data.content
-                        this.version = ele.data.version
-                        let temp = uni.getStorageSync('about-version')
-                        if (temp !== this.version) {
-                            uni.setStorageSync('about-version',this.version)                            
-                            this.showBox = true
-                        }
-                    }
-                }
-                
-            },
-            tapAbout () {
-                this.getAbout()
-                this.showBox = true
-            },
-            closeBox () {
-                this.showBox = false
             }
         }
     }

@@ -153,6 +153,10 @@ export default {
                         color: #111;
                         font-size: 36upx;
                         margin-right: 20upx;
+                        max-width: 300rpx;
+                        overflow: hidden;
+                        word-break: keep-all;
+                        text-overflow: ellipsis;
                     }
                     .ticket-name {
                         height: 40upx;

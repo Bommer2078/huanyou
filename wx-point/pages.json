@@ -21,6 +21,11 @@
                 "navigationBarTitleText": "验票"
             }
         }, {
+            "path": "pages/publishInfo/publishInfo",
+            "style": {
+                "navigationBarTitleText": "公告"
+            }
+        }, {
             "path": "pages/bindTicket/bindTicket",
             "style": {
                 "navigationBarTitleText": "绑定联票"
@@ -124,12 +129,17 @@
             "selectedIconPath": "static/img/homeHL.png"
         }, {
             "pagePath": "pages/ticket/ticket",
-            "text": "联票",
+            "text": "商城",
             "iconPath": "static/img/ticket.png",
             "selectedIconPath": "static/img/ticketAc.png"
         }, {
             "pagePath": "pages/checkIn/checkIn",
             "text": "验票",
+            "iconPath": "static/img/checkIn.png",
+            "selectedIconPath": "static/img/checkInAc.png"
+        }, {
+            "pagePath": "pages/publishInfo/publishInfo",
+            "text": "公告",
             "iconPath": "static/img/checkIn.png",
             "selectedIconPath": "static/img/checkInAc.png"
         }, {

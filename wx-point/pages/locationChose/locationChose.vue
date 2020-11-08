@@ -5,7 +5,10 @@
                 class="location-item" v-for="(item,index) in locationList" 
                 :key="index" 
                 :class="{'location-chosed':nowLocation.id === item.id}"
-                @click.stop="choseLocation(item)">{{item.name}}</view>
+                @click.stop="choseLocation(item)">
+                <img src="/static/img/iconGroup/location.svg" v-show="nowLocation.id === item.id">
+                <text>{{item.name}}</text>
+            </view>
         </view>
         <chose-ticket-list :ticket-list="ticketList" :showTicketList="showTicketList" @choseTicket="choseTicket"></chose-ticket-list>
         <loading :show-loading="showLoading"></loading> 
@@ -85,7 +88,7 @@ export default {
 <style>
     .location-chose {
         width: 100%;
-        background: #fff;
+        background: #f3f3f3;
     }
     .location-list {
         display: flex;
@@ -97,16 +100,24 @@ export default {
         opacity: 1 !important;
     }
     .location-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         min-width: 30%;
         height: 80upx;
         line-height: 80upx;
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
-        background: #ffcc00;
-        border-radius: 6px;
+        background: #fff;
+        border-radius: 4px;
          opacity: 0.6;
         box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+    }
+    .location-item img{
+        width: 50rpx;
+        height: 35rpx;
     }
      .location-item + .location-item {
         margin-bottom: 20upx;

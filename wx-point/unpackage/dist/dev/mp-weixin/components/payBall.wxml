@@ -1,1 +1,1 @@
-<view data-event-opts="{{[['tap',[['gotoPay',['$event']]]]]}}" class="pay-ball" bindtap="__e"><image src="/static/img/iconGroup/payBall.svg" class="_img"></image></view>
+<view data-event-opts="{{[['tap',[['gotoPay',['$event']]]]]}}" class="pay-ball" bindtap="__e"><image src="/static/img/iconGroup/payBall.png" class="_img"></image></view>

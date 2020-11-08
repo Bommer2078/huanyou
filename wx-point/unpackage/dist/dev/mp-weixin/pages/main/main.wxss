@@ -11,7 +11,7 @@
 }
 .ticket-banner .bg{
     position: absolute;
-    bottom: -155rpx;
+    bottom: -162rpx;
     width: 100%;
     z-index: 2;
 }
@@ -228,7 +228,7 @@
             justify-content: center;
     height: 54rpx;
     background: #FFE785;
-    border-radius: 4px;
+    border-radius: 27rpx;
     color:#38210B;
     font-size: 12px;
     line-height: 54rpx;
@@ -368,6 +368,14 @@
 }
 .banner .tip {
     position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 1px;
+    z-index: 1;
+}
+.banner .tip .mask{
+    position: absolute;
+    height: 90rpx;
     left: 0;
     bottom: 0;
     right: 1px;

@@ -87,6 +87,10 @@
   color: #111;
   font-size: 36rpx;
   margin-right: 20rpx;
+  max-width: 300rpx;
+  overflow: hidden;
+  word-break: keep-all;
+  text-overflow: ellipsis;
 }
 .record-list .record-item-cover .record-info-cover .record-info .venue-name .ticket-name.data-v-9f9b3eb2 {
   height: 40rpx;
