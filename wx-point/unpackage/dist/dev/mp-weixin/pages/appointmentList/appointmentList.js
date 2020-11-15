@@ -191,19 +191,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var checkinBox = function checkinBox() {__webpack_require__.e(/*! require.ensure | components/checkinBox */ "components/checkinBox").then((function () {return resolve(__webpack_require__(/*! ../../components/checkinBox */ 218));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 {
   name: 'appointmentList',
   data: function data() {
     return {
       appointmentList: [],
       pageNo: 1,
-      pageSize: 10,
+      pageSize: 100,
       total: 0,
       forbidLoading: false,
-      showBox: false };
+      showBox: false,
+      currentTab: 2,
+      showCheckinBoxFlag: false,
+      boxInfo: null };
 
   },
+  components: {
+    checkinBox: checkinBox },
+
   computed: _objectSpread({},
   (0, _vuex.mapState)(['userInfo'])),
 
@@ -237,20 +251,57 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     }
   },
   methods: {
-    getAppointmentList: function getAppointmentList() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!
-                _this.forbidLoading) {_context.next = 2;break;}return _context.abrupt("return");case 2:
-                _this.forbidLoading = true;
-                params = {
-                  pageNo: _this.pageNo,
-                  pageSize: _this.pageSize };_context.next = 6;return (
-
-                  _this.$api.getBookingList(params));case 6:res = _context.sent;
+    changeTabs: function changeTabs(tabs) {
+      if (tabs === this.currentTab) return;
+      this.currentTab = tabs;
+      this.getAppointmentList();
+    },
+    cancelAppointment: function cancelAppointment(obj) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this.$tip.confirm('取消预约后不可撤销，确认取消么', '确认').
+                then(function (res) {
+                  _this.confimCancelBooking(obj);
+                }).
+                catch(function () {
+                  return;
+                });case 1:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    confimCancelBooking: function confimCancelBooking(obj) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$api.cancelBooking(obj.id));case 2:res = _context2.sent;
                 if (res.code === '0') {
-                  _this.pageNo++;
-                  _this.appointmentList = _this.appointmentList.concat(res.data.list);
-                  _this.total = res.data.total;
+                  _this2.$tip.toast('取消成功', 'none');
+                  _this2.getAppointmentList();
+                } else {
+                  _this2.$tip.toast("\u53D6\u6D88\u5931\u8D25".concat(res.code), 'none');
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    getAppointmentList: function getAppointmentList() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
+                _this3.forbidLoading) {_context3.next = 2;break;}return _context3.abrupt("return");case 2:
+                _this3.forbidLoading = true;
+                params = {
+                  type: _this3.currentTab,
+                  pageNo: _this3.pageNo,
+                  pageSize: _this3.pageSize };_context3.next = 6;return (
+
+                  _this3.$api.getBookingList(params));case 6:res = _context3.sent;
+                if (res.code === '0') {
+                  _this3.pageNo++;
+                  _this3.appointmentList = _this3.appointmentList.concat(res.data.list);
+                  _this3.total = res.data.total;
                 }
-                _this.forbidLoading = false;case 9:case "end":return _context.stop();}}}, _callee);}))();
+                _this3.forbidLoading = false;case 9:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    showCheckinBox: function showCheckinBox(obj) {
+      this.boxInfo = _objectSpread({},
+      obj, {
+        bindingName: obj.booker });
+
+      this.showCheckinBoxFlag = true;
+    },
+    closeCheckinBox: function closeCheckinBox() {var _this4 = this;
+      this.showCheckinBoxFlag = false;
+      this.$nextTick(function () {
+        _this4.boxInfo = null;
+      });
     },
     closeBox: function closeBox() {
       this.showBox = false;

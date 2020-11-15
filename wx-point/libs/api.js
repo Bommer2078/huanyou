@@ -35,6 +35,7 @@ const submitComment = (params) => http.post(`/comment/insert`,params);
 const getCommentList = (params) => http.get(`/comment/listByVenueIdAndStatus`,params); 
 const deletComment = (params) => http.delete(`/comment/delete`,params); 
 const getNearbyVenue = (params) => http.get(`/venue/listNearbyVenue`,params); 
+const cancelBooking = (params) => http.put(`/booking/cancelBooking/${params}`,); 
 let api = {
     getSms: getSms,
     registerUser: registerUser,
@@ -72,6 +73,7 @@ let api = {
     submitComment: submitComment,
     getCommentList: getCommentList,
     deletComment: deletComment,
-    getNearbyVenue: getNearbyVenue
+    getNearbyVenue: getNearbyVenue,
+    cancelBooking: cancelBooking
 };
 export default api;

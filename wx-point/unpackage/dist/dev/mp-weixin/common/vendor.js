@@ -2767,6 +2767,7 @@ var submitComment = function submitComment(params) {return _serve.default.post("
 var getCommentList = function getCommentList(params) {return _serve.default.get("/comment/listByVenueIdAndStatus", params);};
 var deletComment = function deletComment(params) {return _serve.default.delete("/comment/delete", params);};
 var getNearbyVenue = function getNearbyVenue(params) {return _serve.default.get("/venue/listNearbyVenue", params);};
+var cancelBooking = function cancelBooking(params) {return _serve.default.put("/booking/cancelBooking/".concat(params));};
 var api = (_api = {
   getSms: getSms,
   registerUser: registerUser,
@@ -2804,7 +2805,8 @@ shareClicked), _defineProperty(_api, "submitComment",
 submitComment), _defineProperty(_api, "getCommentList",
 getCommentList), _defineProperty(_api, "deletComment",
 deletComment), _defineProperty(_api, "getNearbyVenue",
-getNearbyVenue), _api);var _default =
+getNearbyVenue), _defineProperty(_api, "cancelBooking",
+cancelBooking), _api);var _default =
 
 api;exports.default = _default;
 

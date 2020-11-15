@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "我的预约",
-  "usingComponents": {}
+  "usingComponents": {
+    "checkin-box": "/components/checkinBox"
+  }
 }

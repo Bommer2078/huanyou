@@ -1,5 +1,9 @@
 <template>
     <view class="appointment-list">
+        <view class="appointment-tab">
+            <view class="tabs-item" :class="{'active' : currentTab === 2}" @click="changeTabs(2)">预约</view>
+            <view class="tabs-item" :class="{'active' : currentTab === 1}" @click="changeTabs(1)">预定</view>
+        </view>
         <view class="table-title">
             <view class="th">姓名</view>
             <view class="th">联票名称</view>
@@ -15,9 +19,9 @@
                     <view class="td" v-else>已撤销</view>
                     <view class="td">{{item.venueName}}</view>
                 </view>
-                <view class="appointment-btn-group" v-show="true">
-                    <view class="show-qr-btn">出 示</view>
-                    <view class="cancel-btn">取 消</view>
+                <view class="appointment-btn-group" v-show="currentTab === 2">
+                    <view class="show-qr-btn" @click="showCheckinBox(item)">出 示</view>
+                    <view class="cancel-btn" @click="cancelAppointment(item)">取 消</view>
                 </view>
             </view>    
         </template>    
@@ -38,22 +42,32 @@
                 <view class="confirm-btn" @click="closeBox">我知道了</view>
             </view>  
         </template>  
+        <template v-if="showCheckinBoxFlag">
+            <checkin-box @closeBox="closeCheckinBox" :box-info="boxInfo" :show-checkin-box="showCheckinBoxFlag"></checkin-box>   
+        </template>
     </view>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import checkinBox from '../../components/checkinBox'
 export default {
     name: 'appointmentList',
     data() {
         return {
             appointmentList: [],
             pageNo: 1,
-            pageSize: 10,
+            pageSize: 100,
             total: 0,
             forbidLoading: false,
-            showBox: false
+            showBox: false,
+            currentTab: 2,
+            showCheckinBoxFlag: false,
+            boxInfo: null
         }
+    },
+    components: {
+        checkinBox
     },
     computed: {
         ...mapState(['userInfo'])
@@ -88,10 +102,34 @@ export default {
         }
     },
     methods: {
+        changeTabs (tabs) {
+            if (tabs === this.currentTab) return
+            this.currentTab = tabs
+            this.getAppointmentList()
+        },
+        async cancelAppointment (obj) {
+            this.$tip.confirm('取消预约后不可撤销，确认取消么','确认')
+            .then((res) => {
+                this.confimCancelBooking(obj)
+            })
+            .catch(() => {
+                return
+            })            
+        },
+        async confimCancelBooking (obj) {
+            let res = await this.$api.cancelBooking(obj.id)
+            if (res.code === '0') {
+                this.$tip.toast('取消成功','none')
+                this.getAppointmentList()
+            } else {
+                this.$tip.toast(`取消失败${res.code}`,'none')
+            }
+        },
         async getAppointmentList() {
             if (this.forbidLoading) return
             this.forbidLoading = true
             let params = {
+                type: this.currentTab,
                 pageNo: this.pageNo,
                 pageSize: this.pageSize
             }
@@ -102,6 +140,19 @@ export default {
                 this.total = res.data.total
             }
             this.forbidLoading = false
+        },
+        showCheckinBox (obj) {   
+            this.boxInfo = {
+                ...obj,
+                bindingName: obj.booker
+            }
+            this.showCheckinBoxFlag = true
+        },
+        closeCheckinBox () {
+            this.showCheckinBoxFlag = false
+            this.$nextTick(() => {
+                this.boxInfo = null
+            })
         },
         closeBox () {
             this.showBox = false
@@ -116,6 +167,38 @@ export default {
         padding-left: 14upx;
         padding-right: 14upx;
         background: #F3F3F3;
+    }
+    .appointment-tab {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 62upx;
+        line-height: 62upx;
+        background: #fff;
+        margin-bottom: 18upx;
+    }
+    .appointment-tab .tabs-item {
+        position: relative;
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        color: #797979;
+        font-size: 12px;
+    }    
+    .appointment-tab .active {
+        font-size: 14px;
+        color: #000;
+    }
+    .appointment-tab .active::after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 50%;
+        bottom: 6upx;
+        margin-left: -18upx;
+        width:35upx;
+        height:6upx;
+        background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
     }
     .table-title {
         display: flex;

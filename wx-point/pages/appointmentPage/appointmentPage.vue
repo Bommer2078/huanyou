@@ -13,21 +13,23 @@
             </view>
         </template>
         <template v-else>
-            <view v-for="(item,index) in ticketList" :key="index" class="chose-item" @click="changeCheckedState(index)">
-                <checkbox :checked="!!item.checked"></checkbox>
-                <view class="ticket-info"> 
-                    <view class="ticket-info-warp">                         
-                        <view class="info-item">                        
-                            <view class="bind-label">姓名: </view>
-                            <view> {{item.bindingName}}</view>
-                        </view>
-                        <view class="info-item">                        
-                            <view >所属联票 </view>
-                            <view class="bind-name"> {{item.itemName}}</view>
-                            <view >编号 </view>
-                            <view class="bind-name"> {{item.childCode}}</view>
-                        </view>
-                    </view> 
+            <view class="list-cover">                
+                <view v-for="(item,index) in ticketList" :key="index" class="chose-item" @click="changeCheckedState(index)">
+                    <checkbox :checked="!!item.checked"></checkbox>
+                    <view class="ticket-info"> 
+                        <view class="ticket-info-warp">                         
+                            <view class="info-item">                        
+                                <view class="bind-label">姓名: </view>
+                                <view> {{item.bindingName}}</view>
+                            </view>
+                            <view class="info-item">                        
+                                <view >所属联票 </view>
+                                <view class="bind-name"> {{item.itemName}}</view>
+                                <view >编号 </view>
+                                <view class="bind-name"> {{item.childCode}}</view>
+                            </view>
+                        </view> 
+                    </view>
                 </view>
             </view>
             <view class="btn" @click="startAppoinment">开始预约</view>
@@ -223,6 +225,9 @@ export default {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.list-cover .chose-item:last-of-type {
+    margin-bottom: 120upx;
+}
 .ticket-info {
     display: flex;
     margin-left: 10upx;
@@ -269,9 +274,12 @@ export default {
     margin-bottom: 20px;
 }
 .appointment-page .btn{
+    position: fixed;
+    bottom: 20upx;
     width: 78.4%;
     height: 74upx;
-    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 16px;
     line-height: 74upx;
     text-align: center;

@@ -42,6 +42,9 @@
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.list-cover .chose-item:last-of-type {
+    margin-bottom: 120rpx;
+}
 .ticket-info {
     display: -webkit-box;
     display: -webkit-flex;
@@ -112,9 +115,13 @@
     margin-bottom: 20px;
 }
 .appointment-page .btn{
+    position: fixed;
+    bottom: 20rpx;
     width: 78.4%;
     height: 74rpx;
-    margin: 0 auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     font-size: 16px;
     line-height: 74rpx;
     text-align: center;
