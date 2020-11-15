@@ -137,7 +137,9 @@ export default {
                 return
             }
             this.forbidClick = true
+            let now = new Date()
             let params = {
+                bookingTime: now,
                 ticketDOList: tempArr,
                 venueId: this.venueId
             }
@@ -212,7 +214,7 @@ export default {
 .chose-item {     
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     height: 120upx;
     padding-left: 5px;
@@ -222,8 +224,8 @@ export default {
     margin-bottom: 10px;
 }
 .ticket-info {
-    width: 90%;
     display: flex;
+    margin-left: 10upx;
     flex-direction: column;
     align-items: center;
 }

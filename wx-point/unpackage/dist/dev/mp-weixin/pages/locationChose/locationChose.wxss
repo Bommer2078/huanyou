@@ -3,12 +3,19 @@
     width: 100%;
     background: #f3f3f3;
 }
+.title-tip {
+    padding-left: 20rpx;
+    padding-top: 20rpx;
+    color: #666666;
+    font-size: 28rpx;
+}
 .location-list {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-around;
-            justify-content: space-around;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
     -webkit-flex-wrap:wrap;
             flex-wrap:wrap;
     padding: 20rpx;

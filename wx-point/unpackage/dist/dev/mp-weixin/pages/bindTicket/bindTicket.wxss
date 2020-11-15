@@ -12,7 +12,7 @@
     color: #000000;
 }
 .ticket-body,.ticket-info {
-    font-size: 12px;
+    font-size: 28rpx;
     background: #fff;
     padding-left: 14rpx;
     padding-right: 14rpx;

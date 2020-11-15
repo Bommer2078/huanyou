@@ -69,7 +69,7 @@
                 </view> -->
             </view>  
             <view class="option-btn">
-                <image src="../../static/img/switch.svg"  class="switch-btn" @click="switchTicket"/>
+                <image src="../../static/img/switchTicket.svg"  class="switch-btn" @click="switchTicket"/>
                 <!-- <image src="../../static/img/into.svg"  class="into-detail-btn" v-else @click="intoTicket"/> -->
             </view>          
         </view>
@@ -553,21 +553,14 @@ import checkinBox from '../../components/checkinBox'
     height: 310upx;
 }
 .option-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
-    width: 70upx;
-    height: 70upx;    
-    background: linear-gradient(-53deg, #FFA80F, #FFCC00);
-    border-radius: 50%;
     bottom: -70upx;
-    right: 120upx;
+    right: 60upx;
     z-index: 3;
 }
 .option-btn image{
-    width: 50upx;
-    height: 50upx;
+    width: 208upx;
+    height: 60upx;
 }
 .banner img{
     width: 100%;

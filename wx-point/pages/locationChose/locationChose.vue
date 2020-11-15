@@ -1,5 +1,6 @@
 <template>
     <view class="location-chose">
+        <view class="title-tip">选择城市</view>
         <view class="location-list">
             <view 
                 class="location-item" v-for="(item,index) in locationList" 
@@ -90,9 +91,15 @@ export default {
         width: 100%;
         background: #f3f3f3;
     }
+    .title-tip {
+        padding-left: 20upx;
+        padding-top: 20upx;
+        color: #666666;
+        font-size: 28upx;
+    }
     .location-list {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-wrap:wrap;
         padding: 20upx;
     }

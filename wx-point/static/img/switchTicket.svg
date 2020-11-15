@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="50px" height="41px" viewBox="0 0 50 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="278px" height="81px" viewBox="0 0 278 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
-    <title>形状</title>
+    <title>切换 3</title>
     <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="15.1798024%" y1="45.7552663%" x2="86.6785386%" y2="54.2447337%" id="linearGradient-1">
+            <stop stop-color="#FFCC00" offset="0%"></stop>
+            <stop stop-color="#FF900E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
     <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iPhone-8" transform="translate(-48.000000, -351.000000)" fill="#38210B" fill-rule="nonzero">
-            <g id="切换-3" transform="translate(48.000000, 351.000000)">
-                <g id="编组-5">
-                    <g id="切换-2">
+        <g id="iPhone-8" transform="translate(-59.000000, -422.000000)">
+            <g id="切换-3" transform="translate(59.000000, 422.000000)">
+                <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="278" height="81" rx="40.5"></rect>
+                <g id="编组-5" transform="translate(22.000000, 11.000000)" fill="#FFFFFF">
+                    <text id="联票切换" font-family="PingFangSC-Regular, PingFang SC" font-size="42" font-weight="normal" letter-spacing="1.4">
+                        <tspan x="64" y="45">联票切换</tspan>
+                    </text>
+                    <g id="切换-2" transform="translate(0.000000, 9.000000)" fill-rule="nonzero">
                         <g id="切换">
                             <path d="M1.37360999,15.9062391 L48.6239545,15.9062391 C49.8593376,15.9062391 50.4647976,14.3749854 49.571897,13.5035402 L36.0988826,0.388290499 C35.230445,-0.458256233 33.7810104,0.170429208 33.7810104,1.39667705 L33.7810104,8.93467773 C33.7810104,9.70652916 33.1694346,10.32899 32.4110807,10.32899 L1.37360999,10.32899 C0.615256027,10.32899 0.00368024988,10.9514508 0.00368024988,11.7233023 L0.00368024988,14.5119268 C0.00368024988,15.2775536 0.615256027,15.9062391 1.37360999,15.9062391 L1.37360999,15.9062391 Z M48.6239545,25.0937609 L1.37360999,25.0937609 C0.138226921,25.0937609 -0.467233098,26.6250146 0.425667536,27.4964598 L13.8986819,40.6117095 C14.7671195,41.4582562 16.2165541,40.8295708 16.2165541,39.603323 L16.2165541,32.0653223 C16.2165541,31.2934708 16.8281299,30.67101 17.5864838,30.67101 L48.6300703,30.67101 C49.3884242,30.67101 50,30.0485492 50,29.2766977 L50,26.4880732 C49.9938842,25.7224464 49.3823085,25.0937609 48.6239545,25.0937609 L48.6239545,25.0937609 Z" id="形状"></path>
                         </g>

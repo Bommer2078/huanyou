@@ -34,6 +34,7 @@ const shareClicked = (params) => http.put(`/ticket/forwarded`,params);
 const submitComment = (params) => http.post(`/comment/insert`,params); 
 const getCommentList = (params) => http.get(`/comment/listByVenueIdAndStatus`,params); 
 const deletComment = (params) => http.delete(`/comment/delete`,params); 
+const getNearbyVenue = (params) => http.get(`/venue/listNearbyVenue`,params); 
 let api = {
     getSms: getSms,
     registerUser: registerUser,
@@ -70,6 +71,7 @@ let api = {
     shareClicked: shareClicked,
     submitComment: submitComment,
     getCommentList: getCommentList,
-    deletComment: deletComment
+    deletComment: deletComment,
+    getNearbyVenue: getNearbyVenue
 };
 export default api;

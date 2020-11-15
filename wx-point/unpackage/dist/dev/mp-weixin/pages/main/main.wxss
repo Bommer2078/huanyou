@@ -56,28 +56,14 @@
     height: 310rpx;
 }
 .option-btn {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
     position: absolute;
-    width: 70rpx;
-    height: 70rpx;    
-    background: -webkit-linear-gradient(143deg, #FFA80F, #FFCC00);    
-    background: linear-gradient(-53deg, #FFA80F, #FFCC00);
-    border-radius: 50%;
     bottom: -70rpx;
-    right: 120rpx;
+    right: 60rpx;
     z-index: 3;
 }
 .option-btn image{
-    width: 50rpx;
-    height: 50rpx;
+    width: 208rpx;
+    height: 60rpx;
 }
 .banner ._img{
     width: 100%;

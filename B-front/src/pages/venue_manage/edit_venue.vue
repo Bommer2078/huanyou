@@ -44,9 +44,15 @@
 				<div class="form-content align-top">
 					<el-checkbox v-model="needOrder">是否需要预约</el-checkbox>
 				</div>
-
 			</div>
 			<template v-if="needOrder">
+				<div class="form-item">
+					<div class="form-label align-top">预约类型</div>
+					<div class="form-content align-top">
+						<el-radio v-model="bookingType" :label="2">非核销预约</el-radio>
+						<el-radio v-model="bookingType" :label="1">核销预约</el-radio>
+					</div>
+				</div>
 				<div class="form-item">
 					<div class="form-label">人数上限</div>
 					<div class="form-content">
@@ -80,7 +86,7 @@
 						</el-time-select>
 					</div>
 				</div>
-				<div class="form-item">
+				<div class="form-item" v-show="bookingType === 1">
 					<div class="form-label">指定商家</div>
 					<div class="form-content">
 						<el-select v-model="businessSelected" placeholder="请选择商家">
@@ -227,6 +233,7 @@ export default {
 			editId            : '',
 			ueConfig          : config.litteConfig,
 			status            : 1,
+			bookingType       : 1,
 			locationArea      : '',
 			traffic           : '',
 			phone             : '',
@@ -382,7 +389,10 @@ export default {
 							this.needOrder = data.booking
 							if (this.needOrder) {
 								this.peopleNum = data.bookingMax
-								this.businessSelected = data.bookingVerifyUserId
+								this.bookingType = data.bookingType
+								if (this.bookingType === 1) {
+									this.businessSelected = data.bookingVerifyUserId
+								}
 								let tempObj = JSON.parse(data.bookingRedundancy)
 
 								this.needOrderInfo = tempObj.needOrderInfo
@@ -455,6 +465,14 @@ export default {
 				this.$message.error('请输入场馆的价格')
 				return false
 			}
+			if (!this.price) {
+				this.$message.error('请输入场馆的价格')
+				return false
+			}
+			if (!this.bookingType === 1 && !this.businessSelected) {
+				this.$message.error('核销预约需要指定商家')
+				return false
+			}
 			return true
 		},
 		saveVenue () {
@@ -501,8 +519,11 @@ export default {
 
 				params.booking = true
 				params.bookingMax = this.peopleNum
+				params.bookingType = this.bookingType
 				params.bookingRedundancy = JSON.stringify(tempObj)
-				params.bookingVerifyUserId = this.businessSelected
+				if (this.bookingType === 1) {
+					params.bookingVerifyUserId = this.businessSelected
+				}
 			}
 			let fn = 'post'
 			let url = `${this.$api.saveVenue}`

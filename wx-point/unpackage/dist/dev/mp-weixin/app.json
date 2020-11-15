@@ -21,6 +21,7 @@
     "pages/orderDetail/orderDetail",
     "pages/business/business",
     "pages/venueDetail/venueDetail",
+    "pages/neerByVenue/neerByVenue",
     "pages/inputCommentPage/inputCommentPage",
     "pages/user/user"
   ],
@@ -43,7 +44,7 @@
       },
       {
         "pagePath": "pages/ticket/ticket",
-        "text": "商城",
+        "text": "联票",
         "iconPath": "static/img/ticket.png",
         "selectedIconPath": "static/img/ticketAc.png"
       },
@@ -56,8 +57,8 @@
       {
         "pagePath": "pages/publishInfo/publishInfo",
         "text": "公告",
-        "iconPath": "static/img/checkIn.png",
-        "selectedIconPath": "static/img/checkInAc.png"
+        "iconPath": "static/img/publishInfo.png",
+        "selectedIconPath": "static/img/publishInfoAc.png"
       },
       {
         "pagePath": "pages/user/user",

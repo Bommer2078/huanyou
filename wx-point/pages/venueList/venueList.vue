@@ -75,6 +75,7 @@ export default {
                 tempArr.push(i.itemName)
             })
             tempArr.unshift('全部类型')
+            tempArr.push('附近')
             return tempArr
         }
     },
@@ -93,7 +94,14 @@ export default {
         },
         bindPickerChange(e) {
             let index =  e.detail.value
+            let lastIndex = String(this.venueTypeTextArr.length - 1)
             if (this.venueTypeIndex === index) return
+            if (index === lastIndex) {
+                uni.navigateTo({
+                     url: '../neerByVenue/neerByVenue'
+                });
+                return
+            }
             this.venueTypeIndex = index
             this.searchTypeId = Number(index) ? this.venueTypeArr[index - 1].id : ''
             this.getVenueList()

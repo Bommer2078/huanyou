@@ -45,7 +45,7 @@
 				class="option"
 				align="right"
 				label="操作"
-				width="300">
+				width="390">
 				<template slot-scope="scope">
 					<span type="text" class="setting-btn" @click="intoAppointmentList(scope)" v-if="scope.row.booking">预约列表</span>
 					<span class="split" v-if="scope.row.booking">|</span>

@@ -204,7 +204,7 @@ export default {
     color: #000000;
 }
 .ticket-body,.ticket-info {
-    font-size: 12px;
+    font-size: 28upx;
     background: #fff;
     padding-left: 14upx;
     padding-right: 14upx;

@@ -27,7 +27,7 @@
                 <view class="detail-location">
                     <view class="location" @click="gotoMap">                
                         <view class="location-name">
-                            <view class="">{{venueData.address}}</view>
+                            <view class="address-info">{{venueData.address}}</view>
                         </view>
                     </view>
                     <view class="phone" @click="callPhone">
@@ -220,7 +220,7 @@ export default {
         width: 680upx;
         height: 330upx;
         border-radius: 27upx;
-        box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
+        box-shadow:0px 4px 8px 0px rgba(0, 0, 0, 0.47);
     }
     .detail-title {
         width: 100%;
@@ -334,6 +334,9 @@ export default {
         font-size: 13px;
         margin-bottom: 10upx;
     }
+    .location .location-name .address-info{
+        color: #888;
+    }
     .location .location-name view{
         width: 100%;
         overflow: hidden;
@@ -387,7 +390,7 @@ export default {
         margin-right: 10upx;
     }
     .content-name .tab-item {
-        width: 140upx;
+        width: 150upx;
         text-align: center;
     }
     .content-name-text {
@@ -405,16 +408,6 @@ export default {
         margin-left: 15upx;
         font-size: 12px;
         color: #888;
-    }
-    .content-name-text::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 25px;
-        width: 15px;
-        height: 4px;
-        border-radius: 2px;
-        background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
     }
     .pay-footer-position {        
         width: 100%;
