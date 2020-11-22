@@ -45,7 +45,7 @@
                     <view class="tip">
                         <view class="mask">                          
                         </view>
-                        <view style="z-index: 5;">联票名称：{{ticketBaseInfo.name}}</view>
+                        <view style="z-index: 5;">{{ticketBaseInfo.name}}</view>
                     </view>
                 </view>
                 <!-- <view class="banner">
@@ -801,13 +801,13 @@ import checkinBox from '../../components/checkinBox'
 }
 .banner .tip .mask{
     position: absolute;
-    height: 90upx;
+    height: 110upx;
     left: 0;
     bottom: 0;
     right: 1px;
     background: #000;
     opacity: .5;
-    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
     z-index: 1;
 }
 .banner .tip,
@@ -828,5 +828,10 @@ import checkinBox from '../../components/checkinBox'
     font-size: 13px;
     color: #fff;
     z-index: 1;
+}
+
+.banner .tip {
+    font-size: 36upx;
+    overflow: unset;
 }
 </style>

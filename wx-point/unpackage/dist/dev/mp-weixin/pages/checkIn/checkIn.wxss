@@ -129,6 +129,9 @@
     color: #fff;
     line-height: 50rpx;
 }
+.forbid-change-photo {
+    opacity: 0.3;
+}
 .change-photo-btn {
     position: absolute;
     top: 120rpx;

@@ -71,6 +71,9 @@ export default {
     .blue-theme {
         color: #fff;
     }
+    .blue-theme .share-btn{
+        color: #fff;
+    }
     .blue-theme .share-btn,
     .blue-theme .bind-btn {
         background: #0B56D3;

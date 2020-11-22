@@ -27,7 +27,7 @@
         </view>
         <view class="order-bottom">                  
             <text class="item-left" v-if="item.status === 3">
-                绑定使用
+                {{item | bindText}}
             </text>
             <text class="item-left" v-if="item.status === 1">
                 去付款
@@ -46,6 +46,15 @@ export default {
         item: {
             type: Object,
             default: null
+        }
+    },
+    filters: {
+        bindText (val) {
+            if (val.unBoundNum > 0) {
+                return '去绑定'
+            } else {
+                return '已绑定'
+            }
         }
     },
     methods: {

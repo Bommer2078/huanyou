@@ -1,6 +1,7 @@
 
 .appointment-list {
     width: 100%;
+    padding-top: 150rpx;
     padding-left: 14rpx;
     padding-right: 14rpx;
     background: #F3F3F3;
@@ -8,7 +9,7 @@
 .appointment-tab {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: calc(100vw - 28rpx);
     height: 62rpx;
     line-height: 62rpx;
     background: #fff;
@@ -39,6 +40,9 @@
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .table-title {
+    position: fixed;
+    width: 100%;
+    top: 70rpx;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;

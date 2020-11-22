@@ -8,7 +8,7 @@
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
                     <text class="right">{{currentTicketObj.bindingName}}</text>
                     <!-- <view class="cancel-btn" @click="cancelBind">取消绑定</view> -->
-                    <view class="change-photo-btn" @click="uploadImg">修改照片</view>
+                    <view class="change-photo-btn" :class="{'forbid-change-photo': currentTicketObj.verify}" @click="preUploadImg">修改照片</view>
                 </view>
                 <view class="check-in-body">
                     <view class="item">
@@ -233,7 +233,18 @@
                 // if (this.showSwitchIcon) {                    
                 //     this.$store.commit('SET_TICKET_OBJ',this.currentTicketObj)
                 // }
-            },            
+            },    
+            preUploadImg() {  
+                if (this.currentTicketObj.verify) {                    
+                    this.$tip.alertDialog('此票已使用，不能修改头像','知道了').then(() => {
+                        return false
+                    })
+                    return
+                } 
+                this.$tip.alertDialog('联票未使用前可修改照片，使用后不可修改','知道了').then(() => {
+                    this.uploadImg()
+                })
+            },
             uploadImg () {
                 let that = this
                 wx.chooseImage({
@@ -394,6 +405,9 @@
     text-align: center;
     color: #fff;
     line-height: 50upx;
+}
+.forbid-change-photo {
+    opacity: 0.3;
 }
 .change-photo-btn {
     position: absolute;

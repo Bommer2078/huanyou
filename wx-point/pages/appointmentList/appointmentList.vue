@@ -16,10 +16,10 @@
                     <view class="td">{{item.booker}}</view>
                     <view class="td">{{item.itemName}}</view>
                     <view class="td" v-if="item.status === 1">{{item.createTime | dateText}}</view>
-                    <view class="td" v-else>已撤销</view>
+                    <view class="td" v-else>{{currentTab === 2 ? '已失效' : '已撤销'}}</view>
                     <view class="td">{{item.venueName}}</view>
                 </view>
-                <view class="appointment-btn-group" v-show="currentTab === 2">
+                <view class="appointment-btn-group" v-show="currentTab === 2 && item.status === 1">
                     <view class="show-qr-btn" @click="showCheckinBox(item)">出 示</view>
                     <view class="cancel-btn" @click="cancelAppointment(item)">取 消</view>
                 </view>
@@ -135,8 +135,8 @@ export default {
             }
             let res = await this.$api.getBookingList(params)
             if (res.code === '0') {
-                this.pageNo++
-                this.appointmentList = this.appointmentList.concat(res.data.list)
+                // this.pageNo++
+                this.appointmentList = res.data.list
                 this.total = res.data.total
             }
             this.forbidLoading = false
@@ -144,7 +144,10 @@ export default {
         showCheckinBox (obj) {   
             this.boxInfo = {
                 ...obj,
-                bindingName: obj.booker
+                childCode: obj.ticketNum,
+                password: obj.ticketPassword,
+                bindingName: obj.booker,
+                bindingPhoto: obj.bookerPhoto
             }
             this.showCheckinBoxFlag = true
         },
@@ -164,6 +167,7 @@ export default {
 <style>
     .appointment-list {
         width: 100%;
+        padding-top: 150upx;
         padding-left: 14upx;
         padding-right: 14upx;
         background: #F3F3F3;
@@ -171,7 +175,7 @@ export default {
     .appointment-tab {
         position: fixed;
         top: 0;
-        width: 100%;
+        width: calc(100vw - 28upx);
         height: 62upx;
         line-height: 62upx;
         background: #fff;
@@ -201,6 +205,9 @@ export default {
         background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
     }
     .table-title {
+        position: fixed;
+        width: 100%;
+        top: 70upx;
         display: flex;
         flex-direction: row;
         align-items: center;
