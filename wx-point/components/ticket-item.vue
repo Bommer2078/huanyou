@@ -1,7 +1,7 @@
 <template>
-    <view class="ticket-item" :class="index % 2 === 0 ? ' yellow-theme' : 'blue-theme'">
-        <img src="/static/img/ticketBG.png" class="bg-img" :class="{'bind-bg':ticketItem.binding}" v-if="index % 2 === 0">
-        <img src="/static/img/ticketBG2.png" class="bg-img" :class="{'bind-bg':ticketItem.binding}" v-else>
+    <view class="ticket-item" :class="index % 2 === 0 ? ' yellow-theme' : 'yellow-theme'">
+        <img src="/static/img/ticketBG.png" class="bg-img" :class="{'bind-bg':ticketItem.binding}">
+        <!-- <img src="/static/img/ticketBG2.png" class="bg-img" :class="{'bind-bg':ticketItem.binding}" v-else> -->
         <view class="container" :class="{'bind-bg':ticketItem.binding}">
             <view class="title">{{ticketItem.itemPlaceName}}</view>
             <view class="name">{{ticketItem.itemName}}</view>

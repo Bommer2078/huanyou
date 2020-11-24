@@ -273,8 +273,8 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                 _this4.forbidClick = true;
                 // 获取第二日凌晨时间
                 curDate = new Date();
-                // let now = new Date(new Date(curDate.getTime() + 24*60*60*1000).setHours(23, 59, 59, 59))
-                now = new Date(new Date().setHours(23, 59, 59, 59));
+                now = new Date(curDate.getTime() + 24 * 60 * 60 * 1000).setHours(0, 0, 0, 0);
+                // let now = new Date(new Date().setHours(23, 59, 59, 59))
                 console.log('now', now);
                 params = {
                   bookingTime: now,
