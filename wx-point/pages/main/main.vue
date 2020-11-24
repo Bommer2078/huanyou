@@ -110,7 +110,7 @@
         </view>     
         <chose-ticket-list :ticket-list="ticketList" :showTicketList="showTicketList" @choseTicket="choseTicket"></chose-ticket-list>   
         <template v-if="showCheckinBox">
-            <checkin-box @closeBox="closeBox" :box-info="boxInfo" :show-checkin-box="showCheckinBox"></checkin-box>   
+            <checkin-box @closeBox="closeBox" :box-info="boxInfo" :user-list="userTicketList" :show-checkin-box="showCheckinBox" @switchTicketQr="switchTicketQr"></checkin-box>   
         </template>
     </view>
 </template>
@@ -183,6 +183,9 @@ import checkinBox from '../../components/checkinBox'
             return this.$commenShare()
         },
         methods: {
+            switchTicketQr (index) {
+                this.boxInfo = this.userTicketList[index]
+            },
             handleBannerChange (obj) {
                 this.currentTicketIndex = obj.detail.current                
             },

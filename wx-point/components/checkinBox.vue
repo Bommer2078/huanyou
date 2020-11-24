@@ -16,6 +16,10 @@
             <view class="QR-code" @click="handleChangeQR">
                 <tki-qrcode size="420" unit="upx" background="transparent" :onval="true" @result="qrR" :val="QRStr"  ref="qrcode"></tki-qrcode>
             </view>
+            <template v-if="userList.length >0">                
+                <view class="switch-left-btn" @click="switchTicket(-1)"></view>
+                <view class="switch-right-btn" @click="switchTicket(1)"></view>
+            </template>
         </view>
     </view>
 </template>
@@ -32,6 +36,12 @@ export default {
             type: String,
             default: false
         },
+        userList: {
+            type: Array,
+            default() {
+                return []
+            }
+        }
     },    
     data() {
         return {
@@ -55,7 +65,28 @@ export default {
         clearInterval(this.timer)
     },
     components: {tkiQrcode},
+    computed: {
+        currentTicketIndex () {
+            if (this.userList.length === 0) {
+                return 0
+            }
+            let index = this.userList.findIndex((item) => {
+                return this.boxInfo.id === item.id
+            })
+            return index
+        }
+    },
     methods: {
+        switchTicket (val) {
+            if (this.isChange) return
+            let index = this.currentTicketIndex + val
+            if (index > this.userList.length - 1 || index < 0) {
+                this.$tip.toast('没有更多了','none')
+            } else {
+                this.$emit('switchTicketQr',index)
+                this.handleChangeQR()
+            }
+        },
         closeBox () {
             this.$emit('closeBox')
         },
@@ -180,6 +211,28 @@ export default {
         .QR-code {
             width: 420upx;
             height: 420upx;
+        }
+        .switch-left-btn {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 70%;
+            left: 20upx;
+            border-right: 14px solid #FFCB00;
+            border-top: 14px solid transparent;
+            border-left: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+        }
+        .switch-right-btn {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 70%;
+            right: 20upx;
+            border-right: 14px solid transparent;
+            border-top: 14px solid transparent;
+            border-left: 14px solid #FFCB00;
+            border-bottom: 14px solid transparent;
         }
     }
 }

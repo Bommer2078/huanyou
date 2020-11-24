@@ -114,7 +114,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var tkiQrcode = function tkiQrcode() {Promise.all(/*! require.ensure | components/tki-qrcode */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/tki-qrcode")]).then((function () {return resolve(__webpack_require__(/*! ./tki-qrcode */ 247));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var tkiQrcode = function tkiQrcode() {Promise.all(/*! require.ensure | components/tki-qrcode */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/tki-qrcode")]).then((function () {return resolve(__webpack_require__(/*! ./tki-qrcode */ 247));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
+
+
+
+
 
 
 
@@ -146,7 +150,13 @@ __webpack_require__.r(__webpack_exports__);
 
     showCheckinBox: {
       type: String,
-      default: false } },
+      default: false },
+
+    userList: {
+      type: Array,
+      default: function _default() {
+        return [];
+      } } },
 
 
   data: function data() {
@@ -171,14 +181,35 @@ __webpack_require__.r(__webpack_exports__);
     clearInterval(this.timer);
   },
   components: { tkiQrcode: tkiQrcode },
+  computed: {
+    currentTicketIndex: function currentTicketIndex() {var _this = this;
+      if (this.userList.length === 0) {
+        return 0;
+      }
+      var index = this.userList.findIndex(function (item) {
+        return _this.boxInfo.id === item.id;
+      });
+      return index;
+    } },
+
   methods: {
+    switchTicket: function switchTicket(val) {
+      if (this.isChange) return;
+      var index = this.currentTicketIndex + val;
+      if (index > this.userList.length - 1 || index < 0) {
+        this.$tip.toast('没有更多了', 'none');
+      } else {
+        this.$emit('switchTicketQr', index);
+        this.handleChangeQR();
+      }
+    },
     closeBox: function closeBox() {
       this.$emit('closeBox');
     },
-    openTimer: function openTimer() {var _this = this;
+    openTimer: function openTimer() {var _this2 = this;
       //定时刷新
       this.timer = setInterval(function () {
-        _this.currentTime = new Date().getTime();
+        _this2.currentTime = new Date().getTime();
       }, 120000);
     },
     qrR: function qrR(res) {
@@ -193,20 +224,20 @@ __webpack_require__.r(__webpack_exports__);
         complete: function complete(res) {} });
 
     },
-    creatQrcode: function creatQrcode() {var _this2 = this;
+    creatQrcode: function creatQrcode() {var _this3 = this;
       var temp = new Date();
       this.currentTime = new Date().getTime();
       this.$nextTick(function () {
-        _this2.$refs.qrcode._makeCode();
+        _this3.$refs.qrcode._makeCode();
       });
     },
-    handleChangeQR: function handleChangeQR() {var _this3 = this;
+    handleChangeQR: function handleChangeQR() {var _this4 = this;
       if (this.isChange) {
         return;
       }
       this.isChange = true;
       setTimeout(function () {
-        _this3.isChange = false;
+        _this4.isChange = false;
       }, 2000);
       this.currentTime = new Date().getTime();
     },
@@ -222,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
         code: code, pcode: pcode, un: un, t: t };
 
       this.QRStr = JSON.stringify(obj);
-    } } };exports.default = _default;
+    } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

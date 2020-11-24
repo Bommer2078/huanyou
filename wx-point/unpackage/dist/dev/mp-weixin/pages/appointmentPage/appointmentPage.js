@@ -257,7 +257,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   }
                 }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },
-    startAppoinment: function startAppoinment() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var tempArr, now, params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
+    startAppoinment: function startAppoinment() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var tempArr, curDate, now, params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
                 _this4.forbidClick) {_context3.next = 2;break;}return _context3.abrupt("return");case 2:if (
 
 
@@ -271,13 +271,17 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
 
                 _this4.forbidClick = true;
-                now = new Date();
+                // 获取第二日凌晨时间
+                curDate = new Date();
+                // let now = new Date(new Date(curDate.getTime() + 24*60*60*1000).setHours(23, 59, 59, 59))
+                now = new Date(new Date().setHours(23, 59, 59, 59));
+                console.log('now', now);
                 params = {
                   bookingTime: now,
                   ticketDOList: tempArr,
-                  venueId: _this4.venueId };_context3.next = 14;return (
+                  venueId: _this4.venueId };_context3.next = 16;return (
 
-                  _this4.$api.appointmentVenue(params));case 14:res = _context3.sent;
+                  _this4.$api.appointmentVenue(params));case 16:res = _context3.sent;
                 if (res.code === '0') {
                   _this4.$tip.toast('预约成功', 'none');
                   uni.redirectTo({
@@ -286,7 +290,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                 } else {
                   _this4.$tip.toast("".concat(res.code, "\u9884\u7EA6\u5931\u8D25,").concat(res.message), 'none');
                   _this4.forbidClick = false;
-                }case 16:case "end":return _context3.stop();}}}, _callee3);}))();
+                }case 18:case "end":return _context3.stop();}}}, _callee3);}))();
     },
     countTime: function countTime() {
       var now = new Date().getHours();

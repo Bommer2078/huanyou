@@ -335,6 +335,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     return this.$commenShare();
   },
   methods: {
+    switchTicketQr: function switchTicketQr(index) {
+      this.boxInfo = this.userTicketList[index];
+    },
     handleBannerChange: function handleBannerChange(obj) {
       this.currentTicketIndex = obj.detail.current;
     },

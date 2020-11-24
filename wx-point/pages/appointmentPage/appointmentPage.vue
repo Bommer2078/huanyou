@@ -139,7 +139,11 @@ export default {
                 return
             }
             this.forbidClick = true
-            let now = new Date()
+            // 获取第二日凌晨时间
+            let curDate = new Date();
+            // let now = new Date(new Date(curDate.getTime() + 24*60*60*1000).setHours(23, 59, 59, 59))
+            let now = new Date(new Date().setHours(23, 59, 59, 59))
+            console.log('now',now)
             let params = {
                 bookingTime: now,
                 ticketDOList: tempArr,

@@ -74,4 +74,26 @@
   width: 420rpx;
   height: 420rpx;
 }
+.checkin-box .checkin-box-cover .switch-left-btn.data-v-b75f7e0c {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 70%;
+  left: 20rpx;
+  border-right: 14px solid #FFCB00;
+  border-top: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+}
+.checkin-box .checkin-box-cover .switch-right-btn.data-v-b75f7e0c {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 70%;
+  right: 20rpx;
+  border-right: 14px solid transparent;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #FFCB00;
+  border-bottom: 14px solid transparent;
+}
 
