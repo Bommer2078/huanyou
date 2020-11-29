@@ -196,7 +196,8 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       headerImg: '',
       forbidClick: false,
       name: '',
-      ticketName: '' };
+      ticketName: '',
+      showScanBtn: true };
 
   },
   filters: {
@@ -210,6 +211,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     this.ticketCode = option.code || '';
     this.ticketPassword = option.password || '';
     this.ticketName = option.name || '';
+    if (option.code) {
+      this.showScanBtn = false;
+    }
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['ticketBaseInfo', 'userInfo'])),
@@ -230,6 +234,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       }, 200);
     },
     scanBind: function scanBind() {
+      var that = this;
       uni.scanCode({
         onlyFromCamera: true,
         scanType: 'QR_CODE',
@@ -241,8 +246,22 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         } });
 
     },
-    postScanData: function postScanData() {
-
+    postScanData: function postScanData(val) {
+      var temp = null;
+      console.log(val);
+      try {
+        temp = JSON.parse(val);
+      } catch (error) {
+        this.$tip.alertDialog('请扫描正确的联票二维码');
+        return;
+      }
+      if (temp && temp.isLEXING) {
+        this.ticketCode = temp.ticketCode;
+        this.ticketPassword = temp.ticketPassword;
+        this.$tip.toast('联票添加成功', 'none');
+      } else {
+        this.$tip.alertDialog('非乐行公司发行的联票');
+      }
     },
     sendData: function sendData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 params = {
@@ -255,9 +274,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   _this2.$api.bindTicket(params));case 3:res = _context.sent;
                 if (res.code === '0') {
                   _this2.$tip.toast('绑定成功', 'none');
-                  uni.switchTab({
-                    url: '/pages/user/user' });
-
+                  uni.navigateBack({});
                 } else {
                   _this2.forbidClick = false;
                   _this2.$tip.toast(res.message, 'none');

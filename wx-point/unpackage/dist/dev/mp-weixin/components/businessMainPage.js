@@ -236,24 +236,25 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       this[type] = false;
     },
     postData: function postData(val) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var temp, now, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                console.log(val);
                 temp = JSON.parse(val);
                 now = new Date().getTime();if (!(
-                now - temp.t > 120000)) {_context.next = 5;break;}
-                _this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试');return _context.abrupt("return");case 5:
+                now - temp.t > 120000)) {_context.next = 6;break;}
+                _this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试');return _context.abrupt("return");case 6:
 
 
                 params = {
                   childCode: temp.code,
                   password: temp.pcode,
-                  username: temp.un };_context.next = 8;return (
+                  username: temp.un };_context.next = 9;return (
 
-                  _this.$api.writeOffYearTicket(params));case 8:res = _context.sent;
+                  _this.$api.writeOffYearTicket(params));case 9:res = _context.sent;
                 if (res.code === '0') {
                   _this.$tip.alertDialog('核销成功!');
                 } else {
                   _this.$tip.alertDialog("\u6838\u9500\u5931\u8D25! ".concat(res.message));
                 }
-                _this.closeBox('showNumChoseBox');case 11:case "end":return _context.stop();}}}, _callee);}))();
+                _this.closeBox('showNumChoseBox');case 12:case "end":return _context.stop();}}}, _callee);}))();
     },
     postGoodsData: function postGoodsData(val) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var temp, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 temp = JSON.parse(val);

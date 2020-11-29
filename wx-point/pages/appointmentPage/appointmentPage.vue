@@ -142,6 +142,7 @@ export default {
             // 获取第二日凌晨时间
             let curDate = new Date();
             let now = new Date(curDate.getTime() + 24*60*60*1000).setHours(0, 0, 0, 0)
+            // let now = new Date(curDate.getTime()).setHours(0, 0, 0, 0)
             // let now = new Date(new Date().setHours(23, 59, 59, 59))
             console.log('now',now)
             let params = {

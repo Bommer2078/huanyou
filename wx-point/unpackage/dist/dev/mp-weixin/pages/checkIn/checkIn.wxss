@@ -74,6 +74,14 @@
     font-weight: 700;
     font-size: 36rpx;
 }
+.check-in-container .check-in-header .tip {
+    position: absolute;
+    font-weight: 400;
+    font-size: 24rpx;
+    top: 180rpx;
+    left: 68rpx;
+    color: #888;
+}
 .check-in-body {
     position: absolute;
     bottom: 20rpx;

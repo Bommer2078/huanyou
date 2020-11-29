@@ -120,6 +120,7 @@ export default {
             this[type] = false
         },
         async postData (val) {
+            console.log(val)
             let temp = JSON.parse(val)
             let now = new Date().getTime()
             if (now - temp.t > 120000) {

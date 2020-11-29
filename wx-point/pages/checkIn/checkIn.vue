@@ -7,6 +7,7 @@
                 <view class="check-in-header">
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
                     <text class="right">{{currentTicketObj.bindingName}}</text>
+                    <text class="tip">* 点击头像可放大查看</text>
                     <!-- <view class="cancel-btn" @click="cancelBind">取消绑定</view> -->
                     <view class="change-photo-btn" :class="{'forbid-change-photo': currentTicketObj.verify}" @click="preUploadImg">修改照片</view>
                 </view>
@@ -362,6 +363,14 @@
 .check-in-container .check-in-header text {
     font-weight: 700;
     font-size: 36upx;
+}
+.check-in-container .check-in-header .tip {
+    position: absolute;
+    font-weight: 400;
+    font-size: 24upx;
+    top: 180upx;
+    left: 68upx;
+    color: #888;
 }
 .check-in-body {
     position: absolute;

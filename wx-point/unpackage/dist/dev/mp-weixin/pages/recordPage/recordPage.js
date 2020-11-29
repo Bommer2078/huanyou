@@ -199,7 +199,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       var str2 = this.$timeText(temp2.createTime);
       var arr1 = str1.split(' ');
       var arr2 = str2.split(' ');
-      return arr1[0] === arr2[0];
+      return arr1[0] !== arr2[0];
     },
     dayText: function dayText(txt) {
       var str = this.$timeText(txt);

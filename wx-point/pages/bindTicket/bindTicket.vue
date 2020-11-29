@@ -33,7 +33,7 @@
             <view class="confirm-btn"  @click="bindTicket">
                 确认绑定            
             </view>
-            <view class="scan-btn" @click="scanBind">
+            <view class="scan-btn" @click="scanBind" v-if="showScanBtn">
                 扫码绑定
             </view>
             <view class="tip">
@@ -54,7 +54,8 @@ export default {
             headerImg: '',
             forbidClick: false,
             name: '',
-            ticketName: ''
+            ticketName: '',
+            showScanBtn: true
         }
     },
     filters: {
@@ -68,6 +69,9 @@ export default {
         this.ticketCode = option.code || ''
         this.ticketPassword = option.password || ''
         this.ticketName = option.name || ''
+        if (option.code) {
+            this.showScanBtn = false
+        }
     },
     computed: {        
         ...mapState(['ticketBaseInfo','userInfo']),
@@ -87,7 +91,8 @@ export default {
                 this.sendData()
             },200)            
         },
-        scanBind () {            
+        scanBind () {    
+            let that = this        
             uni.scanCode({
                 onlyFromCamera: true,
                 scanType: 'QR_CODE',
@@ -99,8 +104,22 @@ export default {
                 }
             })
         },
-        postScanData () {
-
+        postScanData (val) {
+            let temp = null
+            console.log(val)
+            try {
+                temp = JSON.parse(val)
+            } catch (error) {
+                this.$tip.alertDialog('请扫描正确的联票二维码')
+                return
+            }
+            if (temp && temp.isLEXING) {
+                this.ticketCode = temp.ticketCode
+                this.ticketPassword = temp.ticketPassword
+                    this.$tip.toast('联票添加成功','none')
+            } else {                
+                this.$tip.alertDialog('非乐行公司发行的联票')
+            }
         },
         async sendData () {
             let params = {
@@ -112,10 +131,8 @@ export default {
             }
             const res = await this.$api.bindTicket(params)
             if (res.code === '0') {
-                this.$tip.toast('绑定成功','none')
-                uni.switchTab({
-                    url: '/pages/user/user'
-                })
+                this.$tip.toast('绑定成功','none')                
+                uni.navigateBack({})
             } else {
                 this.forbidClick = false
                 this.$tip.toast(res.message,'none')

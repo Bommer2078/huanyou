@@ -98,7 +98,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var l0 = _vm.__map(_vm.appointmentList, function(item, index) {
-    var f0 = _vm._f("dateText")(item.createTime)
+    var f0 = _vm._f("dateText")(item.bookingTime)
 
     return {
       $orig: _vm.__get_orig(item),
@@ -147,7 +147,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 26));
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 26));
+
 
 
 
@@ -227,20 +228,20 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
   },
   filters: {
     dateText: function dateText(val) {
-      var platform = '';
-      uni.getSystemInfo({
-        success: function success(res) {
-          platform = res.platform;
-        } });
-
-      var temp = val.replace(/-/g, '/').replace('T', ' ').replace('.000+0000', '');
-      var time = platform == 'ios' ? temp : val;
-      var date = new Date(time).getTime();
-      date = platform == 'ios' ? date + 8 * 60 * 60 * 1000 : date;
-      var date2 = new Date(date);
+      // let platform  = ''
+      // uni.getSystemInfo({
+      //     success:function(res){
+      //         platform = res.platform 
+      //     }
+      // })
+      // let temp = val.replace(/-/g, '/').replace('T', ' ').replace('.000+0000', '')
+      // let time = platform == 'ios' ? temp : val
+      // let date = new Date(time).getTime()
+      // date = platform == 'ios' ? date + 8*60*60*1000 : date
+      var date2 = new Date(val);
       var year = date2.getFullYear();
       var month = date2.getMonth() + 1 < 10 ? '0' + (date2.getMonth() + 1) : date2.getMonth() + 1;
-      var day = date2.getDate() + 1 < 10 ? '0' + (date2.getDate() + 1) : date2.getDate() + 1;
+      var day = date2.getDate() < 10 ? '0' + date2.getDate() : date2.getDate();
 
       return "".concat(year, "/").concat(month, "/").concat(day);
     } },
@@ -309,7 +310,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     closeBox: function closeBox() {
       this.showBox = false;
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

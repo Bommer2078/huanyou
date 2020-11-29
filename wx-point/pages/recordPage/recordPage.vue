@@ -47,7 +47,7 @@ export default {
             let str2 = this.$timeText(temp2.createTime)
             let arr1 = str1.split(' ')
             let arr2 = str2.split(' ')
-            return arr1[0] === arr2[0]
+            return arr1[0] !== arr2[0]
         },
         dayText (txt) {
             let str = this.$timeText(txt)

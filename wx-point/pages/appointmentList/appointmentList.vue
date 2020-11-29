@@ -15,11 +15,12 @@
                 <view class="appointment-item" :class="{'bad-appointment' : item.status === 2}">                    
                     <view class="td">{{item.booker}}</view>
                     <view class="td">{{item.itemName}}</view>
-                    <view class="td" v-if="item.status === 1">{{item.createTime | dateText}}</view>
+                    <view class="td" v-if="item.status === 0">{{item.bookingTime | dateText}}</view>
+                    <view class="td" v-else-if="item.status === 1">已完成</view>
                     <view class="td" v-else>{{currentTab === 2 ? '已失效' : '已撤销'}}</view>
                     <view class="td">{{item.venueName}}</view>
                 </view>
-                <view class="appointment-btn-group" v-show="currentTab === 2 && item.status === 1">
+                <view class="appointment-btn-group" v-show="currentTab === 2 && item.status === 0">
                     <view class="show-qr-btn" @click="showCheckinBox(item)">出 示</view>
                     <view class="cancel-btn" @click="cancelAppointment(item)">取 消</view>
                 </view>
@@ -78,20 +79,20 @@ export default {
     },    
     filters: {
         dateText (val) {
-            let platform  = ''
-            uni.getSystemInfo({
-                success:function(res){
-                    platform = res.platform 
-                }
-            })
-            let temp = val.replace(/-/g, '/').replace('T', ' ').replace('.000+0000', '')
-            let time = platform == 'ios' ? temp : val
-            let date = new Date(time).getTime()
-            date = platform == 'ios' ? date + 8*60*60*1000 : date
-            let date2 = new Date(date)
+            // let platform  = ''
+            // uni.getSystemInfo({
+            //     success:function(res){
+            //         platform = res.platform 
+            //     }
+            // })
+            // let temp = val.replace(/-/g, '/').replace('T', ' ').replace('.000+0000', '')
+            // let time = platform == 'ios' ? temp : val
+            // let date = new Date(time).getTime()
+            // date = platform == 'ios' ? date + 8*60*60*1000 : date
+            let date2 = new Date(val)
 			let year = date2.getFullYear()
 			let month = date2.getMonth() + 1 < 10 ? '0' + (date2.getMonth() + 1) : date2.getMonth() + 1
-            let day = date2.getDate() + 1 < 10 ? '0' + (date2.getDate() + 1) : date2.getDate() + 1
+            let day = date2.getDate() < 10 ? '0' + (date2.getDate()) : date2.getDate()
             
 			return `${year}/${month}/${day}`
 		},
@@ -206,13 +207,14 @@ export default {
     }
     .table-title {
         position: fixed;
+        background: #F3F3F3;
         width: 100%;
-        top: 70upx;
+        top: 60upx;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        height: 73upx;
+        height: 90upx;
         padding-left: 20upx;
         padding-right: 20upx;
         font-size: 16px;
