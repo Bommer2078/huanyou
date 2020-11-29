@@ -18,28 +18,37 @@
 				align="center"
 				prop="itemName"
 				label="联票名称"
-				min-width="25%">
+				min-width="20%">
 			</el-table-column>
 			<el-table-column
 				align="center"
 				prop="ticketNum"
 				label="联票编码"
-				min-width="25%">
+				min-width="20%">
 			</el-table-column>
 			<el-table-column
 				align="center"
 				prop="createTime"
 				label="预约时间"
-				min-width="25%">
+				min-width="20%">
 				<template slot-scope="scope">
 					<span>{{$utils.dateText(scope.row.createTime)}}</span>
 				</template>
 			</el-table-column>
 			<el-table-column
 				align="center"
+				prop="bookingTime"
+				label="预约到访时间"
+				min-width="20%">
+				<template slot-scope="scope">
+					<span>{{$utils.dateText(scope.row.bookingTime)}}</span>
+				</template>
+			</el-table-column>
+			<el-table-column
+				align="center"
 				prop="status"
 				label="状态"
-				min-width="25%">
+				min-width="20%">
 				<template slot-scope="scope">
 					<span>{{scope.row.status | statusText}}</span>
 				</template>
