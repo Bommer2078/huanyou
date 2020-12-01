@@ -1,7 +1,7 @@
 import tip from '@/utils/tip'
 import store from '@/store'
-// let baseUrl = 'https://www.gzlxtx.cn/api' //正式环境接口
-let baseUrl = 'http://gzlxtx.cn:8887/api' //测试环境接口
+let baseUrl = 'https://www.gzlxtx.cn/api' //正式环境接口
+// let baseUrl = 'http://gzlxtx.cn:8887/api' //测试环境接口
 let httpNum = 0;
 let http = {
 	post: "",
