@@ -15,6 +15,16 @@
     width: 100%;
     height: 500rpx;
 }
+.check-in-banner .tip{
+    position: absolute;
+    font-weight: 400;
+    font-size: 24rpx;
+    top: 220rpx;
+    left: 100rpx;
+    color: #ccc;
+    opacity: 1;
+    z-index: 10;
+}
 .check-in-banner .bg{
     position: absolute;
     top: 0;
@@ -73,14 +83,6 @@
 .check-in-container .check-in-header text {
     font-weight: 700;
     font-size: 36rpx;
-}
-.check-in-container .check-in-header .tip {
-    position: absolute;
-    font-weight: 400;
-    font-size: 24rpx;
-    top: 180rpx;
-    left: 68rpx;
-    color: #888;
 }
 .check-in-body {
     position: absolute;

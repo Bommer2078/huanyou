@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         "/api": {
-            // target: "http://www.gzlxtx.cn:8080/", //设置你调用的接口域名和端口号
-            target: "http://www.gzlxtx.cn:8888/", //设置你调用的接口域名和端口号 //测试专用
+            target: "http://www.gzlxtx.cn:8080/", //设置你调用的接口域名和端口号
+            // target: "http://www.gzlxtx.cn:8888/", //设置你调用的接口域名和端口号 //测试专用
             changeOrigin: true, //跨域
             pathRewrite: {
               "^/api": "/"

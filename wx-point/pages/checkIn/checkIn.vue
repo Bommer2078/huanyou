@@ -7,7 +7,6 @@
                 <view class="check-in-header">
                     <image :src="currentTicketObj.bindingPhoto" @click="clickImg" mode="aspectFill"></image>
                     <text class="right">{{currentTicketObj.bindingName}}</text>
-                    <text class="tip">* 点击头像可放大查看</text>
                     <!-- <view class="cancel-btn" @click="cancelBind">取消绑定</view> -->
                     <view class="change-photo-btn" :class="{'forbid-change-photo': currentTicketObj.verify}" @click="preUploadImg">修改照片</view>
                 </view>
@@ -25,7 +24,8 @@
                         <text class="right">{{currentTicketObj.childCode}}</text>
                     </view>
                 </view>
-            </view>            
+            </view>           
+            <text class="tip">* 点击头像可放大查看</text>         
         </view>
         <view class="QRcode">
              <img class="ticket-bg" src="/static/img/checkTicket.png">
@@ -315,6 +315,16 @@
     width: 100%;
     height: 500upx;
 }
+.check-in-banner .tip{
+    position: absolute;
+    font-weight: 400;
+    font-size: 24upx;
+    top: 220upx;
+    left: 100upx;
+    color: #ccc;
+    opacity: 1;
+    z-index: 10;
+}
 .check-in-banner .bg{
     position: absolute;
     top: 0;
@@ -363,14 +373,6 @@
 .check-in-container .check-in-header text {
     font-weight: 700;
     font-size: 36upx;
-}
-.check-in-container .check-in-header .tip {
-    position: absolute;
-    font-weight: 400;
-    font-size: 24upx;
-    top: 180upx;
-    left: 68upx;
-    color: #888;
 }
 .check-in-body {
     position: absolute;

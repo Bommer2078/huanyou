@@ -68,7 +68,6 @@ export default {
 					} else {
 						this.$message.error(res.data.message)
 					}
-					console.log('res', res)
 				})
 			this.showSettingBox = false
 		}
