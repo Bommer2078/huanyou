@@ -180,19 +180,29 @@
 			</div>
 			<div class="form-item">
 				<div class="form-label align-top">地理位置<span class="redStar">*</span></div>
-				<div class="form-content">
-					<input
-						type="text"
-						class="form-input"
-						placeholder="请输入经度"
-						v-model.trim="lat" />
-					<input
-						type="text"
-						class="form-input"
-						placeholder="请输入纬度"
-						v-model.trim="lng" />
-						<!-- <div id="map-container"></div> -->
+				<div class="form-content" >
+					<div class="cover" v-for="(item,index) in places" :key="index">
+						<input
+							type="text"
+							class="form-input"
+							placeholder="请输入名称"
+							v-model.trim="item.name"
+							v-show="places.length > 1">
+						<input
+							type="text"
+							class="form-input"
+							placeholder="请输入经度"
+							v-model.trim="item.lat" />
+						<input
+							type="text"
+							class="form-input"
+							placeholder="请输入纬度"
+							v-model.trim="item.lng" />
+					</div>
+					<!-- <div id="map-container"></div> -->
 				</div>
+				<t-button @clickBtn="addAtherPlace">添加分校</t-button>
+				<t-button @clickBtn="clearAtherPlace" v-show="places.length > 1">取消分校</t-button>
 			</div>
 			<div class="form-item">
 				<div class="form-label">地理位置<span class="redStar">*</span></div>
@@ -253,7 +263,12 @@ export default {
 			businessSelected  : '',
 			businessArr       : [],
 			startTime         : '',
-			endTime           : ''
+			endTime           : '',
+			places            : [ {
+				name: '',
+				lat : '',
+				lng : ''
+			} ]
 		}
 	},
 	components: {
@@ -269,7 +284,7 @@ export default {
 		this.getBusinessList()
 		this.getLocationArr()
 		this.getVenueTypeArr()
-		this.initMap()
+		// this.initMap()
 	},
 	methods: {
 		initMap () {
@@ -379,9 +394,7 @@ export default {
 							this.img_url = data.photo
 							this.status = data.status
 							this.phone = data.phone
-							this.lng = data.addressLng
-							this.lat = data.addressLat
-							this.addressText = data.address
+							this.processPlace(data)
 							this.locationSelected = data.placeId
 							this.venueTypeSelected = data.venueType
 							this.newAdd = data.newAdd
@@ -449,20 +462,16 @@ export default {
 				this.$message.error('场馆名称不能为空')
 				return false
 			}
-			// if (!this.img_url) {
-			// 	this.$message.error('场馆图片不能为空')
-			// 	return false
-			// }
+			if (!this.img_url) {
+				this.$message.error('场馆图片不能为空')
+				return false
+			}
 			if (!this.locationSelected) {
 				this.$message.error('请选择场馆归属地')
 				return false
 			}
 			if (!this.rich_content) {
 				this.$message.error('场馆描述不能为空')
-				return false
-			}
-			if (!this.price) {
-				this.$message.error('请输入场馆的价格')
 				return false
 			}
 			if (!this.price) {
@@ -492,10 +501,11 @@ export default {
 				return i.id === this.locationSelected
 			}).name
 
+			this.processAddressText()
 			const params = {
 				address    : this.addressText,
-				addressLat : this.lat,
-				addressLng : this.lng,
+				addressLat : this.places[0].lat,
+				addressLng : this.places[0].lng,
 				description: this.rich_content,
 				name       : this.venueName,
 				phone      : this.phone,
@@ -547,6 +557,42 @@ export default {
 		},
 		cancel () {
 			this.$router.replace('/venueManage/venueList')
+		},
+		addAtherPlace () {
+			let length = this.places.length
+
+			if (!this.places[length - 1].lat) return
+			if (!this.places[length - 1].lng) return
+			this.places.push({
+				name: '',
+				lat : '',
+				lng : ''
+			})
+		},
+		clearAtherPlace () {
+			let length = this.places.length
+
+			this.places.splice(length - 1, 1)
+		},
+		processAddressText () {
+			if (this.places.length > 1) {
+				let str = `<selfOptions>${JSON.stringify(this.places)}`
+
+				this.addressText = this.addressText + str
+			}
+		},
+		processPlace (data) {
+			if (data.address.indexOf('<selfOptions>') >= 0) {
+				let str1 = data.address.split('<selfOptions>')[0]
+				let str2 = data.address.split('<selfOptions>')[1]
+
+				this.addressText = str1
+				this.places = JSON.parse(str2)
+			} else {
+				this.addressText = data.address
+				this.places[0].lng = data.addressLng
+				this.places[0].lat = data.addressLat
+			}
 		}
 	}
 }

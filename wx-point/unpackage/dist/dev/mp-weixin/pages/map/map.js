@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
 //
 //
 //
@@ -140,42 +140,52 @@ var _default =
 {
   data: function data() {
     return {
-      lng: '',
-      lat: '',
-      name: '' };
+      coordinates: [],
+      covers: [] };
 
   },
-  computed: {
-    covers: function covers() {
-      return [{
-        id: 1,
-        longitude: this.lng,
-        latitude: this.lat,
-        width: 50,
-        height: 50,
-        label: {
-          content: "".concat(this.name, " (\u70B9\u51FB\u56FE\u6807\u5BFC\u822A)"),
-          borderColor: '#ff0',
-          bgColor: '#fff',
-          padding: '5px',
-          borderWidth: '2px' },
-
-        iconPath: '../../static/img/homeHL.png' }];
-
-    } },
-
   onLoad: function onLoad(option) {
-    this.lng = option.lng;
-    this.lat = option.lat;
-    this.name = option.name;
+    console.log(option.coordinates, 1111);
+    this.coordinates = JSON.parse(option.coordinates);
+  },
+  mounted: function mounted() {
+    this.processCovers();
   },
   methods: {
-    handleMarkertap: function handleMarkertap() {
+    handleMarkertap: function handleMarkertap(val) {
+      console.log(val);
+      var obj = this.covers.find(function (item) {return item.id === val.markerId;});
+      var lng = obj.longitude;
+      var lat = obj.latitude;
+      var name = obj.name;
       uni.openLocation({
-        longitude: Number(this.lng),
-        latitude: Number(this.lat),
-        name: this.name });
+        longitude: Number(lng),
+        latitude: Number(lat),
+        name: name });
 
+    },
+    processCovers: function processCovers() {var _this = this;
+      var temp = {
+        width: 40,
+        height: 40,
+        iconPath: '../../static/img/homeHL.png' };
+
+      this.coordinates.forEach(function (item, index) {
+        _this.covers.push(_objectSpread({},
+        temp, {
+          id: index + 1,
+          longitude: item.lng,
+          latitude: item.lat,
+          name: item.name,
+          label: {
+            borderColor: '#ff0',
+            bgColor: '#fff',
+            padding: '5px',
+            borderWidth: '2px',
+            content: "".concat(item.name, " (\u70B9\u51FB\u56FE\u6807\u5BFC\u822A)") } }));
+
+
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

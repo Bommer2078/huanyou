@@ -1,1 +1,1 @@
-<view class="map-page"><map style="width:100%;height:100vh;" latitude="{{lat}}" longitude="{{lng}}" markers="{{covers}}" data-event-opts="{{[['markertap',[['handleMarkertap',['$event']]]]]}}" bindmarkertap="__e"></map></view>
+<view class="map-page"><map style="width:100%;height:100vh;" latitude="{{coordinates[0].lat}}" longitude="{{coordinates[0].lng}}" markers="{{covers}}" data-event-opts="{{[['markertap',[['handleMarkertap',['$event']]]]]}}" bindmarkertap="__e"></map></view>

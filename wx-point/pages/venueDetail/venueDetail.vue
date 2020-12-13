@@ -122,6 +122,7 @@ export default {
     computed: {
         routeArr() {
             if (this.venueData) {
+
                 let arr = this.venueData.route.split(/；|;/)
                 return arr
             }
@@ -133,7 +134,23 @@ export default {
             const res = await this.$api.getVenueDetail(this.venueId)
             if (res.code === '0') {
                 this.venueData = res.data
+                this.processAddress(this.venueData.address)
                 this.phoneCall = res.data.phone
+            }
+        },
+        processAddress (val) {
+            let str = val
+            if (val.indexOf('<selfOptions>') >= 0) {
+                let temp1 = str.split('<selfOptions>')[0]
+                let temp2 = str.split('<selfOptions>')[1]
+                this.venueData.address = temp1
+                this.$set(this.venueData, 'coordinate',JSON.parse(temp2))
+            } else {
+                this.$set(this.venueData, 'coordinate',[{
+                    lng: this.venueData.addressLng,
+                    lat: this.venueData.addressLat,
+                    name: this.venueData.name
+                }])
             }
         },
         processImg (obj) {
@@ -167,12 +184,11 @@ export default {
             })
         },
         gotoMap () {
-            let lng = this.venueData.addressLng
-            let lat = this.venueData.addressLat
-            let name = this.venueData.name
-
+            this.$tip.toast('请稍后...','none')
+            let data = JSON.stringify(this.venueData.coordinate)
+            console.log(data)
             uni.navigateTo({
-                url: `../map/map?lng=${lng}&lat=${lat}&name=${name}`
+                url: `../map/map?coordinates=${data}`
             })
         },
         changeCurrentTab (type) {

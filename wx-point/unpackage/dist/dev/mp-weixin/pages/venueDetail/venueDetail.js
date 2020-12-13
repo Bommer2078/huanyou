@@ -263,6 +263,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     routeArr: function routeArr() {
       if (this.venueData) {
+
         var arr = this.venueData.route.split(/；|;/);
         return arr;
       }
@@ -274,8 +275,24 @@ __webpack_require__.r(__webpack_exports__);
                   _this2.$api.getVenueDetail(_this2.venueId));case 2:res = _context.sent;
                 if (res.code === '0') {
                   _this2.venueData = res.data;
+                  _this2.processAddress(_this2.venueData.address);
                   _this2.phoneCall = res.data.phone;
                 }case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    processAddress: function processAddress(val) {
+      var str = val;
+      if (val.indexOf('<selfOptions>') >= 0) {
+        var temp1 = str.split('<selfOptions>')[0];
+        var temp2 = str.split('<selfOptions>')[1];
+        this.venueData.address = temp1;
+        this.$set(this.venueData, 'coordinate', JSON.parse(temp2));
+      } else {
+        this.$set(this.venueData, 'coordinate', [{
+          lng: this.venueData.addressLng,
+          lat: this.venueData.addressLat,
+          name: this.venueData.name }]);
+
+      }
     },
     processImg: function processImg(obj) {
       if (!obj) return;
@@ -308,12 +325,11 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     gotoMap: function gotoMap() {
-      var lng = this.venueData.addressLng;
-      var lat = this.venueData.addressLat;
-      var name = this.venueData.name;
-
+      this.$tip.toast('请稍后...', 'none');
+      var data = JSON.stringify(this.venueData.coordinate);
+      console.log(data);
       uni.navigateTo({
-        url: "../map/map?lng=".concat(lng, "&lat=").concat(lat, "&name=").concat(name) });
+        url: "../map/map?coordinates=".concat(data) });
 
     },
     changeCurrentTab: function changeCurrentTab(type) {

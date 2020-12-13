@@ -1,6 +1,6 @@
 <template>
     <view class="map-page">
-        <map style="width: 100%; height: 100vh;" :latitude="lat" :longitude="lng" :markers="covers" @markertap="handleMarkertap"></map>
+        <map style="width: 100%; height: 100vh;" :latitude="coordinates[0].lat" :longitude="coordinates[0].lng" :markers="covers" @markertap="handleMarkertap"></map>
     </view>
 </template>
 
@@ -8,42 +8,52 @@
 export default {
     data() {
         return {
-            lng: '',
-            lat: '',
-            name: ''
-        }
-    },
-    computed: {
-        covers() {
-            return [{
-                id:1,
-                longitude: this.lng,
-                latitude: this.lat,
-                width: 50,
-                height: 50,
-                label: {
-                    content: `${this.name} (点击图标导航)`,
-                    borderColor: '#ff0',
-                    bgColor: '#fff',
-                    padding: '5px',
-                    borderWidth: '2px'
-                },
-                iconPath: '../../static/img/homeHL.png'
-            }]
+           coordinates: [],
+           covers: []
         }
     },
     onLoad(option) {
-       this.lng = option.lng
-       this.lat = option.lat
-       this.name = option.name
+        console.log(option.coordinates,1111)
+       this.coordinates = JSON.parse(option.coordinates)
+    },
+    mounted() {
+        this.processCovers()
     },
     methods: {
-        handleMarkertap () {
+        handleMarkertap (val) {
+            console.log(val)
+            let obj = this.covers.find((item) => {return item.id === val.markerId})
+            let lng = obj.longitude
+            let lat = obj.latitude
+            let name = obj.name
             uni.openLocation({
-                longitude: Number(this.lng),
-                latitude: Number(this.lat),
-                name: this.name
+                longitude: Number(lng),
+                latitude: Number(lat),
+                name: name
             })
+        },
+        processCovers () {
+            let temp = {
+                width: 40,
+                height: 40,
+                iconPath: '../../static/img/homeHL.png'
+            }
+            this.coordinates.forEach((item,index) => {
+                this.covers.push({
+                    ...temp,
+                    id: index + 1,
+                    longitude: item.lng,
+                    latitude: item.lat,
+                    name: item.name,
+                    label: {
+                        borderColor: '#ff0',
+                        bgColor: '#fff',
+                        padding: '5px',
+                        borderWidth: '2px',
+                        content: `${item.name} (点击图标导航)`
+                    }
+                })
+            });
         }
     },
 }
