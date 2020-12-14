@@ -36,7 +36,7 @@
     margin-left: -18rpx;
     width:35rpx;
     height:6rpx;
-    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background:-o-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .table-title {
@@ -46,16 +46,20 @@
     top: 60rpx;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
     height: 90rpx;
     padding-left: 20rpx;
@@ -104,16 +108,20 @@
 .appointment-item {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
+        -ms-flex-direction: row;
             flex-direction: row;       
     -webkit-box-align: center;       
     -webkit-align-items: center;       
+        -ms-flex-align: center;       
             align-items: center; 
     -webkit-box-pack: justify; 
     -webkit-justify-content: space-between; 
+        -ms-flex-pack: justify; 
             justify-content: space-between;
     width: 100%;
     background: #fff;
@@ -124,11 +132,14 @@
 .appointment-btn-group {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
             justify-content: space-around;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
+        -ms-flex-align: start;
             align-items: flex-start;
     height: 70rpx;
 }
@@ -143,7 +154,7 @@
 }
 .appointment-btn-group .show-qr-btn {
     color: #fff;
-    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
+    background: -o-linear-gradient(143deg, #FF900E, #FFCC00);
     background: linear-gradient(-53deg, #FF900E, #FFCC00);
 }
 .appointment-btn-group .cancel-btn {
@@ -153,12 +164,15 @@
 .td {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
+        -ms-flex-pack: center;
             justify-content: center;
     font-size: 15px;
     color: #000;
@@ -166,7 +180,8 @@
     text-align: center;
     height: 92rpx;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     -webkit-line-clamp: 2;
 }
 .td + .td {
@@ -180,20 +195,24 @@
     right: 0;
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     margin: auto;
     width: 550rpx;
     max-height: 80vh;
     background: #fff;
     border-radius: 8px;
-    box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+    -webkit-box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
+            box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
     overflow: hidden;
     z-index: 4;
 }
@@ -221,7 +240,7 @@
     text-align: center;
     color: #fff;
     border-radius: 6px;
-    background: -webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background: -o-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .no-data {

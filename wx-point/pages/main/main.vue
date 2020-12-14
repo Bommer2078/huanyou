@@ -294,10 +294,16 @@ import checkinBox from '../../components/checkinBox'
                         return item.status === 1
                     })
                     this.ticketList = tempArr
-                    if (this.ticketList.length === 1) {                        
+                    if (this.ticketList.length === 0) {   
+                         // 没有可用票就跳去选城市                            
+                        this.$tip.toast('城市暂未开放请选择其他城市','none')
+                        this.choseLocation()
+                    } else if (this.ticketList.length === 1) {      
+                         // 只有一张可用票就直接加载该票                  
                         this.$store.commit('SET_TICKET_OBJ',this.ticketList[0])  
-                        this.getRestData()  
-                    } else if (this.ticketBaseInfo && this.ticketBaseInfo.id) {
+                        this.getRestData()
+                    } else if (this.ticketBaseInfo && this.ticketBaseInfo.id) {                        
+                         // 之前选过这个票种，且这个票种还有效，就直接取这个票种的数据     
                         let temp = this.ticketList.find((item) => {
                             return item.id === this.ticketBaseInfo.id
                         })
@@ -307,6 +313,7 @@ import checkinBox from '../../components/checkinBox'
                             this.showTicketList = true
                         }
                     } else if (this.ticketList.length > 1) {
+                        // 之前没选过票种，就弹出票种选择
                         this.showTicketList = true
                     }         
                 }  

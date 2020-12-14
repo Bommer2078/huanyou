@@ -15,11 +15,14 @@
 .search-group {     
     display: -webkit-box;     
     display: -webkit-flex;     
+    display: -ms-flexbox;     
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
+        -ms-flex-align: center;
             align-items: center;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
             justify-content: space-around;   
     width: 100%;
     height: 65rpx;
@@ -65,13 +68,16 @@
 .venue-item {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
     height: 190rpx;
@@ -88,9 +94,11 @@
 .venue-tip {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: end;
     -webkit-align-items: flex-end;
+        -ms-flex-align: end;
             align-items: flex-end;
     margin-top: 10rpx;
 }
@@ -113,25 +121,31 @@
 .venue-name-row {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
+        -ms-flex-align: start;
             align-items: flex-start;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
 }
 .venue-name-row .venue-name {
     display: -webkit-box;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
+        -ms-flex-align: start;
             align-items: flex-start;
     max-width: 524rpx;
     min-height: 65rpx;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
             justify-content: space-between;
     font-weight: 700;
     font-size: 15px;      

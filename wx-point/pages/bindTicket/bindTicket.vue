@@ -181,10 +181,10 @@ export default {
                     that.imgUploading = true
                     console.log(res)
                     wx.uploadFile({
-                        url: 'https://www.gzlxtx.cn:9999/common/uploadPhoto', //欢游正式环境上传图片地址
+                        // url: 'https://www.gzlxtx.cn:9999/common/uploadPhoto', //欢游正式环境上传图片地址
                         // url: 'https://www.gzlxtx.cn:9998/common/uploadPhoto', //欢游测试环境上传图片地址
                         // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //乐行测试环境上传图片地址
-                        // url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //乐行正式环境上传图片地址
+                        url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //乐行正式环境上传图片地址
                         filePath: tempFilePaths[0],
                         name: 'file',
                         success (res1) {
