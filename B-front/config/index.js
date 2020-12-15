@@ -14,7 +14,7 @@ module.exports = {
         "/api": {
             // target: "http://www.gzlxtx.cn:8080/", //乐行正式接口
             // target: "http://www.gzlxtx.cn:8888/", //乐行测试专用
-            target: "http://www.gzlxtx.cn:7777/", //欢游正式接口 
+            target: "https://www.gzlxtx.cn:7777/", //欢游正式接口 
             // target: "http://www.gzlxtx.cn:7776/", //欢游测试专用
             changeOrigin: true, //跨域
             pathRewrite: {

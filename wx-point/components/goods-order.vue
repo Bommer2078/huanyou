@@ -1,6 +1,6 @@
 <template>
     <view class="goods-order">
-        <view class="order-header">乐行天下</view>
+        <view class="order-header">{{_shop_type === 'lx' ? '乐行天下' : '欢游票务'}}</view>
         <view class="order-body">
             <view class="order-location">
                 <view class="img-cover">
@@ -78,6 +78,7 @@
 
 <script>
 import md5 from '../libs/md5.min.js'
+import { _shop_type, currentAppid, payKey } from '../libs/envLib'
 export default {
     name: 'goodsOrder',
     props: {
@@ -138,7 +139,7 @@ export default {
         },    
         payConfirm (obj) {
             let timeStamp = new Date().getTime()
-            let paySign = `appId=wxd56c7ad09b4f58c7&nonceStr=${obj.nonce_str}&package=prepay_id=${obj.prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=2A0D555A40FCF76A664C66CC424E22DC`
+            let paySign = `appId=${currentAppid}&nonceStr=${obj.nonce_str}&package=prepay_id=${obj.prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=${payKey}`
             paySign = md5(paySign)
             let that = this
             uni.requestPayment({

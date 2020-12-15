@@ -49,6 +49,7 @@
 <script>
 import { mapState } from 'vuex' 
 import md5 from '../../libs/md5.min.js'
+import { currentAppid, payKey } from '../../libs/envLib'
 export default {    
     data() {
         return {
@@ -130,7 +131,7 @@ export default {
         },
         payConfirm (obj) {
             let timeStamp = new Date().getTime()
-            let paySign = `appId=wxd56c7ad09b4f58c7&nonceStr=${obj.nonce_str}&package=prepay_id=${obj.prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=2A0D555A40FCF76A664C66CC424E22DC`
+            let paySign = `appId=${currentAppid}&nonceStr=${obj.nonce_str}&package=prepay_id=${obj.prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=${payKey}`
             paySign = md5(paySign)
             let that = this
             uni.requestPayment({
