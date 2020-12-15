@@ -446,10 +446,16 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                     return item.status === 1;
                   });
                   _this4.ticketList = tempArr;
-                  if (_this4.ticketList.length === 1) {
+                  if (_this4.ticketList.length === 0) {
+                    // 没有可用票就跳去选城市                            
+                    _this4.$tip.toast('城市暂未开放请选择其他城市', 'none');
+                    _this4.choseLocation();
+                  } else if (_this4.ticketList.length === 1) {
+                    // 只有一张可用票就直接加载该票                  
                     _this4.$store.commit('SET_TICKET_OBJ', _this4.ticketList[0]);
                     _this4.getRestData();
                   } else if (_this4.ticketBaseInfo && _this4.ticketBaseInfo.id) {
+                    // 之前选过这个票种，且这个票种还有效，就直接取这个票种的数据     
                     temp = _this4.ticketList.find(function (item) {
                       return item.id === _this4.ticketBaseInfo.id;
                     });
@@ -459,6 +465,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                       _this4.showTicketList = true;
                     }
                   } else if (_this4.ticketList.length > 1) {
+                    // 之前没选过票种，就弹出票种选择
                     _this4.showTicketList = true;
                   }
                 }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
