@@ -3,22 +3,18 @@
     position: fixed;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     width: 140rpx;
     height: 140rpx;
     bottom: 90rpx;
     right: 30rpx;
-    -webkit-box-shadow:3px 2px 8px 0px rgba(0,0,0,0.14);
-            box-shadow:3px 2px 8px 0px rgba(0,0,0,0.14);
+    box-shadow:3px 2px 8px 0px rgba(0,0,0,0.14);
     border-radius: 50%;
     z-index: 2;
 }

@@ -12,9 +12,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         "/api": {
-            // target: "http://www.gzlxtx.cn:8080/", //乐行正式接口
+            target: "http://www.gzlxtx.cn:8080/", //乐行正式接口
             // target: "http://www.gzlxtx.cn:8888/", //乐行测试专用
-            target: "https://www.gzlxtx.cn:7777/", //欢游正式接口 
+            // target: "https://www.gzlxtx.cn:7777/", //欢游正式接口 
             // target: "http://www.gzlxtx.cn:7776/", //欢游测试专用
             changeOrigin: true, //跨域
             pathRewrite: {
@@ -25,7 +25,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8090, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

@@ -7,11 +7,9 @@
 .page-banner {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     width: 100%;
     padding-top: 21rpx;
@@ -22,8 +20,7 @@
     width: 680rpx;
     height: 330rpx;
     border-radius: 27rpx;
-    -webkit-box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
-            box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
+    box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
 }
 .detail-title {
     width: 100%;
@@ -32,11 +29,9 @@
 .detail-name {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     padding-left: 15rpx;
     padding-bottom: 28rpx;
@@ -52,15 +47,12 @@
 .venue-rules {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
     padding-left: 15rpx;
@@ -101,11 +93,9 @@
 .detail-location {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     width: 100%;        
     padding-left: 15rpx;
@@ -116,11 +106,9 @@
 .detail-location .location {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     width: 100%;
     height: 89rpx;
@@ -129,11 +117,9 @@
 .location .location-name {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     font-size: 14px;
     margin-bottom: 10rpx;
@@ -169,11 +155,9 @@
 .content-name {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     font-size: 16px;
     font-weight: 700;
@@ -195,7 +179,7 @@
     width: 15px;
     height: 4px;
     border-radius: 2px;
-    background:-o-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
+    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .pay-btn{

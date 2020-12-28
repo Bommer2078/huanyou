@@ -348,11 +348,21 @@ import checkinBox from '../../components/checkinBox'
                 let params = {
                     yearTicketId: this.ticketBaseInfo.id,
                     pageNum: 1,
-                    pageSize: 10,
+                    pageSize: 20,
                 }                
                 const res = await this.$api.getVenueList(params)
                 if (res.code === '0') {
-                    this.venueArr = res.data.list
+                    let tempArr = res.data.list
+                    let afterOrderArr = tempArr.sort((item1,item2) => {
+                        let order1 = 0
+                        let order2 = 0
+                        if (item1.relatedRedundancy && item2.relatedRedundancy) {
+                            order1 = JSON.parse(item1.relatedRedundancy).showOrder || 0
+                            order2 = JSON.parse(item2.relatedRedundancy).showOrder || 0
+                        }
+                        return order1 - order2
+                    })
+                    this.venueArr = afterOrderArr
                     this.getVenueDataDone = true
                 }
             },

@@ -84,7 +84,9 @@ export default {
 				let tempArr = []
 				let relatedRedundancy = {
 					confirmVenueArr: item.confirmVenueArr,
-					text           : item.text
+					text           : item.text,
+					mainPageText   : item.mainPageText,
+					showOrder      : item.showOrder
 				}
 
 				item.confirmVenueArr.forEach((ele) => {
@@ -104,6 +106,7 @@ export default {
 			})
 
 			this.postVenueAll = postArr
+			console.log(postArr)
 			this.saveTicket()
 		},
 		saveTicket () {

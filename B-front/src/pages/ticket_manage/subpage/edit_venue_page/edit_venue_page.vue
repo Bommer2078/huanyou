@@ -41,7 +41,9 @@ export default {
 						id                : item.venueId,
 						confirmVenueArr   : temp.confirmVenueArr,
 						confirmVenueArrBak: temp.confirmVenueArr,
-						text              : temp.text
+						text              : temp.text,
+						mainPageText      : temp.mainPageText,
+						showOrder         : temp.showOrder
 					})
 				})
 			}

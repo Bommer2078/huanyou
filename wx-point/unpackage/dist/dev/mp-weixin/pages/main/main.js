@@ -496,15 +496,25 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   }
                 }case 7:case "end":return _context3.stop();}}}, _callee3);}))();
     },
-    getVenueData: function getVenueData() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+    getVenueData: function getVenueData() {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var params, res, tempArr, afterOrderArr;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
                 params = {
                   yearTicketId: _this6.ticketBaseInfo.id,
                   pageNum: 1,
-                  pageSize: 10 };_context4.next = 3;return (
+                  pageSize: 20 };_context4.next = 3;return (
 
                   _this6.$api.getVenueList(params));case 3:res = _context4.sent;
                 if (res.code === '0') {
-                  _this6.venueArr = res.data.list;
+                  tempArr = res.data.list;
+                  afterOrderArr = tempArr.sort(function (item1, item2) {
+                    var order1 = 0;
+                    var order2 = 0;
+                    if (item1.relatedRedundancy && item2.relatedRedundancy) {
+                      order1 = JSON.parse(item1.relatedRedundancy).showOrder || 0;
+                      order2 = JSON.parse(item2.relatedRedundancy).showOrder || 0;
+                    }
+                    return order1 - order2;
+                  });
+                  _this6.venueArr = afterOrderArr;
                   _this6.getVenueDataDone = true;
                 }case 5:case "end":return _context4.stop();}}}, _callee4);}))();
     },

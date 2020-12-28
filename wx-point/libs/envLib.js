@@ -1,6 +1,6 @@
 
-// let currentE = 'lexinP' //乐行正式
-let currentE = 'huanyouP' //欢游正式
+let currentE = 'lexinP' //乐行正式
+// let currentE = 'huanyouP' //欢游正式
 // let currentE = 'lexinT' //乐行测试
 // let currentE = 'huanyouT' //欢游测试
 let baseUrl = ''
