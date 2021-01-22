@@ -1,6 +1,6 @@
 <template>
     <view class="goods-order">
-        <view class="order-header">{{_shop_type === 'lx' ? '乐行天下' : '欢游票务'}}</view>
+        <view class="order-header">{{_shop_type === 'lx' ? '乐行天下' : '多彩神州'}}</view>
         <view class="order-body">
             <view class="order-location">
                 <view class="img-cover">
