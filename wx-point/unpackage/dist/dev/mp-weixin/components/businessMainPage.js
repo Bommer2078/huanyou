@@ -236,25 +236,35 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       this[type] = false;
     },
     postData: function postData(val) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var temp, now, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                temp = null;_context.prev = 1;
+
                 console.log(val);
-                temp = JSON.parse(val);
+                temp = JSON.parse(val);_context.next = 10;break;case 6:_context.prev = 6;_context.t0 = _context["catch"](1);
+
+                _this.$tip.alertDialog('请使用本公司提供的二维码');return _context.abrupt("return");case 10:if (!(
+
+
+                !temp.code || !temp.pcode || !temp.un)) {_context.next = 13;break;}
+                _this.$tip.alertDialog('请使用正确二维码');return _context.abrupt("return");case 13:
+
+
                 now = new Date().getTime();if (!(
-                now - temp.t > 120000)) {_context.next = 6;break;}
-                _this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试');return _context.abrupt("return");case 6:
+                now - temp.t > 120000)) {_context.next = 17;break;}
+                _this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试');return _context.abrupt("return");case 17:
 
 
                 params = {
                   childCode: temp.code,
                   password: temp.pcode,
-                  username: temp.un };_context.next = 9;return (
+                  username: temp.un };_context.next = 20;return (
 
-                  _this.$api.writeOffYearTicket(params));case 9:res = _context.sent;
+                  _this.$api.writeOffYearTicket(params));case 20:res = _context.sent;
                 if (res.code === '0') {
                   _this.$tip.alertDialog('核销成功!');
                 } else {
                   _this.$tip.alertDialog("\u6838\u9500\u5931\u8D25! ".concat(res.message));
                 }
-                _this.closeBox('showNumChoseBox');case 12:case "end":return _context.stop();}}}, _callee);}))();
+                _this.closeBox('showNumChoseBox');case 23:case "end":return _context.stop();}}}, _callee, null, [[1, 6]]);}))();
     },
     postGoodsData: function postGoodsData(val) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var temp, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 temp = JSON.parse(val);

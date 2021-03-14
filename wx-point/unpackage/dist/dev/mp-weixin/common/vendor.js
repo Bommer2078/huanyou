@@ -3202,8 +3202,8 @@ Tips.isLoading = false;
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.payKey = exports._shop_type = exports.currentAppid = exports.upImgUrl = exports.baseUrl = void 0;
-var currentE = 'lexinP'; //乐行正式
-// let currentE = 'huanyouP' //欢游正式
+// let currentE = 'lexinP' //乐行正式
+var currentE = 'huanyouP'; //欢游正式
 // let currentE = 'lexinT' //乐行测试
 // let currentE = 'huanyouT' //欢游测试
 var baseUrl = '';exports.baseUrl = baseUrl;

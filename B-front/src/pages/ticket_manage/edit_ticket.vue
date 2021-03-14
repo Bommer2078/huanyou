@@ -106,7 +106,6 @@ export default {
 			})
 
 			this.postVenueAll = postArr
-			console.log(postArr)
 			this.saveTicket()
 		},
 		saveTicket () {

@@ -134,7 +134,7 @@
             "selectedIconPath": "static/img/homeHL.png"
         }, {
             "pagePath": "pages/ticket/ticket",
-            "text": "联票",
+            "text": "购票",
             "iconPath": "static/img/ticket.png",
             "selectedIconPath": "static/img/ticketAc.png"
         }, {
