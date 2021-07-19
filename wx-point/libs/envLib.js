@@ -19,7 +19,7 @@ switch (currentE) {
     case 'huanyouP':
         baseUrl = 'https://gzlxtx.cn:7777/api'
         upImgUrl = 'https://www.gzlxtx.cn:7777/common/uploadPhoto'
-        currentAppid = 'wx0d1bb307c1a5cbe4'
+        currentAppid = 'wxdb1946ae48d287a3'
         _shop_type = 'hy'
         payKey = '1517FF58903502E1471DFD510F06CB52'
         break;
@@ -33,7 +33,7 @@ switch (currentE) {
     case 'huanyouT':
         baseUrl = 'http://gzlxtx.cn:7776/api'
         upImgUrl = 'https://www.gzlxtx.cn:7776/common/uploadPhoto'
-        currentAppid = 'wx0d1bb307c1a5cbe4'
+        currentAppid = 'wxdb1946ae48d287a3'
         _shop_type = 'hy'
         payKey = '1517FF58903502E1471DFD510F06CB52'
         break;

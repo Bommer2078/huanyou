@@ -254,6 +254,7 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 16);function _interop
       uni.login({
         success: function success(res) {
           if (res.code) {
+            console.log(res);
             var params = {
               code: res.code,
               orderId: that.orderId };
@@ -274,6 +275,7 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 16);function _interop
     payConfirm: function payConfirm(obj) {
       var timeStamp = new Date().getTime();
       var paySign = "appId=".concat(_envLib.currentAppid, "&nonceStr=").concat(obj.nonce_str, "&package=prepay_id=").concat(obj.prepay_id, "&signType=MD5&timeStamp=").concat(timeStamp, "&key=").concat(_envLib.payKey);
+      console.log('currentAppid', paySign);
       paySign = (0, _md5Min.default)(paySign);
       var that = this;
       uni.requestPayment({

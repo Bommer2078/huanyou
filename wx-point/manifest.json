@@ -49,9 +49,9 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     /* "appid" : "wxd56c7ad09b4f58c7" 乐行appid*/
-    /* "appid" : "wx0d1bb307c1a5cbe4" 欢游appid*/
+    /* "appid" : "wxdb1946ae48d287a3" 欢游appid*/
     "mp-weixin" : {
-        "appid" : "wx0d1bb307c1a5cbe4",
+        "appid" : "wxdb1946ae48d287a3",
         "setting" : {
             "urlCheck" : false,
             "es6" : true,

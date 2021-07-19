@@ -112,6 +112,7 @@ export default {
             uni.login({
                 success: function(res){ 
                     if(res.code) {
+                        console.log(res)
                         let params = {
                             code: res.code,
                             orderId: that.orderId
@@ -132,6 +133,7 @@ export default {
         payConfirm (obj) {
             let timeStamp = new Date().getTime()
             let paySign = `appId=${currentAppid}&nonceStr=${obj.nonce_str}&package=prepay_id=${obj.prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=${payKey}`
+            console.log('currentAppid',paySign)
             paySign = md5(paySign)
             let that = this
             uni.requestPayment({
