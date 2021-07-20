@@ -45,6 +45,7 @@
 
 <script>
 import { mapState } from 'vuex' 
+import { upImgUrl, _shop_type } from '../../libs/envLib'
 export default {
     data() {
         return {
@@ -118,7 +119,7 @@ export default {
                 this.ticketPassword = temp.ticketPassword
                     this.$tip.toast('联票添加成功','none')
             } else {                
-                this.$tip.alertDialog('非乐行公司发行的联票')
+                this.$tip.alertDialog(`非${_shop_type === 'lx' ? '乐行' : '欢游'}公司发行的联票`)
             }
         },
         async sendData () {
@@ -181,10 +182,7 @@ export default {
                     that.imgUploading = true
                     console.log(res)
                     wx.uploadFile({
-                        // url: 'https://www.gzlxtx.cn:9999/common/uploadPhoto', //欢游正式环境上传图片地址
-                        // url: 'https://www.gzlxtx.cn:9998/common/uploadPhoto', //欢游测试环境上传图片地址
-                        // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //乐行测试环境上传图片地址
-                        url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //乐行正式环境上传图片地址
+                        url: upImgUrl,
                         filePath: tempFilePaths[0],
                         name: 'file',
                         success (res1) {

@@ -63,6 +63,7 @@
 <script>
     import tkiQrcode from "../../components/tki-qrcode"
     import { mapState } from 'vuex'
+    import { upImgUrl } from '../../libs/envLib'
     export default {
         computed: {
             ...mapState(['userInfo','ticketBaseInfo']),            
@@ -256,8 +257,7 @@
                         const tempFilePaths = res.tempFilePaths
                         that.imgUploading = true
                         wx.uploadFile({
-                            // url: 'https://www.gzlxtx.cn:8080/common/uploadPhoto', //测试环境上传图片地址
-                            url: 'https://www.gzlxtx.cn/api/common/uploadPhoto', //正式环境上传图片地址
+                            url: upImgUrl,
                             filePath: tempFilePaths[0],
                             name: 'file',
                             success (res1) {

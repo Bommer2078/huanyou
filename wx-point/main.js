@@ -26,6 +26,13 @@ Vue.filter('rulesText', function (obj) {
     let rules = obj.rules
     let times = obj.times
     let period = obj.period 
+    let relatedRedundancy = null
+    try {        
+        relatedRedundancy = JSON.parse(obj.relatedRedundancy)
+    } catch (error) {
+        console.log(error)
+    }
+    if (relatedRedundancy.mainPageText) return relatedRedundancy.mainPageText
     if (rules === 1) {
         if (period === 2) {
             return `持联票可免费游玩 ${times}次 ，价值${obj.referPrice/100}元`
@@ -35,7 +42,6 @@ Vue.filter('rulesText', function (obj) {
             return `每日可免费游玩 ${times} 次`
         }
     } else {                
-        let relatedRedundancy = JSON.parse(obj.relatedRedundancy)
         let tempArr = relatedRedundancy.confirmVenueArr
         let tempArr2 = []
         let tempLength = tempArr.length

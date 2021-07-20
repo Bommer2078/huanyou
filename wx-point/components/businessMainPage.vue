@@ -120,8 +120,18 @@ export default {
             this[type] = false
         },
         async postData (val) {
+            let temp = null
+            try {
             console.log(val)
-            let temp = JSON.parse(val)
+                temp = JSON.parse(val)
+            } catch (error) {                
+                this.$tip.alertDialog('请使用本公司提供的二维码')
+                return 
+            }
+            if (!temp.code || !temp.pcode || !temp.un) {                           
+                this.$tip.alertDialog('请使用正确二维码')
+                return 
+            }
             let now = new Date().getTime()
             if (now - temp.t > 120000) {
                 this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试')

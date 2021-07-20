@@ -57,6 +57,22 @@
 					</template>
 				</template>
 			</div>
+			<div class="form-item" style="margin-top: 10px;">
+				<div class="form-label">显示顺序</div>
+				<div class="form-content">
+					<input type="text" class="select-input" v-model.trim="showOrder">
+				</div>
+			</div>
+			<div class="form-item" style="margin-top: 10px;">
+				<div class="form-label">首页文案</div>
+				<div class="form-content">
+					<textarea
+						style="width: 295px;height: 65px;"
+						type="text"
+						class="form-input"
+						v-model.trim="mainPageText" />
+				</div>
+			</div>
 		</div>
 		<el-dialog
 			title="关联相应的场馆到几选几的规则当中"
@@ -97,6 +113,8 @@ export default {
 			showLoading       : false,
 			editVenue         : null,
 			effectiveDate     : 0,
+			mainPageText      : '',
+			showOrder         : '',
 			rules             : 1,
 			period            : 2,
 			times             : 1,
@@ -170,6 +188,8 @@ export default {
 					this.confirmVenueArr = JSON.parse(JSON.stringify(this.editVenue.confirmVenueArr))
 					this.confirmVenueArrBak = JSON.parse(JSON.stringify(this.editVenue.confirmVenueArr))
 					this.selectTimes = this.editVenue.selectTimes
+					this.mainPageText = this.editVenue.mainPageText
+					this.showOrder = this.editVenue.showOrder
 				} else {
 					this.confirmVenueArr.push({
 						text: this.editVenue.text,
@@ -223,6 +243,8 @@ export default {
 				}
 			}
 			this.editVenue.effectiveDate = this.effectiveDate
+			this.editVenue.mainPageText = this.mainPageText
+			this.editVenue.showOrder = this.showOrder
 			this.editVenue.rules = this.rules
 			this.editVenue.period = this.period
 			this.editVenue.times = this.times
@@ -257,7 +279,7 @@ export default {
     position: absolute;
     left: 100%;
     top: 0;
-    min-height: 380px;
+    min-height: 540px;
     background: #f8f8f8;
     border-radius: 5px;
     border: 1px solid #e5e5e5;

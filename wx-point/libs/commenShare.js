@@ -1,6 +1,8 @@
+
+import { _shop_type } from './envLib.js'
 var commenShare = function (params) {
     var shareObj = {
-　　　　title: "乐行天下放肆游",        // 默认是小程序的名称(可以写slogan等)
+　　　　title: _shop_type === 'lx' ? "乐行天下放肆游" : '多彩神州',        // 默认是小程序的名称(可以写slogan等)
 　　　　path: '/pages/main/main',        // 默认是当前页面，必须是以‘/’开头的完整路径
 　　　　imageUrl: '',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
 　　　　success: function(res){
