@@ -4,51 +4,43 @@
   background: #f3f3f3;
 }
 .input-comment-page .comment-cover {
-    position: relative;
-    height: 440rpx;
-    margin-bottom: 100rpx;
+  position: relative;
+  height: 440rpx;
+  margin-bottom: 100rpx;
 }
 .input-comment-page .comment-cover textarea {
-      font-size: 30rpx;
-      padding: 40rpx;
-      width: 100vw;
-      height: 440rpx;
-      background: #fff;
-      word-break: break-all;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
+  font-size: 30rpx;
+  padding: 40rpx;
+  width: 100vw;
+  height: 440rpx;
+  background: #fff;
+  word-break: break-all;
+  box-sizing: border-box;
 }
 .input-comment-page .number-cover {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: absolute;
-    bottom: 20rpx;
-    right: 20rpx;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
 }
 .input-comment-page .input-number {
-    color: #e30000;
-    font-size: 26rpx;
+  color: #e30000;
+  font-size: 26rpx;
 }
 .input-comment-page .input-limite {
-    color: #a0a0a0;
-    font-size: 26rpx;
+  color: #a0a0a0;
+  font-size: 26rpx;
 }
 .input-comment-page .comment-btn {
-    width: 588rpx;
-    height: 74rpx;
-    line-height: 74rpx;
-    font-size: 32rpx;
-    color: #fff;
-    text-align: center;
-    margin: 0 auto;
-    background: -o-linear-gradient(143deg, #FF900E, #FFCC00);
-    background: linear-gradient(-53deg, #FF900E, #FFCC00);
-    border-radius: 14rpx;
+  width: 588rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  background: linear-gradient(-53deg, #FF900E, #FFCC00);
+  border-radius: 14rpx;
 }
 

@@ -1,4 +1,4 @@
-.checkin-box .mask.data-v-c2fd60ba {
+.checkin-box .mask.data-v-1dc93a4e {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -8,96 +8,85 @@
   opacity: .5;
   z-index: 100;
 }
-.checkin-box .checkin-box-cover.data-v-c2fd60ba {
+.checkin-box .checkin-box-cover.data-v-1dc93a4e {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   padding-top: 30rpx;
   margin: auto;
   width: 88vw;
   max-height: 80vh;
   background: #fff;
   border-radius: 8px;
-  -webkit-box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
-          box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
+  box-shadow: 3px 2px 15px 1px rgba(0, 0, 0, 0.07);
   overflow: scroll;
   z-index: 101;
 }
-.checkin-box .checkin-box-cover .title.data-v-c2fd60ba {
-    font-size: 38rpx;
-    font-weight: 400;
-    color: #000000;
-    margin-bottom: 55rpx;
+.checkin-box .checkin-box-cover .title.data-v-1dc93a4e {
+  font-size: 38rpx;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 55rpx;
 }
-.checkin-box .checkin-box-cover .title .title-icon.data-v-c2fd60ba {
-      width: 30rpx;
-      height: 30rpx;
-      margin-right: 10rpx;
+.checkin-box .checkin-box-cover .title .title-icon.data-v-1dc93a4e {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
 }
-.checkin-box .checkin-box-cover .title .close-icon.data-v-c2fd60ba {
-      position: absolute;
-      width: 40rpx;
-      height: 40rpx;
-      right: 10rpx;
-      top: 10rpx;
+.checkin-box .checkin-box-cover .title .close-icon.data-v-1dc93a4e {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  right: 10rpx;
+  top: 10rpx;
 }
-.checkin-box .checkin-box-cover .header.data-v-c2fd60ba {
-    width: 192rpx;
-    height: 192rpx;
-    border-radius: 27rpx;
-    background: #ccc;
-    margin-bottom: 30rpx;
-    overflow: hidden;
+.checkin-box .checkin-box-cover .header.data-v-1dc93a4e {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 27rpx;
+  background: #ccc;
+  margin-bottom: 30rpx;
+  overflow: hidden;
 }
-.checkin-box .checkin-box-cover .header image.data-v-c2fd60ba {
-      width: 192rpx;
-      height: 192rpx;
+.checkin-box .checkin-box-cover .header image.data-v-1dc93a4e {
+  width: 192rpx;
+  height: 192rpx;
 }
-.checkin-box .checkin-box-cover .name.data-v-c2fd60ba {
-    font-size: 36rpx;
-    font-weight: 500;
-    color: #000000;
-    margin-bottom: 40rpx;
+.checkin-box .checkin-box-cover .name.data-v-1dc93a4e {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 40rpx;
 }
-.checkin-box .checkin-box-cover .QR-code.data-v-c2fd60ba {
-    width: 420rpx;
-    height: 420rpx;
+.checkin-box .checkin-box-cover .QR-code.data-v-1dc93a4e {
+  width: 420rpx;
+  height: 420rpx;
 }
-.checkin-box .checkin-box-cover .switch-left-btn.data-v-c2fd60ba {
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 70%;
-    left: 20rpx;
-    border-right: 14px solid #FFCB00;
-    border-top: 14px solid transparent;
-    border-left: 14px solid transparent;
-    border-bottom: 14px solid transparent;
+.checkin-box .checkin-box-cover .switch-left-btn.data-v-1dc93a4e {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 70%;
+  left: 20rpx;
+  border-right: 14px solid #FFCB00;
+  border-top: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: 14px solid transparent;
 }
-.checkin-box .checkin-box-cover .switch-right-btn.data-v-c2fd60ba {
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 70%;
-    right: 20rpx;
-    border-right: 14px solid transparent;
-    border-top: 14px solid transparent;
-    border-left: 14px solid #FFCB00;
-    border-bottom: 14px solid transparent;
+.checkin-box .checkin-box-cover .switch-right-btn.data-v-1dc93a4e {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 70%;
+  right: 20rpx;
+  border-right: 14px solid transparent;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #FFCB00;
+  border-bottom: 14px solid transparent;
 }
 

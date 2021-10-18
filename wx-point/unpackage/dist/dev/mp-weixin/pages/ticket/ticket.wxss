@@ -5,14 +5,8 @@
     background: #F3F3F3;
 }
 .page-banner {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     width: 100%;
     padding-top: 21rpx;
     padding-bottom: 21rpx;
@@ -22,22 +16,15 @@
     width: 680rpx;
     height: 330rpx;
     border-radius: 27rpx;
-    -webkit-box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
-            box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
+    box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.47);
 }
 .detail-title {
     width: 100%;
     background: #fff;
 }
 .detail-name {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     padding-left: 15rpx;
     padding-bottom: 28rpx;
     font-size: 16px;
@@ -50,18 +37,9 @@
     margin-right: 10rpx;
 }
 .venue-rules {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding-left: 15rpx;
     padding-right: 15rpx;
@@ -99,14 +77,8 @@
     white-space: nowrap;
 }
 .detail-location {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     width: 100%;        
     padding-left: 15rpx;
     padding-right: 15rpx;
@@ -114,27 +86,15 @@
     background: #fff;
 }
 .detail-location .location {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     width: 100%;
     height: 89rpx;
     border-top: 1px solid #EDEDED;
 }
 .location .location-name {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     font-size: 14px;
     margin-bottom: 10rpx;
 }
@@ -167,14 +127,8 @@
     margin-bottom: 40px;
 }
 .content-name {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 25rpx;
@@ -195,7 +149,6 @@
     width: 15px;
     height: 4px;
     border-radius: 2px;
-    background:-o-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .pay-btn{

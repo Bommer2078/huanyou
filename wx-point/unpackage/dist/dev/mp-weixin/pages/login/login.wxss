@@ -10,14 +10,8 @@
 }
 .input-item {
     position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     width: 100%;
     height: 80rpx;
     line-height: 80rpx;
@@ -41,7 +35,6 @@
     text-align: center;
     color: #fff;
     border-radius: 6px;
-    background: -o-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .sign-up-btn {
@@ -51,23 +44,10 @@
     margin-top: 130rpx;
 }
 .setting-row {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     font-size: 16px;
     padding-left: 36rpx;
     padding-right: 36rpx;
@@ -78,18 +58,9 @@
     border: 1px solid red;
 }
 .eye {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
 }
 .eye ._img{
