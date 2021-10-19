@@ -118,7 +118,7 @@ export default {
 
 			downloadElement.style.display = 'none'
 			downloadElement.href = url
-			downloadElement.setAttribute('download', `${tempTime}到店游玩名单.xlsx`)
+			downloadElement.setAttribute('download', `${tempTime}.xlsx`)
 			document.body.appendChild(downloadElement)
 			downloadElement.click()
 			document.body.removeChild(downloadElement) // 下载完成移除元素

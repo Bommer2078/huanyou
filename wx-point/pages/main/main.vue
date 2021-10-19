@@ -161,6 +161,17 @@ import checkinBox from '../../components/checkinBox'
                 if (this.getUserRecordDone && newVal) {
                     this.calcVenueRecord()
                 }
+            },
+            // 获取后门传过来的手机号信息
+            ticketBaseInfo (newVal) {
+                let orig = newVal.description
+                if (orig.search('backdoordataflag') >= 0) {
+                    let afaterSubStr = orig.substr('backdoordataflag')
+                    let phoneCall = afaterSubStr.substr(afaterSubStr.indexOf('backDoorDataFlagPhone|') + 22, (afaterSubStr.indexOf('|backDoorDataFlagPhone') - afaterSubStr.indexOf('backDoorDataFlagPhone|') - 22))
+                    let QQCall = afaterSubStr.substr(afaterSubStr.indexOf('backDoorDataFlagQQ|') + 19, (afaterSubStr.indexOf('|backDoorDataFlagQQ') - afaterSubStr.indexOf('backDoorDataFlagQQ|') - 19))
+                    this.phoneCall = phoneCall || ''
+                    this.QQCall = QQCall || ''
+                }
             }
         },
         created() {            
@@ -232,7 +243,7 @@ import checkinBox from '../../components/checkinBox'
                                 this.getLocal(res.latitude,res.longitude)
                                 .then((userLocation) => {
                                         let tempLocation = this.locationArr.find((item) => {
-                                            return item.name === userLocation
+                                            return item.name.search(userLocation) >= 0
                                         })
                                         // 如果没有则获取用户的地址信息 --> 对比已有城市进行跳转，否则跳转默认城市
                                         this.$store.commit('SET_LOCATION_OBJ', tempLocation || this.locationArr[0])
@@ -421,9 +432,12 @@ import checkinBox from '../../components/checkinBox'
                 })
             },
             callPhone () {
-                let phoneCall = [this.phoneCall,this.QQCall]
+                let phoneCall = []
+                this.phoneCall && phoneCall.push(this.phoneCall)
+                this.QQCall && phoneCall.push(this.QQCall)
+                if (phoneCall.length === 0) return
                 uni.showActionSheet({
-                    itemList: [phoneCall[0],phoneCall[1]],
+                    itemList: [...phoneCall],
                     success: function (res) {
                         console.log(res)
                         wx.makePhoneCall({

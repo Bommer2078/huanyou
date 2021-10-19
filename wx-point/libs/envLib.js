@@ -18,7 +18,7 @@ switch (currentE) {
         break;
     case 'huanyouP':
         baseUrl = 'https://gzlxtx.cn:7777/api'
-        upImgUrl = 'https://www.gzlxtx.cn:7777/common/uploadPhoto'
+        upImgUrl = 'https://www.gzlxtx.cn:7777/api/common/uploadPhoto'
         currentAppid = 'wxdb1946ae48d287a3'
         _shop_type = 'hy'
         payKey = '1517FF58903502E1471DFD510F06CB52'
