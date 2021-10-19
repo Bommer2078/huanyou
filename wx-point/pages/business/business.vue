@@ -16,7 +16,7 @@
             <view class="tab-btn" :class="{'activ-style': currentTab === 'contact'}"  @click="loginOut">
                 <img src="/static/img/contactA.svg" v-if=" currentTab === 'contact'">
                 <img src="/static/img/contact.svg" v-else>
-                <text>登出</text>
+                <text>退出</text>
             </view>
         </view>
     </view>             

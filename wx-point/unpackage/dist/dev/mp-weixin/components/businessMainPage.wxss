@@ -192,4 +192,9 @@
     border: 1px solid #CDCDCD;
     font-size: 25px;
 }
+.user-description {
+    position: absolute;
+    left: 16rpx;
+    bottom: -50rpx;
+}
 

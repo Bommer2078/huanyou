@@ -20,6 +20,7 @@
                     <text>票务说明</text>
                 </view>
             </view>
+            <view class="user-description">{{userInfo.description}}</view>
         </view>  
         <template v-if="showBox">            
             <view class="mask" @click="closeBox('showBox')"></view>
@@ -320,5 +321,10 @@ export default {
     text-align: center;
     border: 1px solid #CDCDCD;
     font-size: 25px;
+}
+.user-description {
+    position: absolute;
+    left: 16upx;
+    bottom: -50upx;
 }
 </style>

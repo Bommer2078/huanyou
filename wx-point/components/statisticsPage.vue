@@ -2,7 +2,7 @@
     <view class="statistics-page">
         <view class="search-header">
             <picker mode="date" :value="date" start="2020-01-01" :end="endDate" @change="bindDateChange" class="date-select">
-                <view class="uni-input">{{date}}</view>
+                <view class="uni-input">{{searchContent ? '按手机号搜索' : date}}</view>
             </picker>
             <view class="search-input">
                 <img src="/static/img/search.svg">
@@ -80,8 +80,10 @@ export default {
                 pageNum : this.pageNum,
                 pageSize : this.pageSize,
                 verifyUsername : this.userInfo.username,
-                username: this.searchContent,
-                verifyDate : time
+                username: this.searchContent
+            }
+            if (!this.searchContent) {
+                params.verifyDate = time
             }
             const res = await this.$api.getStatisList(params)
             if (res.code === '0') {                

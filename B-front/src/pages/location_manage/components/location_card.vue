@@ -1,5 +1,5 @@
 <template>
-	<div class="location-card">
+	<div class="location-card" @click="editCityName">
 		<img src="@/assets/images/location.svg">
 		<div class="card-info">
 			<span class="name">{{locationObj.name}}</span>
@@ -14,6 +14,22 @@ export default {
 		locationObj: {
 			type    : Object,
 			required: true
+		}
+	},
+	methods: {
+		editCityName () {
+			let params = {
+
+			}
+
+			this.$http.put(this.$api.editLocation, params).then(({data:{code, data, message}}) => {
+				if (code === '0') {
+					this.$message.success('保存成功')
+				} else {
+					this.$message.error(message)
+				}
+			}).finally(() => {
+			})
 		}
 	}
 }

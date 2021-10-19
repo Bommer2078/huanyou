@@ -212,16 +212,18 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
                   pageNum: _this.pageNum,
                   pageSize: _this.pageSize,
                   verifyUsername: _this.userInfo.username,
-                  username: _this.searchContent,
-                  verifyDate: time };_context.next = 4;return (
+                  username: _this.searchContent };
 
-                  _this.$api.getStatisList(params));case 4:res = _context.sent;
+                if (!_this.searchContent) {
+                  params.verifyDate = time;
+                }_context.next = 5;return (
+                  _this.$api.getStatisList(params));case 5:res = _context.sent;
                 if (res.code === '0') {
                   _this.listArr = res.data.list;
                   if (bolean) {
                     _this.todayCount = res.data.total;
                   }
-                }case 6:case "end":return _context.stop();}}}, _callee);}))();
+                }case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
     getAllCount: function getAllCount() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 params = {

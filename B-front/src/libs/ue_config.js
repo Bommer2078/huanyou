@@ -36,8 +36,8 @@ export const litteConfig = {
 	initialFrameWidth : 640,
 	initialFrameHeight: 320,
 	autoHeightEnabled : false,
-	serverUrl         : 'https://www.gzlxtx.cn/api/ueditor/config', // 乐行
-	// serverUrl         : 'https://www.gzlxtx.cn:7777/api/ueditor/config', // 欢游
+	// serverUrl         : 'https://www.gzlxtx.cn/api/ueditor/config', // 乐行
+	serverUrl         : 'https://www.gzlxtx.cn:7777/api/ueditor/config', // 欢游
 	UEDITOR_HOME_URL  : '/static/UEditor/'
 }
 /*  */
