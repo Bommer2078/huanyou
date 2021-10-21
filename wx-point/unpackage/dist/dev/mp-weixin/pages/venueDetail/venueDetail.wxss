@@ -5,12 +5,8 @@
     background: #F3F3F3;
 }
 .page-banner {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
+    justify-content: center;
     width: 100%;
     padding-top: 21rpx;
     padding-bottom: 21rpx;
@@ -28,12 +24,8 @@
     margin-bottom: 20rpx;
 }
 .detail-name {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     padding-left: 15rpx;
     font-size: 16px;
     font-weight: 700;
@@ -45,15 +37,9 @@
     margin-right: 10px;
 }
 .venue-rules {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding-left: 15rpx;
     padding-right: 15rpx;
@@ -111,16 +97,9 @@
     color: #FFCC00;
 }
 .book-btn-part {        
-    display: -webkit-box;        
-    display: -webkit-flex;        
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-            align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
 }
 .book-btn {
     background: #ffcc00;
@@ -131,12 +110,8 @@
     line-height: 30px;
 }
 .detail-location {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     width: 100%;      
     height: 50rpx;  
     padding-left: 15rpx;
@@ -150,12 +125,8 @@
     overflow: hidden;
 }
 .location .location-name {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     font-size: 13px;
     margin-bottom: 10rpx;
 }
@@ -182,8 +153,7 @@
     white-space: nowrap;
 }
 .detail-location .phone{
-    -webkit-flex-shrink: 0;
-            flex-shrink: 0;
+    flex-shrink: 0;
     width: 100rpx;
     height: 130rpx;
     margin-left: auto;
@@ -201,12 +171,8 @@
     margin-bottom: 20rpx;
 }
 .content-name {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 20rpx;
@@ -246,15 +212,9 @@
 .pay-footer {
     position: fixed;
     bottom: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 88rpx;
     background: #fff;
@@ -277,7 +237,6 @@
     text-align: center;
     font-size: 13px;
     color: #fff;
-    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 

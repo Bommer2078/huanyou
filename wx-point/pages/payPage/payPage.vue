@@ -43,6 +43,7 @@
         <view class="confirm-btn" @click="creatOrder">
             去支付{{ totalPrice }}元   
         </view>
+        <loading :show-loading="showLoading"></loading> 
     </view>
 </template>
 
@@ -50,6 +51,7 @@
 import { mapState } from 'vuex' 
 import md5 from '../../libs/md5.min.js'
 import { currentAppid, payKey } from '../../libs/envLib'
+import loading from '../../components/loadding'
 export default {    
     data() {
         return {
@@ -64,6 +66,7 @@ export default {
 				discountPriceName: '套票'
 			},
             sellTypeNum: 0,
+            showLoading: false,
         }
     },
     filters: {
@@ -71,6 +74,9 @@ export default {
             let arr = val.split('')
             return `${arr.splice(0,3).join('')}****${arr.splice(4,4).join('')}`
         }
+    },
+    components: {
+        loading
     },
     computed: {
         ...mapState(['ticketBaseInfo','userInfo','locationObj']),
@@ -142,16 +148,23 @@ export default {
                 package: `prepay_id=${obj.prepay_id}`,
                 signType: 'MD5',
                 paySign: paySign,
-                success: function() {                    
-                    that.$tip.alertDialog(
-                        '支付成功，请跳转订单查看',
-                        '好的','不用了').then(() => {
-                            uni.redirectTo({
-                                url: '../order/order',
-                            });
-                        }).catch(() => {
-                            uni.navigateBack()
-                        }) 
+                success: function() {  
+                    that.$tip.toast(`支付查询中，请稍后`,'none')
+                    setTimeout(() => {                        
+                        that.showLoading = true
+                        setTimeout(() => {                                          
+                            that.showLoading = false
+                            that.$tip.alertDialog(
+                            '支付成功，请跳转订单查看',
+                            '好的','不用了').then(() => {
+                                uni.redirectTo({
+                                    url: '../order/order',
+                                });
+                            }).catch(() => {
+                                uni.navigateBack()
+                            }) 
+                        }, 1200)
+                    }, 2000)
                 },
                 fail: function(err) {                       
                     that.$tip.toast(`支付失败，请查看订单`,'none')                 

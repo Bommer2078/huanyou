@@ -21,40 +21,40 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "lazyloadPlaceholderEnable": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.9.2",
+  "libVersion": "",
   "appid": "wxdb1946ae48d287a3",
   "projectname": "欢游小程序",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": 0,
       "list": [
         {
           "name": "",

@@ -1,43 +1,23 @@
 
 .order-detail {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     padding-top: 53rpx;
     background: #F3F3F3;
 }
 .goods-order-detail {
     width: 90%;  
-    display: -webkit-box;  
-    display: -webkit-flex;  
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;      
-    -webkit-box-align: center;      
-    -webkit-align-items: center;      
-            align-items: center;
+    flex-direction: column;      
+    align-items: center;
     color: #353535;
 }
 .venue-tab {    
-    display: -webkit-box;    
-    display: -webkit-flex;    
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;    
+    align-items: center;
+    justify-content: space-between;    
     width: 100%;
     height: 30px;
     font-size: 14px;
@@ -49,16 +29,9 @@
 }
 .order-info { 
     position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-            align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;   
     height: 75px;
     padding: 10px;
@@ -97,15 +70,9 @@
 }
 .QR-container {
     position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;

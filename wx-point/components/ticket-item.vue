@@ -130,7 +130,7 @@ export default {
         font-size: 24upx;
     }
     .share-btn {
-        display: inline-block;
+        display: none;
         padding: 0;
         bottom: 44upx;
         left: 80upx;

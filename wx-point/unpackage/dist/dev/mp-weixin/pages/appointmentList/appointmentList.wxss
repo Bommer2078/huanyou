@@ -36,7 +36,6 @@
     margin-left: -18rpx;
     width:35rpx;
     height:6rpx;
-    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .table-title {
@@ -44,19 +43,10 @@
     background: #F3F3F3;
     width: 100%;
     top: 60rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     height: 90rpx;
     padding-left: 20rpx;
     padding-right: 20rpx;
@@ -102,19 +92,10 @@
     margin-bottom: 14rpx;
 }
 .appointment-item {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-            flex-direction: row;       
-    -webkit-box-align: center;       
-    -webkit-align-items: center;       
-            align-items: center; 
-    -webkit-box-pack: justify; 
-    -webkit-justify-content: space-between; 
-            justify-content: space-between;
+    flex-direction: row;       
+    align-items: center; 
+    justify-content: space-between;
     width: 100%;
     background: #fff;
     min-height: 150rpx;
@@ -122,14 +103,9 @@
     padding-right: 20rpx;
 }
 .appointment-btn-group {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-around;
-            justify-content: space-around;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-            align-items: flex-start;
+    justify-content: space-around;
+    align-items: flex-start;
     height: 70rpx;
 }
 .appointment-btn-group .show-qr-btn,
@@ -143,7 +119,6 @@
 }
 .appointment-btn-group .show-qr-btn {
     color: #fff;
-    background: -webkit-linear-gradient(143deg, #FF900E, #FFCC00);
     background: linear-gradient(-53deg, #FF900E, #FFCC00);
 }
 .appointment-btn-group .cancel-btn {
@@ -151,15 +126,9 @@
     border: 1px solid#FFCC00;
 }
 .td {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     font-size: 15px;
     color: #000;
     font-weight: 700;
@@ -178,16 +147,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     margin: auto;
     width: 550rpx;
     max-height: 80vh;
@@ -221,7 +183,6 @@
     text-align: center;
     color: #fff;
     border-radius: 6px;
-    background: -webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
 }
 .no-data {

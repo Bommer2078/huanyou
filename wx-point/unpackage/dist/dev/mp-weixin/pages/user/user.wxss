@@ -5,12 +5,8 @@
     background: #F3F3F3;
 }
 .user-banner {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
+    justify-content: center;
     position: relative;
     width: 100%;
     height: 500rpx;
@@ -32,16 +28,9 @@
     box-shadow:3px 2px 15px 1px rgba(0,0,0,0.07);
 }
 .user-container {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 50rpx;
     width: 95%;
@@ -61,16 +50,9 @@
     position: absolute;
     top: 47rpx;
     left: 310rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-            align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .user-container .user-header ._img {
     position: absolute;
@@ -99,12 +81,8 @@
 }
 .user-body .item {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     height: 90rpx;
 }
 .item + .item {
@@ -139,16 +117,9 @@
         bottom: 0;
         left: 0;
         right: 0;
-        display: -webkit-box;
-        display: -webkit-flex;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
+        flex-direction: column;
+        align-items: center;
         margin: auto;
         width: 550rpx;
         max-height: 80vh;

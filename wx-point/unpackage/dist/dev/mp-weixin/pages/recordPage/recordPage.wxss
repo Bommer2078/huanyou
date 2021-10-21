@@ -1,30 +1,30 @@
-.record-list.data-v-9f9b3eb2 {
+.record-list.data-v-8a234174 {
   background: #F3F3F3;
   width: 100%;
   min-height: 100vh;
 }
-.record-list .record-item-cover .record-day.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-day.data-v-8a234174 {
   height: 55rpx;
   line-height: 55rpx;
   padding-left: 18rpx;
   font-size: 26rpx;
   color: #000;
 }
-.record-list .record-item-cover .record-item.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-item.data-v-8a234174 {
   position: relative;
   width: 100%;
   height: 212rpx;
   padding-left: 40rpx;
   background: #fff;
 }
-.record-list .record-item-cover .record-item .record-time.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-item .record-time.data-v-8a234174 {
   height: 57rpx;
   line-height: 57rpx;
   font-size: 22rpx;
   font-weight: 400;
   color: #FFCC00;
 }
-.record-list .record-item-cover .record-item.data-v-9f9b3eb2::before {
+.record-list .record-item-cover .record-item.data-v-8a234174::before {
   content: '';
   position: absolute;
   height: 212rpx;
@@ -34,7 +34,7 @@
   -webkit-transform: scaleX(0.5);
           transform: scaleX(0.5);
 }
-.record-list .record-item-cover .record-item.data-v-9f9b3eb2::after {
+.record-list .record-item-cover .record-item.data-v-8a234174::after {
   content: '';
   position: absolute;
   height: 8rpx;
@@ -44,20 +44,16 @@
   background: #FFCC00;
   border-radius: 50%;
 }
-.record-list .record-item-cover .record-info-cover.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover.data-v-8a234174 {
   position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   height: 156rpx;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-          align-items: flex-start;
+  align-items: flex-start;
   padding-bottom: 20rpx;
   padding-right: 40rpx;
   box-sizing: border-box;
 }
-.record-list .record-item-cover .record-info-cover .border-line.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover .border-line.data-v-8a234174 {
   width: calc(100% - 40rpx);
   position: absolute;
   bottom: -1rpx;
@@ -66,23 +62,19 @@
   -webkit-transform: scaleY(0.5);
           transform: scaleY(0.5);
 }
-.record-list .record-item-cover .record-info-cover image.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover image.data-v-8a234174 {
   height: 136rpx;
   width: 185rpx;
   border-radius: 10rpx;
   margin-right: 20rpx;
 }
-.record-list .record-item-cover .record-info-cover .record-info .venue-name.data-v-9f9b3eb2 {
-  display: -webkit-box;
-  display: -webkit-flex;
+.record-list .record-item-cover .record-info-cover .record-info .venue-name.data-v-8a234174 {
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   font-size: 0;
   height: 40rpx;
 }
-.record-list .record-item-cover .record-info-cover .record-info .venue-name text.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover .record-info .venue-name text.data-v-8a234174 {
   line-height: 40rpx;
   color: #111;
   font-size: 36rpx;
@@ -92,7 +84,7 @@
   word-break: keep-all;
   text-overflow: ellipsis;
 }
-.record-list .record-item-cover .record-info-cover .record-info .venue-name .ticket-name.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover .record-info .venue-name .ticket-name.data-v-8a234174 {
   height: 40rpx;
   line-height: 30rpx;
   text-align: center;
@@ -104,7 +96,7 @@
   background: #fff;
   border-radius: 6rpx;
 }
-.record-list .record-item-cover .record-info-cover .record-info .venue-summary.data-v-9f9b3eb2 {
+.record-list .record-item-cover .record-info-cover .record-info .venue-summary.data-v-8a234174 {
   font-size: 28rpx;
   opacity: 0.55;
   font-family: PingFang SC;

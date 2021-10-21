@@ -1,15 +1,8 @@
 
 .goods-order {        
-    display: -webkit-box;        
-    display: -webkit-flex;        
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 333rpx;
     background: #fff;
@@ -31,12 +24,8 @@
     padding-right: 20rpx;
 }
 .order-location,.order-state,.order-end{
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     height: 98rpx;
     width: 100%;
     font-size: 13px;
@@ -83,41 +72,25 @@
     border-bottom: 1px solid #eee;
 }
 .box-row {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     font-size: 12px;
     color: #3D3D3D;
     margin-bottom: 5px;
 }
 .box-row text {
-    -webkit-flex-shrink: 0;
-            flex-shrink: 0;
+    flex-shrink: 0;
     word-break: break-word;
 }
 .box-row .right {
     max-width: 350rpx;
 }
 .box-end {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     height: 164rpx;
 }
 .confirm-btn {
@@ -127,22 +100,14 @@
     text-align: center;
     font-size: 14px;
     border-radius: 10px;
-    background:-webkit-linear-gradient(143deg,rgba(255,144,14,1),rgba(255,204,0,1));
     background:linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));
     color: #fff;
 }
 .img-cover {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-shrink: 0;
-            flex-shrink: 0;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
     width: 60rpx;
     height: 60rpx;
     margin-right: 20rpx;
@@ -153,12 +118,8 @@
     height: 36rpx;
 }
 .location-info .row {
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+    align-items: center;
     max-width: 600rpx;
 }
 .location-info .row .name {
@@ -176,15 +137,9 @@
 }
 .order-state-text {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
 }
 .order-state-text .right {
     position: relative;
@@ -209,15 +164,9 @@
 }
 .order-title {
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     font-size: 15px;
 }
 .order-title .right text{

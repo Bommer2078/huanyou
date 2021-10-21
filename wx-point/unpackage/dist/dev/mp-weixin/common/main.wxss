@@ -13,14 +13,8 @@
 	/*每个页面公共css */
 page {
 		min-height: 100%;
-		display: -webkit-box;
-		display: -webkit-flex;
 		display: flex;
 }
-
-
-
-
 
 
 
@@ -48,8 +42,6 @@ page {
 m-input {
 		width: 100%;
 		min-height: 100%;
-		display: -webkit-box;
-		display: -webkit-flex;
 		display: flex;
 }
 view {    
@@ -83,13 +75,8 @@ view {
 		background-color: #c8c7cc;
 }
 .input-row {
-		display: -webkit-box;
-		display: -webkit-flex;
 		display: flex;
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		-webkit-flex-direction: row;
-		        flex-direction: row;
+		flex-direction: row;
 		position: relative;
 }
 .input-row .title {

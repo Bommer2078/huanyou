@@ -37,7 +37,9 @@
                 扫码绑定
             </view>
             <view class="tip">
-                * 联票一经绑定，绑定信息将不能被更改
+                <p>1 联票一经绑定，绑定信息将不能被更改</p>
+                <p>2 确认上传为本人单人正面照</p>
+                <p>3 非照片本人使用会被拒绝接待</p>
             </view>
         </view>
     </view>
@@ -285,10 +287,10 @@ export default {
 }
 .confirm-btn-group .tip {
     position: absolute;
-    bottom: -35px;
-    font-size: 12px;
+    bottom: -70px;
+    font-size: 14px;
     color: #888;
-    text-align: center;
+    text-align: left;
 }
 .header-img {
     width: 60upx;
