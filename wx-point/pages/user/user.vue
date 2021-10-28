@@ -100,7 +100,7 @@
             },
             gotoBindTicket () {
                 uni.navigateTo({                
-                    url: '../bindTicket/bindTicket'
+                    url: '../bindTicket/bindTicket?from=in'
                 })
             },
             gotoAppointmentList () {

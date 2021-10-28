@@ -37,7 +37,7 @@
                 扫码绑定
             </view>
             <view class="tip">
-                <p>1 联票一经绑定，绑定信息将不能被更改</p>
+                <p>1 联票一经使用，绑定信息将不能被更改</p>
                 <p>2 确认上传为本人单人正面照</p>
                 <p>3 非照片本人使用会被拒绝接待</p>
             </view>
@@ -58,12 +58,13 @@ export default {
             forbidClick: false,
             name: '',
             ticketName: '',
-            showScanBtn: true
+            showScanBtn: true,
+            bindPageFromOut: false //是否是从别的小程序跳转到的bindTicket页面
         }
     },
     filters: {
         phoneText(val) {
-            let arr = val.split('')
+            let arr = val ? val.split('') : []
             return `${arr.splice(0,3).join('')}****${arr.splice(4,4).join('')}`
         }
     },
@@ -72,14 +73,81 @@ export default {
         this.ticketCode = option.code || ''
         this.ticketPassword = option.password || ''
         this.ticketName = option.name || ''
+        this.bindPageFromOut = !option.from
         if (option.code) {
             this.showScanBtn = false
         }
+    },
+    onShow() {
+        this.hasLogin()
     },
     computed: {        
         ...mapState(['ticketBaseInfo','userInfo']),
     },
     methods: {
+        hasLogin () {
+            if (!this.userInfo) {
+                // 如果未登录就到了绑定页只有可能是有赞跳入，多数场景为未注册用户
+                this.$tip.toast('请先注册，成为会员','none')
+                uni.reLaunch({
+                    url: '../signUp/signUp?from=bindpage&page=signUp',
+                });
+            } else {
+                this.checkoutClipboard()
+            }
+        },
+        checkoutClipboard () {
+            let that = this
+            let preTicket = uni.getStorageSync('ticketFromOut') 
+            uni.getClipboardData({
+                success: function (res) {
+                    console.log('剪贴板获取成功', res)     
+                    let str = res.data 
+                    // 长度为17,";"在第十位，"a"在第一位大概率为联票的复制信息
+                    if (str.length === 17 && 
+                    str.indexOf('a') === 0 && 
+                    (str.indexOf(';') === 10 || str.indexOf('；') === 10)) {
+                        let currentTicket = str.split(';')[0]
+                        let currentPassword = str.split(';')[1]
+                        if (currentTicket === preTicket && !that.bindPageFromOut) return
+                        that.getUserTicketList(currentTicket)                    
+                        that.ticketCode = currentTicket
+                        that.ticketPassword = currentPassword   
+                        uni.setStorageSync('ticketFromOut', currentTicket)               
+                    }
+                }
+            })
+        },
+        async getUserTicketList (currentTicket) {
+            let params = {
+                pageNum: 1,
+                pageSize: 100,
+                username: this.userInfo.username
+            }
+            const res = await this.$api.bindTicketList(params)
+            if (res.code === '0') {
+                if (res.data.list.length > 0) {
+                    let temp = res.data.list.find((el) => {
+                        return el.childCode === currentTicket
+                    })
+                    if (temp) {
+                        this.$tip.alertDialog(
+                        '您复制的联票信息已绑定',
+                        '前去使用','继续绑定')
+                        .then(() => {
+                            uni.reLaunch({
+                                url: `../checkIn/checkIn?ticket=${currentTicket}`,
+                            });
+                        }).catch(() => {                                
+                            this.ticketCode = ''
+                            this.ticketPassword = '' 
+                        }) 
+                    } else {                           
+                        this.$tip.toast('已填充您的联票信息','none')
+                    }
+                }
+            }
+        },
         handlerCodeBlur (e) {
             this.ticketCode = e.target.value
         },
@@ -133,9 +201,19 @@ export default {
                 username: this.userInfo.username
             }
             const res = await this.$api.bindTicket(params)
-            if (res.code === '0') {
-                this.$tip.toast('绑定成功','none')                
-                uni.navigateBack({})
+            if (res.code === '0') { 
+                this.$tip.alertDialog(
+                '绑定成功',
+                '前去使用','继续绑定').then(() => {
+                    uni.reLaunch({
+                        url: `../checkIn/checkIn?ticket=${this.ticketCode}`,
+                    });
+                }).catch(() => {                                
+                    this.ticketCode = ''
+                    this.ticketPassword = '' 
+                    this.name = '' 
+                    this.headerImg = '' 
+                })              
             } else {
                 this.forbidClick = false
                 this.$tip.toast(res.message,'none')

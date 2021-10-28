@@ -8,7 +8,7 @@
                 <view class="price">￥<text>{{ticketBaseInfo.price/100}}</text></view>
             </view>
             <view class="num-change-item">
-                <text class="discount-type">每份含 1 张票</text>
+                <text class="discount-type">可供一人使用</text>
                 <view class="num-change">
                     <view class="reduce" @click="reduceNum(1)">-</view>
                     <view class="num-input">{{count1}}</view>
@@ -23,7 +23,7 @@
                 <view class="price">￥<text>{{ticketBaseInfo.discountPrice/100}}</text></view>
             </view>
             <view class="num-change-item">
-                <text class="discount-type">每份含 {{ticketBaseInfo.discountNum}} 张票</text>
+                <text class="discount-type">可供 {{ticketBaseInfo.discountNum}} 人使用</text>
                 <view class="num-change">
                     <view class="reduce" @click="reduceNum(2)">-</view>
                     <view class="num-input">{{count2}}</view>

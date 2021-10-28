@@ -189,6 +189,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.js */ 39));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
 {
   data: function data() {
@@ -205,6 +208,7 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
       startCount: false,
       timeObj: null,
       pageType: 'signUp',
+      pageFrom: '',
       oldPassword: '',
       inputType: 'password' };
 
@@ -222,6 +226,7 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
 
   onLoad: function onLoad(option) {
     this.pageType = option.page;
+    this.pageFrom = option.from;
     if (this.pageType === 'signUp') {
       uni.setNavigationBarTitle({
         title: '注册' });
@@ -261,7 +266,7 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
 
                   _this2.$api.getSms(params));case 13:case "end":return _context.stop();}}}, _callee);}))();
     },
-    registerUser: function registerUser() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var apiUrl, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
+    registerUser: function registerUser() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var apiUrl, params, cPhone, cPassword, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
                 _this3.checkPostData()) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:
 
 
@@ -270,18 +275,28 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
                   babyBirthday: '123456',
                   phone: String(_this3.phone),
                   password: (0, _md5Min.default)(_this3.password),
-                  verifyCode: _this3.smsCode };_context2.next = 6;return (
+                  verifyCode: _this3.smsCode };
 
-                  _this3.$api[apiUrl](params));case 6:res = _context2.sent;
+                cPhone = String(_this3.phone);
+                cPassword = (0, _md5Min.default)(_this3.password);_context2.next = 8;return (
+                  _this3.$api[apiUrl](params));case 8:res = _context2.sent;
                 if (res.code === '0') {
-                  _this3.$tip.toast("".concat(_this3.pageType === 'signUp' ? '恭喜，注册成功！' : '密码修改成功'), 'none');
-                  uni.navigateBack();
+                  _this3.$tip.toast("".concat(_this3.pageType === 'signUp' ? '注册成功，请稍侯' : '密码修改成功'), 'none');
+                  setTimeout(function () {
+                    _this3.autoLogin(cPhone, cPassword);
+                  }, 500);
                 } else if (res.code === '4') {
                   _this3.codeErr = '验证码错误';
                   _this3.$tip.toast(_this3.codeErr, 'none');
                 } else {
                   _this3.$tip.toast(res.message, 'none');
-                }case 8:case "end":return _context2.stop();}}}, _callee2);}))();
+                }case 10:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    gobackLogin: function gobackLogin() {
+      var url = this.pageFrom === 'bindPage' ? '../login/login?from=bindPage' : '../login/login';
+      uni.reLaunch({
+        url: url });
+
     },
     confirmChange: function confirmChange() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var apiUrl, params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (
                 _this4.checkChangeData()) {_context3.next = 2;break;}return _context3.abrupt("return");case 2:
@@ -304,6 +319,31 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
                   _this4.$tip.toast(res.message, 'none');
                 }case 8:case "end":return _context3.stop();}}}, _callee3);}))();
     },
+    // 注册成功之后自动登录
+    autoLogin: function autoLogin(username, password) {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+                params = {
+                  username: username,
+                  password: password };_context4.next = 3;return (
+
+                  _this5.$api.login(params));case 3:res = _context4.sent;
+                if (res.code === '0') {
+                  _this5.$store.commit('SET_USER_INFO', res.data.user);
+                  _this5.$store.commit('SET_ROLE_TYPE', 'user');
+                  uni.setStorageSync('token', res.data.token);
+
+                  if (_this5.pageFrom === 'bindpage') {
+                    uni.reLaunch({
+                      url: '/pages/bindTicket/bindTicket?from=in' });
+
+                  } else {
+                    uni.switchTab({
+                      url: '/pages/user/user' });
+
+                  }
+                } else {
+                  _this5.$tip.toast(res.message, 'none');
+                }case 5:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
     changeEye: function changeEye() {
       if (this.inputType === 'password') {
         this.inputType = 'text';
@@ -311,10 +351,10 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
         this.inputType = 'password';
       }
     },
-    countStart: function countStart() {var _this5 = this;
+    countStart: function countStart() {var _this6 = this;
       this.timeObj = setInterval(function () {
-        _this5.startCount = true;
-        _this5.countNum--;
+        _this6.startCount = true;
+        _this6.countNum--;
       }, 1000);
     },
     initCountNum: function initCountNum() {
@@ -339,14 +379,14 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
         this.codeErr = '';
       }
     },
-    checkPassword: function checkPassword(type) {var _this6 = this;
+    checkPassword: function checkPassword(type) {var _this7 = this;
       var check = function check() {
-        if (_this6.password !== _this6.confirmPassword) {
-          _this6.passwordErr = '两次输入得密码不一致';
-        } else if (_this6.password.length < 8) {
-          _this6.passwordErr = '密码字符至少为8位';
+        if (_this7.password !== _this7.confirmPassword) {
+          _this7.passwordErr = '两次输入得密码不一致';
+        } else if (_this7.password.length < 8) {
+          _this7.passwordErr = '密码字符至少为8位';
         } else {
-          _this6.passwordErr = '';
+          _this7.passwordErr = '';
         }
       };
       if (type === 'confirm') {

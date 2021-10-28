@@ -173,7 +173,7 @@ var _default =
   methods: {
     bindTicket: function bindTicket() {
       wx.redirectTo({
-        url: "/pages/bindTicket/bindTicket?code=".concat(this.ticketItem.childCode, "&password=").concat(this.ticketItem.password, "&name=").concat(this.ticketItem.itemName) });
+        url: "/pages/bindTicket/bindTicket?code=".concat(this.ticketItem.childCode, "&password=").concat(this.ticketItem.password, "&name=").concat(this.ticketItem.itemName, "&from=in") });
 
     },
     shareTicket: function shareTicket() {

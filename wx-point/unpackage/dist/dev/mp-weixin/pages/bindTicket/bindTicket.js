@@ -200,12 +200,13 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 17);function _interop
       forbidClick: false,
       name: '',
       ticketName: '',
-      showScanBtn: true };
-
+      showScanBtn: true,
+      bindPageFromOut: false //是否是从别的小程序跳转到的bindTicket页面
+    };
   },
   filters: {
     phoneText: function phoneText(val) {
-      var arr = val.split('');
+      var arr = val ? val.split('') : [];
       return "".concat(arr.splice(0, 3).join(''), "****").concat(arr.splice(4, 4).join(''));
     } },
 
@@ -214,26 +215,93 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 17);function _interop
     this.ticketCode = option.code || '';
     this.ticketPassword = option.password || '';
     this.ticketName = option.name || '';
+    this.bindPageFromOut = !option.from;
     if (option.code) {
       this.showScanBtn = false;
     }
+  },
+  onShow: function onShow() {
+    this.hasLogin();
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['ticketBaseInfo', 'userInfo'])),
 
   methods: {
+    hasLogin: function hasLogin() {
+      if (!this.userInfo) {
+        // 如果未登录就到了绑定页只有可能是有赞跳入，多数场景为未注册用户
+        this.$tip.toast('请先注册，成为会员', 'none');
+        uni.reLaunch({
+          url: '../signUp/signUp?from=bindpage&page=signUp' });
+
+      } else {
+        this.checkoutClipboard();
+      }
+    },
+    checkoutClipboard: function checkoutClipboard() {
+      var that = this;
+      var preTicket = uni.getStorageSync('ticketFromOut');
+      uni.getClipboardData({
+        success: function success(res) {
+          console.log('剪贴板获取成功', res);
+          var str = res.data;
+          // 长度为17,";"在第十位，"a"在第一位大概率为联票的复制信息
+          if (str.length === 17 &&
+          str.indexOf('a') === 0 && (
+          str.indexOf(';') === 10 || str.indexOf('；') === 10)) {
+            var currentTicket = str.split(';')[0];
+            var currentPassword = str.split(';')[1];
+            if (currentTicket === preTicket && !that.bindPageFromOut) return;
+            that.getUserTicketList(currentTicket);
+            that.ticketCode = currentTicket;
+            that.ticketPassword = currentPassword;
+            uni.setStorageSync('ticketFromOut', currentTicket);
+          }
+        } });
+
+    },
+    getUserTicketList: function getUserTicketList(currentTicket) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res, temp;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                params = {
+                  pageNum: 1,
+                  pageSize: 100,
+                  username: _this.userInfo.username };_context.next = 3;return (
+
+                  _this.$api.bindTicketList(params));case 3:res = _context.sent;
+                if (res.code === '0') {
+                  if (res.data.list.length > 0) {
+                    temp = res.data.list.find(function (el) {
+                      return el.childCode === currentTicket;
+                    });
+                    if (temp) {
+                      _this.$tip.alertDialog(
+                      '您复制的联票信息已绑定',
+                      '前去使用', '继续绑定').
+                      then(function () {
+                        uni.reLaunch({
+                          url: "../checkIn/checkIn?ticket=".concat(currentTicket) });
+
+                      }).catch(function () {
+                        _this.ticketCode = '';
+                        _this.ticketPassword = '';
+                      });
+                    } else {
+                      _this.$tip.toast('已填充您的联票信息', 'none');
+                    }
+                  }
+                }case 5:case "end":return _context.stop();}}}, _callee);}))();
+    },
     handlerCodeBlur: function handlerCodeBlur(e) {
       this.ticketCode = e.target.value;
     },
     handlerPassword: function handlerPassword(e) {
       this.ticketPassword = e.target.value;
     },
-    bindTicket: function bindTicket() {var _this = this;
+    bindTicket: function bindTicket() {var _this2 = this;
       if (this.forbidClick) return;
       if (!this.checkForm()) return;
       this.forbidClick = true;
       setTimeout(function () {
-        _this.sendData();
+        _this2.sendData();
       }, 200);
     },
     scanBind: function scanBind() {
@@ -266,22 +334,32 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 17);function _interop
         this.$tip.alertDialog("\u975E".concat(_envLib._shop_type === 'lx' ? '乐行' : '欢游', "\u516C\u53F8\u53D1\u884C\u7684\u8054\u7968"));
       }
     },
-    sendData: function sendData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    sendData: function sendData() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 params = {
-                  bindingName: _this2.name,
-                  bingingPhoto: _this2.headerImg,
-                  childCode: _this2.ticketCode,
-                  password: _this2.ticketPassword,
-                  username: _this2.userInfo.username };_context.next = 3;return (
+                  bindingName: _this3.name,
+                  bingingPhoto: _this3.headerImg,
+                  childCode: _this3.ticketCode,
+                  password: _this3.ticketPassword,
+                  username: _this3.userInfo.username };_context2.next = 3;return (
 
-                  _this2.$api.bindTicket(params));case 3:res = _context.sent;
+                  _this3.$api.bindTicket(params));case 3:res = _context2.sent;
                 if (res.code === '0') {
-                  _this2.$tip.toast('绑定成功', 'none');
-                  uni.navigateBack({});
+                  _this3.$tip.alertDialog(
+                  '绑定成功',
+                  '前去使用', '继续绑定').then(function () {
+                    uni.reLaunch({
+                      url: "../checkIn/checkIn?ticket=".concat(_this3.ticketCode) });
+
+                  }).catch(function () {
+                    _this3.ticketCode = '';
+                    _this3.ticketPassword = '';
+                    _this3.name = '';
+                    _this3.headerImg = '';
+                  });
                 } else {
-                  _this2.forbidClick = false;
-                  _this2.$tip.toast(res.message, 'none');
-                }case 5:case "end":return _context.stop();}}}, _callee);}))();
+                  _this3.forbidClick = false;
+                  _this3.$tip.toast(res.message, 'none');
+                }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     checkForm: function checkForm() {
       if (this.name === '') {
@@ -306,10 +384,10 @@ var _envLib = __webpack_require__(/*! ../../libs/envLib */ 17);function _interop
       }
       return true;
     },
-    showWarning: function showWarning() {var _this3 = this;
+    showWarning: function showWarning() {var _this4 = this;
       this.$tip.confirm('上传单人大头照，仅限照片本人使用，合照不可使用').
       then(function (res) {
-        _this3.uploadImg();
+        _this4.uploadImg();
       }).
       catch(function () {
         return;

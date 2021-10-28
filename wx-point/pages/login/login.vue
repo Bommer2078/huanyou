@@ -49,11 +49,13 @@ export default {
             phoneErr: '',
             passwordErr: '',
             pageType: 'loginPage',
+            pageFrom: '',
             inputType: 'password'
         }
     },
     onLoad(option) {
         this.pageType = option.pageType === 'loginOut' ? 'loginOut':'loginPage'
+        this.pageFrom = option.from
     },
     methods: {  
         async login () {    
@@ -76,10 +78,17 @@ export default {
                     uni.reLaunch({
                         url: '/pages/business/business'
                     });
-                } else {                    
-                    uni.switchTab({
-                        url: '/pages/user/user'
-                    });
+                } else {     
+                    if (this.pageFrom = 'bindPage') {                        
+                        uni.reLaunch({
+                            url: '/pages/bindTicket/bindTicket?from=in'
+                        });
+                    } else {
+                        uni.switchTab({
+                            url: '/pages/user/user'
+                        });
+                    }             
+                    
                 }
             } else if (res.code === '10003'){
                 this.phoneErr = '用户不存在'

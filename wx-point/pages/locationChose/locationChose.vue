@@ -46,7 +46,9 @@ export default {
             this.showLoading = true           
             const res1 = await this.$api.getPlaceList()
             if (res1.code === '0') {
-                this.locationList = res1.data
+                this.locationList = res1.data.filter((el) => {
+                    return el.yearTicketCount > 0
+                })
             }            
             this.showLoading = false
         },

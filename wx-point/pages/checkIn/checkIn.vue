@@ -31,15 +31,18 @@
              <img class="ticket-bg" src="/static/img/checkTicket.png">
              <view class="QRcode-container">
                  <view class="QRcode-header">
-                     <!-- <view class="title" :class="{'has-icon' : showSwitchIcon}" @click="switchCurrentTicketType"> -->
-                     <view class="title" @click="switchCurrentTicketType">
-                        <text>
-                             {{currentTicketObj.itemName}}
-                        </text>
-                        <!-- <view class="switch-icon" v-show="showSwitchIcon">
-                            <image src="../../static/img/switch1.svg"></image>
-                        </view> -->
-                    </view>
+                     <view class="title-button-cover">
+                         <view class="title-button" @click="switchCurrentTicketType">
+                            <text>
+                                {{currentTicketObj.itemName || ''}}
+                            </text>
+                        </view>
+                        <view class="title-button" @click="gotobind">
+                            <text>
+                                前去绑定
+                            </text>
+                        </view>
+                     </view>
                      <view class="code">
                          <text>密码</text>
                          <text class="code-num" hover-class="password-open">{{currentTicketObj.password}}</text>
@@ -83,8 +86,12 @@
                 timer: null,
                 QRStr: '',
                 isChange: false,
-                src: ''
+                src: '',
+                ticketFromBindPage: ''
             }
+        },
+        onLoad(option) {
+            this.ticketFromBindPage = option.ticket || ''
         },
         onHide() {
             uni.hideLoading()
@@ -235,7 +242,12 @@
                 // if (this.showSwitchIcon) {                    
                 //     this.$store.commit('SET_TICKET_OBJ',this.currentTicketObj)
                 // }
-            },    
+            }, 
+            gotobind () {
+                uni.reLaunch({
+                    url: '/pages/bindTicket/bindTicket?from=in'
+                })
+            },   
             preUploadImg() {  
                 if (this.currentTicketObj.verify) {                    
                     this.$tip.alertDialog('此票已使用，不能修改头像','知道了').then(() => {
@@ -287,13 +299,17 @@
                 if (res.code === '0') {
                     if (res.data.list.length > 0) {
                         this.ticketList = res.data.list
+                        let index = this.ticketList.findIndex((el) => {
+                            return this.ticketFromBindPage === el.childCode
+                        })
+                        this.currentTicket = index < 0 ? 0 : index
                         setTimeout(() => {
                             this.creatQrcode()
                         }, 500);
                     } else {
                         this.$tip.toast('还未绑定联票,请先去绑定','none')
                         uni.redirectTo({
-                            url: '/pages/bindTicket/bindTicket'
+                            url: '/pages/bindTicket/bindTicket?from=in'
                         })
                     }
                 }
@@ -461,14 +477,16 @@
     align-items: center;
     margin-bottom: 22upx;
 }
-.QRcode-header .title text{
+.QRcode-header .title-button text{
     color:#5A4705;
     font-size: 36upx;
     color: #fff;
     font-weight: 700;
 }
-.QRcode-header .title{
+.QRcode-header .title-button{
+    margin-left: 40upx;
     height: 75upx;
+    display: inline-block;
     background: linear-gradient(360deg, #FF900E, #FFCC00);
     border-radius: 4px;
     text-align: center;

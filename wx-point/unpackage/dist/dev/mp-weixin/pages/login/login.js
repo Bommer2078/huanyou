@@ -181,11 +181,13 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
       phoneErr: '',
       passwordErr: '',
       pageType: 'loginPage',
+      pageFrom: '',
       inputType: 'password' };
 
   },
   onLoad: function onLoad(option) {
     this.pageType = option.pageType === 'loginOut' ? 'loginOut' : 'loginPage';
+    this.pageFrom = option.from;
   },
   methods: {
     login: function login() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
@@ -209,8 +211,15 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
                       url: '/pages/business/business' });
 
                   } else {
-                    uni.switchTab({
-                      url: '/pages/user/user' });
+                    if (_this.pageFrom = 'bindPage') {
+                      uni.reLaunch({
+                        url: '/pages/bindTicket/bindTicket?from=in' });
+
+                    } else {
+                      uni.switchTab({
+                        url: '/pages/user/user' });
+
+                    }
 
                   }
                 } else if (res.code === '10003') {

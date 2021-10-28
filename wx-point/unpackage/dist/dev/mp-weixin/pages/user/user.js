@@ -232,7 +232,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
     },
     gotoBindTicket: function gotoBindTicket() {
       uni.navigateTo({
-        url: '../bindTicket/bindTicket' });
+        url: '../bindTicket/bindTicket?from=in' });
 
     },
     gotoAppointmentList: function gotoAppointmentList() {

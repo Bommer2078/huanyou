@@ -36,6 +36,9 @@
     width: 70rpx;
     height: 35rpx;
 }
+.sign-up-btn + .sign-up-btn {
+    margin-top: 80rpx;
+}
 .sign-up-btn {
     width: 78.4%;
     height: 74rpx;

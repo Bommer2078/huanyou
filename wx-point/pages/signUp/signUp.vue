@@ -53,6 +53,9 @@
         <view class="sign-up-btn" @click="confirmChange" v-else>
             确定修改
         </view>
+        <view class="sign-up-btn" @click="gobackLogin">
+            已有账号，请登录
+        </view>
     </view>
 </template>
 
@@ -73,6 +76,7 @@ export default {
             startCount: false,
             timeObj: null,
             pageType: 'signUp',
+            pageFrom: '',
             oldPassword: '',
             inputType: 'password'
         }
@@ -90,6 +94,7 @@ export default {
     },
     onLoad (option) {
         this.pageType = option.page         
+        this.pageFrom = option.from         
         if (this.pageType === 'signUp') {
             uni.setNavigationBarTitle({
                 title: '注册'
@@ -140,16 +145,26 @@ export default {
                 password : md5(this.password),
                 verifyCode  : this.smsCode
             }
+            const cPhone = String(this.phone)
+            const cPassword = md5(this.password)
             const res = await this.$api[apiUrl](params)
             if (res.code === '0') {
-                this.$tip.toast(`${this.pageType === 'signUp' ? '恭喜，注册成功！': '密码修改成功'}`,'none')
-                uni.navigateBack()
+                this.$tip.toast(`${this.pageType === 'signUp' ? '注册成功，请稍侯': '密码修改成功'}`,'none')
+                setTimeout(() => {
+                    this.autoLogin(cPhone, cPassword)
+                }, 500);
             } else if (res.code === '4') {    
                 this.codeErr = '验证码错误'
                 this.$tip.toast(this.codeErr,'none')
             } else {
                 this.$tip.toast(res.message,'none')
             }
+        },
+        gobackLogin () {
+            let url = this.pageFrom === 'bindPage' ? '../login/login?from=bindPage' : '../login/login'
+            uni.reLaunch({
+                url: url,
+            });
         },
         async confirmChange () {
             if (!this.checkChangeData()) {
@@ -169,6 +184,31 @@ export default {
                 this.$tip.toast(this.oldPasswordErr,'none')
             } else {
                 this.oldPasswordErr = res.message
+                this.$tip.toast(res.message,'none')
+            }
+        },
+        // 注册成功之后自动登录
+        async autoLogin (username,password) {   
+            let params = {
+                username : username,
+                password : password
+            }     
+            const res = await this.$api.login(params)
+            if (res.code === '0') {   
+                this.$store.commit('SET_USER_INFO',res.data.user)             
+                this.$store.commit('SET_ROLE_TYPE','user')             
+                uni.setStorageSync('token',res.data.token)
+                
+                if (this.pageFrom === 'bindpage') {                                 
+                    uni.reLaunch({
+                        url: '/pages/bindTicket/bindTicket?from=in'
+                    });
+                } else {                    
+                    uni.switchTab({
+                        url: '/pages/user/user'
+                    });
+                }
+            } else {                             
                 this.$tip.toast(res.message,'none')
             }
         },
@@ -313,6 +353,9 @@ export default {
 .eye img{
     width: 70upx;
     height: 35upx;
+}
+.sign-up-btn + .sign-up-btn {
+    margin-top: 80upx;
 }
 .sign-up-btn {
     width: 78.4%;

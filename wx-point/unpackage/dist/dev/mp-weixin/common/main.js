@@ -44,7 +44,7 @@ _vue.default.filter('rulesText', function (obj) {
   if (relatedRedundancy.mainPageText) return relatedRedundancy.mainPageText;
   if (rules === 1) {
     if (period === 2) {
-      return "\u6301\u8054\u7968\u53EF\u514D\u8D39\u6E38\u73A9 ".concat(times, "\u6B21 \uFF0C\u4EF7\u503C").concat(obj.referPrice / 100, "\u5143");
+      return "\u8054\u7968\u7ED1\u5B9A\u7167\u7247\u672C\u4EBA\u53EF\u514D\u8D39\u6E38\u73A9 ".concat(times, "\u6B21 \uFF0C\u4EF7\u503C").concat(obj.referPrice / 100, "\u5143");
     } else if (period === 1) {
       return "\u6BCF\u6708\u53EF\u514D\u8D39\u6E38\u73A9 ".concat(times, " \u6B21");
     } else if (period === 0) {

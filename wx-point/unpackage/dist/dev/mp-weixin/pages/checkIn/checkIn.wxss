@@ -157,14 +157,16 @@
     align-items: center;
     margin-bottom: 22rpx;
 }
-.QRcode-header .title text{
+.QRcode-header .title-button text{
     color:#5A4705;
     font-size: 36rpx;
     color: #fff;
     font-weight: 700;
 }
-.QRcode-header .title{
+.QRcode-header .title-button{
+    margin-left: 40rpx;
     height: 75rpx;
+    display: inline-block;
     background: linear-gradient(360deg, #FF900E, #FFCC00);
     border-radius: 4px;
     text-align: center;

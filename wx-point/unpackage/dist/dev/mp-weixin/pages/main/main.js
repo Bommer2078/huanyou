@@ -402,7 +402,10 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
                         return item.name.search(userLocation) >= 0;
                       });
                       // 如果没有则获取用户的地址信息 --> 对比已有城市进行跳转，否则跳转默认城市
-                      _this2.$store.commit('SET_LOCATION_OBJ', tempLocation || _this2.locationArr[0]);
+                      var tempObj = _this2.locationArr.find(function (item) {
+                        return item.yearTicketCount > 0;
+                      });
+                      _this2.$store.commit('SET_LOCATION_OBJ', tempLocation || tempObj || _this2.locationArr[0]);
                       _this2.getTicketList();
                     }).
                     catch(function () {

@@ -252,7 +252,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
                   } else {
                     _this3.$tip.toast('还未绑定联票,请先去绑定', 'none');
                     uni.redirectTo({
-                      url: '/pages/bindTicket/bindTicket' });
+                      url: '/pages/bindTicket/bindTicket?from=in' });
 
                   }
                 }case 5:case "end":return _context2.stop();}}}, _callee2);}))();
@@ -323,7 +323,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
     },
     goTobind: function goTobind() {
       uni.redirectTo({
-        url: '/pages/bindTicket/bindTicket' });
+        url: '/pages/bindTicket/bindTicket?from=in' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

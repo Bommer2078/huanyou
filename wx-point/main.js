@@ -35,7 +35,7 @@ Vue.filter('rulesText', function (obj) {
     if (relatedRedundancy.mainPageText) return relatedRedundancy.mainPageText
     if (rules === 1) {
         if (period === 2) {
-            return `持联票可免费游玩 ${times}次 ，价值${obj.referPrice/100}元`
+            return `联票绑定照片本人可免费游玩 ${times}次 ，价值${obj.referPrice/100}元`
         } else if (period === 1) {
             return `每月可免费游玩 ${times} 次`
         } else if (period === 0) {

@@ -120,7 +120,7 @@ export default {
                     } else {
                         this.$tip.toast('还未绑定联票,请先去绑定','none')
                         uni.redirectTo({
-                            url: '/pages/bindTicket/bindTicket'
+                            url: '/pages/bindTicket/bindTicket?from=in'
                         })
                     }
                 }
@@ -191,7 +191,7 @@ export default {
         },
         goTobind () {
             uni.redirectTo({
-                url: '/pages/bindTicket/bindTicket'
+                url: '/pages/bindTicket/bindTicket?from=in'
             })
         }
     },

@@ -13,14 +13,14 @@
                     <view class="rules">{{venueNum ? `包含 ${venueIntro} 等 ${venueNum}个场馆` : '暂无场馆'}}</view>
                     <view class="price-warp" v-if="sellType">
                         <template v-if="sellType.oldPriceRule && sellType.discountRule">                            
-                            <view class="price"><text class="price-tip">{{sellType.discountPriceName}}：</text>￥<text>{{ticketData.discountPrice/100}}</text><text class="unit">/{{ticketData.discountNum}}张</text></view>
-                            <view class="price"><text class="price-tip">{{sellType.priceName}}：￥{{ticketData.price/100}}/张</text></view>
+                            <view class="price"><text class="price-tip">{{sellType.discountPriceName}}：</text>￥<text>{{ticketData.discountPrice/100}}</text><text class="unit">元</text></view>
+                            <view class="price"><text class="price-tip">{{sellType.priceName}}：￥{{ticketData.price/100}}元</text></view>
                         </template>
                         <template v-else-if="sellType.discountRule">                            
-                            <view class="price"><text class="price-tip">{{sellType.discountPriceName}}：</text>￥<text>{{ticketData.discountPrice/100}}</text><text class="unit">/{{ticketData.discountNum}}张</text></view>
+                            <view class="price"><text class="price-tip">{{sellType.discountPriceName}}：</text>￥<text>{{ticketData.discountPrice/100}}</text><text class="unit">元</text></view>
                         </template>
                         <template v-else-if="sellType.oldPriceRule">                                              
-                            <view class="price"><text class="price-tip">{{sellType.priceName}}：</text>￥<text>{{ticketData.price/100}}</text><text class="unit">/张</text></view>        
+                            <view class="price"><text class="price-tip">{{sellType.priceName}}：</text>￥<text>{{ticketData.price/100}}</text><text class="unit">元</text></view>        
                         </template>
                     </view>
                 </view>

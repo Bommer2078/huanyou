@@ -57,7 +57,7 @@ export default {
     methods: {
         bindTicket() {
             wx.redirectTo({
-                url: `/pages/bindTicket/bindTicket?code=${this.ticketItem.childCode}&password=${this.ticketItem.password}&name=${this.ticketItem.itemName}`
+                url: `/pages/bindTicket/bindTicket?code=${this.ticketItem.childCode}&password=${this.ticketItem.password}&name=${this.ticketItem.itemName}&from=in`
             })
         },
         shareTicket () {

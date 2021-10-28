@@ -178,7 +178,9 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
                 _this.showLoading = true;_context.next = 3;return (
                   _this.$api.getPlaceList());case 3:res1 = _context.sent;
                 if (res1.code === '0') {
-                  _this.locationList = res1.data;
+                  _this.locationList = res1.data.filter(function (el) {
+                    return el.yearTicketCount > 0;
+                  });
                 }
                 _this.showLoading = false;case 6:case "end":return _context.stop();}}}, _callee);}))();
     },
