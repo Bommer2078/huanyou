@@ -8,12 +8,12 @@
                     </view>
                     <input type="text" placeholder="请输入手机号码" v-model.trim="phone" maxlength="11" @blur="checkPhone">
                 </view>
-                <view :class="{'input-item':true,'mg-20':true, 'error-style': codeErr}">
+                <view :class="{'input-item':true,'mg-20':true, 'error-style': codeErr}" @click="sendSms">
                     <view class="lable">
                         验证码
                     </view>
                     <input type="text" placeholder="请输入验证码" v-model.trim="smsCode" @blur="checkCode">
-                    <view class="get-code" @click="sendSms">{{ startCount ? countNum : '发送验证码'}}</view>
+                    <view class="get-code" >{{ startCount ? countNum : '发送验证码'}}</view>
                 </view>
             </template>
             <template v-else>
@@ -78,13 +78,15 @@ export default {
             pageType: 'signUp',
             pageFrom: '',
             oldPassword: '',
-            inputType: 'password'
+            inputType: 'password',
+            debonce: false
         }
     },
     watch: {
         countNum(newVal) {
             if (newVal <= 0) {
                 this.startCount = false
+                this.debonce = false  
                 clearTimeout(this.timeObj)
                 setTimeout(() => {
                     this.countNum = 60
@@ -115,6 +117,7 @@ export default {
     },
     methods: {        
         async sendSms() {
+            if (this.debonce) return
             if (this.startCount) {
                 return
             }
@@ -125,14 +128,26 @@ export default {
             if (this.phoneErr) {
                 return
             }
+            
+            this.debonce = true
+            this.$tip.toast('请稍后', 'none')
             let countTime = new Date().getTime()
             uni.setStorageSync('countTime',countTime)
-            this.countStart()
             let params = {
                 phone: this.phone,
                 type : this.pageType === 'signUp' ? 'register' : 'resetPassword'
             }
-            await this.$api.getSms(params)
+            let res = await this.$api.getSms(params)
+            
+            if (res.code === '0') {
+                this.countStart()
+                this.$tip.toast('短信发送成功', 'none')
+            } else {            
+                setTimeout(() => {                    
+                    this.debonce = false    
+                }, 3000)
+                this.$tip.toast(`${res.message}`, 'none')
+            }
         },
         async registerUser () {
             if (!this.checkPostData()) {
@@ -220,6 +235,7 @@ export default {
             }
         },
         countStart () {
+            if (this.startCount) return
             this.timeObj = setInterval(() => {
                 this.startCount = true
                 this.countNum--

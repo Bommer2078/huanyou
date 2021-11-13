@@ -280,8 +280,8 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
     return {
       venueArr: [],
       goodsArr: [],
-      phoneCall: '4006099109',
-      QQCall: 'QQ：8264070',
+      phoneCall: '4000611185',
+      QQCall: '',
       showTicketList: false,
       showCheckinBox: false,
       ticketList: [],

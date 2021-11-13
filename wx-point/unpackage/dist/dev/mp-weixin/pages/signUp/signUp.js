@@ -210,13 +210,15 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
       pageType: 'signUp',
       pageFrom: '',
       oldPassword: '',
-      inputType: 'password' };
+      inputType: 'password',
+      debonce: false };
 
   },
   watch: {
     countNum: function countNum(newVal) {var _this = this;
       if (newVal <= 0) {
         this.startCount = false;
+        this.debonce = false;
         clearTimeout(this.timeObj);
         setTimeout(function () {
           _this.countNum = 60;
@@ -246,25 +248,38 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
     this.initCountNum();
   },
   methods: {
-    sendSms: function sendSms() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var countTime, params;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!
-                _this2.startCount) {_context.next = 2;break;}return _context.abrupt("return");case 2:if (
+    sendSms: function sendSms() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var countTime, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!
+                _this2.debonce) {_context.next = 2;break;}return _context.abrupt("return");case 2:if (!
+                _this2.startCount) {_context.next = 4;break;}return _context.abrupt("return");case 4:if (
 
 
-                _this2.phone) {_context.next = 5;break;}
-                _this2.phoneErr = '手机号为空';return _context.abrupt("return");case 5:if (!
+                _this2.phone) {_context.next = 7;break;}
+                _this2.phoneErr = '手机号为空';return _context.abrupt("return");case 7:if (!
 
 
-                _this2.phoneErr) {_context.next = 7;break;}return _context.abrupt("return");case 7:
+                _this2.phoneErr) {_context.next = 9;break;}return _context.abrupt("return");case 9:
 
 
+
+                _this2.debonce = true;
+                _this2.$tip.toast('请稍后', 'none');
                 countTime = new Date().getTime();
                 uni.setStorageSync('countTime', countTime);
-                _this2.countStart();
                 params = {
                   phone: _this2.phone,
-                  type: _this2.pageType === 'signUp' ? 'register' : 'resetPassword' };_context.next = 13;return (
+                  type: _this2.pageType === 'signUp' ? 'register' : 'resetPassword' };_context.next = 16;return (
 
-                  _this2.$api.getSms(params));case 13:case "end":return _context.stop();}}}, _callee);}))();
+                  _this2.$api.getSms(params));case 16:res = _context.sent;
+
+                if (res.code === '0') {
+                  _this2.countStart();
+                  _this2.$tip.toast('短信发送成功', 'none');
+                } else {
+                  setTimeout(function () {
+                    _this2.debonce = false;
+                  }, 3000);
+                  _this2.$tip.toast("".concat(res.message), 'none');
+                }case 18:case "end":return _context.stop();}}}, _callee);}))();
     },
     registerUser: function registerUser() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var apiUrl, params, cPhone, cPassword, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
                 _this3.checkPostData()) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:
@@ -352,6 +367,7 @@ var _md5Min = _interopRequireDefault(__webpack_require__(/*! ../../libs/md5.min.
       }
     },
     countStart: function countStart() {var _this6 = this;
+      if (this.startCount) return;
       this.timeObj = setInterval(function () {
         _this6.startCount = true;
         _this6.countNum--;

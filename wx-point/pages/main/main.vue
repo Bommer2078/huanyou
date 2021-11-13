@@ -124,8 +124,8 @@ import checkinBox from '../../components/checkinBox'
             return {
                 venueArr: [],
                 goodsArr: [],
-                phoneCall :'4006099109',
-                QQCall :'QQ：8264070',
+                phoneCall :'4000611185',
+                QQCall :'',
                 showTicketList: false,
                 showCheckinBox: false,
                 ticketList: [],
