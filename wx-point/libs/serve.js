@@ -8,7 +8,7 @@ let http = {
     get: "",
     put: ''
 };
-let typeArr = ['/user/register','/ticket/writeOffYearTicket','/ticket/writeOffSpecialTicket']
+let typeArr = []
 http.post = (api, data) => {    
     let header = {
         'token': uni.getStorageSync('token'),

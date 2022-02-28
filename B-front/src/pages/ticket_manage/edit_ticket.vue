@@ -1,7 +1,8 @@
 <template>
 	<div class="edit-ticket">
 		<edit-info-page v-show="page === 1" ref="infoObj"></edit-info-page>
-		<edit-venue-page v-show="page === 2" ref="venObj"></edit-venue-page>
+		<edit-venue-page v-show="page === 2" ref="venObj">
+		</edit-venue-page>
 		<div class="footer-btns">
 			<div class="btn-group">
 				<t-button button-type="gray" @clickBtn="changeStep(2)">{{page === 1 ? '取消' : '上一步'}}</t-button>
@@ -18,10 +19,10 @@ import editVenuePage from './subpage/edit_venue_page/edit_venue_page.vue'
 export default {
 	data () {
 		return {
-			editId      : '',
+			editI       : '',
 			infoObj     : null,
-			venObj      : null,
-			postVenueAll: null
+			postVenueAll: null,
+			venObj      : null
 		}
 	},
 	components: {
