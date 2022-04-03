@@ -1,1 +1,0 @@
-<block wx:if="{{showLoading}}"><view class="loading-page"><view class="mask"></view><image src="/static/img/loading.svg" class="_img"></image></view></block>

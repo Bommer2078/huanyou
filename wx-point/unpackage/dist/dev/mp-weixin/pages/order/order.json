@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "我的订单",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "ticket-order": "/components/ticket-order",
-    "goods-order": "/components/goods-order"
-  }
-}

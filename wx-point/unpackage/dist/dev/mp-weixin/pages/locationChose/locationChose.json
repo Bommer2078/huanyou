@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "选择归属地",
-  "usingComponents": {
-    "loading": "/components/loadding",
-    "chose-ticket-list": "/components/choseTicketList"
-  }
-}

@@ -18,7 +18,7 @@ module.exports = {
             // target: "http://www.gzlxtx.cn:7776/", //欢游测试专用
             changeOrigin: true, //跨域
             pathRewrite: {
-              "^/api": "/"
+              "^/api": "/api"
             } 
         }
     },

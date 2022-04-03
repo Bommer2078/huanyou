@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "联票详情",
-  "usingComponents": {
-    "loading": "/components/loadding",
-    "pay-ball": "/components/payBall",
-    "chose-ticket-list": "/components/choseTicketList"
-  }
-}
