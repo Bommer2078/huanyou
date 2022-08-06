@@ -123,6 +123,7 @@
             }
         }
     ],   
+    "requiredPrivateInfos": ["getLocation"],
     "tabBar": {
         "color": "#7a7e83",
         "selectedColor": "#FFB306",

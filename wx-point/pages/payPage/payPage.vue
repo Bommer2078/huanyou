@@ -40,8 +40,17 @@
                 <text class="value">{{userInfo.phone | phoneText}}</text>
             </view>
         </view>
-        <view class="confirm-btn" @click="creatOrder">
-            去支付{{ totalPrice }}元   
+        <view class="summery" v-show="!!sellType.showKnow">
+            {{sellType.showKnow}}
+        </view>
+        <view class="pay-group">            
+            <view class="check-box" v-if="!!sellType.showKnow"><text class="t">已阅读以上须知</text>
+                <checkbox :checked="checkedTip" style="transform:scale(0.7)" @click="handleChange"></checkbox>
+                
+            </view>
+            <view class="confirm-btn" @click="creatOrder" :class="{'forbidBtn':!checkedTip && !!sellType.showKnow}">
+                去支付{{ totalPrice }}元   
+            </view>
         </view>
         <loading :show-loading="showLoading"></loading> 
     </view>
@@ -58,12 +67,14 @@ export default {
             count1: 0,
             count2: 0,
             forbidClick: false,
+            checkedTip: false,
             orderId: '',            
             sellType: {
 				oldPriceRule     : false,
 				discountRule     : false,
 				priceName        : '原价',
-				discountPriceName: '套票'
+				discountPriceName: '套票',
+                showKnow: ''
 			},
             sellTypeNum: 0,
             showLoading: false,
@@ -95,6 +106,9 @@ export default {
         this.reflashTicket()
     },
     methods: {
+        handleChange() {
+            this.$set(this,'checkedTip',!this.checkedTip)
+        },
         reduceNum (type) {
             if (this[`count${type}`] === 1 && this.sellTypeNum === 1) {
                 return
@@ -107,6 +121,7 @@ export default {
             this[`count${type}`] ++
         },
         creatOrder () {
+            if (!this.checkedTip && !!(this.sellType && this.sellType.showKnow)) return
             if (this.forbidClick) return
             if (!this.checkForm()) return
             this.forbidClick = true
@@ -241,6 +256,12 @@ export default {
     width: 100%;
     background: #F3F3F3;
 }
+.summery {
+    padding: 15px;
+    padding-top: 0;
+    font-size:13px;
+    word-break: break-word;
+}
 .ticket-name {
     width: 100%;
     height: 50upx;
@@ -257,6 +278,23 @@ export default {
     font-style: italic;
     font-weight: 700;
     color: #FFCC00;
+}
+.pay-group{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    line-height: 74upx;
+}
+.check-box{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+   justify-content: flex-end;
+    margin: 0 auto;
+    width: 78.4%;
+    font-size:13px;
+    
 }
 .num-change {
     width: 240upx;
@@ -349,11 +387,15 @@ export default {
     width: 78.4%;
     height: 74upx;
     margin: 0 auto;
+    margin-top: 20upx;
     font-size: 16px;
     line-height: 74upx;
     text-align: center;
     color: #fff;
     border-radius: 6px;
     background: linear-gradient(-53deg,rgba(255,144,14,1),rgba(255,204,0,1));;
+}
+.forbidBtn {
+    opacity: 0.2;
 }
 </style>

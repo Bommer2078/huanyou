@@ -99,6 +99,12 @@
 							placeholder="请输入优惠政策提示"
 							v-model.trim="discountTip"
 						></textarea>
+						<textarea
+							type="text"
+							class="form-textarea"
+							placeholder="请输入游客须知"
+							v-model.trim="sellType.showKnow"
+						></textarea>
 					</div>
 				</div>
 			</div>
@@ -152,7 +158,8 @@ export default {
 				oldPriceRule     : false,
 				discountRule     : false,
 				priceName        : '原价',
-				discountPriceName: '套票'
+				discountPriceName: '套票',
+				showKnow         : ''
 			}
 
 		}
