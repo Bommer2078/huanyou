@@ -134,10 +134,10 @@ export default {
                 return 
             }
             let now = new Date().getTime()
-            if (now - temp.t > 120000) {
-                this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试')
-                return 
-            }
+            // if (now - temp.t > 120000) {
+            //     this.$tip.alertDialog('该二维码已超过两分钟有效时间，请提示用户刷新二维码后重试')
+            //     return 
+            // }
             let params = {
                 childCode : temp.code,
                 password : temp.pcode,
