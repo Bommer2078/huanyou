@@ -292,7 +292,7 @@
             async getTicketList () {
                 let params = {
                     pageNum: 1,
-                    pageSize: 100,
+                    pageSize: 1000,
                     username: this.userInfo.username
                 }
                 const res = await this.$api.bindTicketList(params)
